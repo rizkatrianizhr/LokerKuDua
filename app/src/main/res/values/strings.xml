@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Aplikasiku</string>
+    <string name="minimum_password">Password Minimum 6 Karakter</string>
+    <string name="auth_failed">Autentikasi Gagal, periksa Email dan Password atau Registrasi</string>
+
+
+    <string-array name="numbers">
+        <item>Pilih Tempat</item>
+        <item>Paris Van Java(PVJ)</item>
+        <item>Bandung indah Plaza(BIP)</item>
+        <item>Trans Satudio Bandung</item>
+        <item>23 Paskal</item>
+    </string-array>
+</resources>

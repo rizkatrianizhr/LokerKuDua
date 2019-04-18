@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "30250938304",
+    "firebase_url": "https://locker-96b1e.firebaseio.com",
+    "project_id": "locker-96b1e",
+    "storage_bucket": "locker-96b1e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:30250938304:android:76b431eedba69994",
+        "android_client_info": {
+          "package_name": "com.e.aplikasiku"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "30250938304-hqasccrh2eppo7laqcot02qknq7jc5u3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.e.aplikasiku",
+            "certificate_hash": "fd2c485cd07e302422fc77276e834525bc31fbd1"
+          }
+        },
+        {
+          "client_id": "30250938304-1ucejakc9qc3l70ooo5abvti3n0e63kh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC48Bb-o6zWUy1PvNlv2oqINgcV2AgxRWU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "30250938304-1ucejakc9qc3l70ooo5abvti3n0e63kh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
