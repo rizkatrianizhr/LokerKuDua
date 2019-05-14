@@ -53,8 +53,10 @@ public class rentLocker extends AppCompatActivity {
                     FirebaseUser user = auth.getCurrentUser();
                     iduser = user.getUid();
                     Intent i = new Intent(rentLocker.this, noLocker.class);
-                    String locker= "Small";
+
+                    //TODO HINT: Perlu dingat data ini akan dikirim kan ke noLockerActivity
                     i.putExtra("locker", "small");
+
                     startActivity(i);
                 }
             }
@@ -81,8 +83,9 @@ public class rentLocker extends AppCompatActivity {
 
 
                     Intent i = new Intent(rentLocker.this, noLocker.class);
-                    String locker= "Medium";
-                    i.putExtra("locker", "Medium");
+
+                    //TODO HINT: Perlu dingat data ini akan dikirim kan ke noLockerActivity
+                    i.putExtra("locker", "medium");
 
                     startActivity(i);
 
@@ -108,9 +111,13 @@ public class rentLocker extends AppCompatActivity {
                 if (auth.getCurrentUser() != null) {
                     FirebaseUser user = auth.getCurrentUser();
                     iduser = user.getUid();
-//                    databaseReference.child(iduser).child("chart").child("Ukuran").setValue("Large");
-//                    databaseReference.child(iduser).child("chart").child("Harga").setValue(8000);
-                    startActivity(new Intent(rentLocker.this, confirmOrder.class));
+
+                    Intent i = new Intent(rentLocker.this, noLocker.class);
+
+                    //TODO HINT: Perlu dingat data ini akan dikirim kan ke noLockerActivity
+                    i.putExtra("locker", "large");
+
+                    startActivity(i);
                 }
             }
         });

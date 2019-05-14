@@ -47,25 +47,35 @@ public class noLocker extends AppCompatActivity {
         S3 = (CardView) findViewById(R.id.s3);
         S4 = (CardView) findViewById(R.id.s4);
         S5 = (CardView) findViewById(R.id.s5);
+
         M1 = (CardView) findViewById(R.id.m1);
         M2 = (CardView) findViewById(R.id.m2);
         M3 = (CardView) findViewById(R.id.m3);
         M4 = (CardView) findViewById(R.id.m4);
         M5 = (CardView) findViewById(R.id.m5);
+
         L1 = (CardView) findViewById(R.id.l1);
         L2 = (CardView) findViewById(R.id.l2);
         L3 = (CardView) findViewById(R.id.l3);
         L4 = (CardView) findViewById(R.id.l4);
         L5 = (CardView) findViewById(R.id.l5);
 
+        // TODO HINT: Mengambil data yang dikirimkan dari rentLockerActivity
+        final String size = getIntent().getExtras().getString("locker");
+
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-
-                if(dataSnapshot.child("lockers").child("small-1").child("isOccupied").getValue(Integer.class)==1){
+                // TODO HINT: Penambahan satu kondisi pada "IF" Untuk men-disable onClick saat UKURAN tidak sesuai
+                if(dataSnapshot.child("lockers").child("small-1").child("isOccupied").getValue(Integer.class)==1
+                        || size != "small"){
                     S1.setCardBackgroundColor(getResources().getColor(R.color.abu));
+
+                    // TODO HINT: Untuk men-disable onClick saat locker sudah ter-occupied
+                    S1.setClickable(false);
                 }
+
                 if(dataSnapshot.child("lockers").child("small-2").child("isOccupied").getValue(Integer.class)==1){
                     S2.setCardBackgroundColor(getResources().getColor(R.color.abu));
                 }
