@@ -62,6 +62,7 @@ public class noLocker extends AppCompatActivity {
 
         // TODO HINT: Mengambil data yang dikirimkan dari rentLockerActivity
         final String size = getIntent().getExtras().getString("locker");
+        Toast.makeText(this, "Size: "+ size, Toast.LENGTH_SHORT).show();
 
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -69,7 +70,7 @@ public class noLocker extends AppCompatActivity {
 
                 // TODO HINT: Penambahan satu kondisi pada "IF" Untuk men-disable onClick saat UKURAN tidak sesuai
                 if(dataSnapshot.child("lockers").child("small-1").child("isOccupied").getValue(Integer.class)==1
-                        || size != "small"){
+                        || !size.equals("small")){
                     S1.setCardBackgroundColor(getResources().getColor(R.color.abu));
 
                     // TODO HINT: Untuk men-disable onClick saat locker sudah ter-occupied
