@@ -35,8 +35,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class ProfilActivity extends AppCompatActivity {
     private TextView getName, getNoHp, getEmail, getSaldo;
-    private Button ubahPassword, Remove, Add;
-    private ProgressBar loading;
+    private Button ubahPassword, Add;
     private FirebaseAuth firebaseAuth;
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
@@ -57,7 +56,6 @@ public class ProfilActivity extends AppCompatActivity {
         getEmail = (TextView) findViewById(R.id.email);
         getNoHp = (TextView) findViewById(R.id.nohp);
         ubahPassword = (Button) findViewById(R.id.ubahpassword);
-        Remove = (Button) findViewById(R.id.hapusakun);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -68,39 +66,39 @@ public class ProfilActivity extends AppCompatActivity {
             }
         });
 
-        Remove.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final AlertDialog.Builder builder = new AlertDialog.Builder(ProfilActivity.this);
-                builder.setMessage("Apakah anda yakin ingin menghapus akun ini?");
-                builder.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        if (user != null) {
-                            user.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task) {
-                                    if (task.isSuccessful()) {
-                                        Toast.makeText(ProfilActivity.this, "Akun berhasil terhapus", Toast.LENGTH_SHORT).show();
-                                        startActivity(new Intent(ProfilActivity.this, Login.class));
-                                        finish();
-                                    } else {
-                                        Toast.makeText(ProfilActivity.this, "Gagal mengapus akun!", Toast.LENGTH_SHORT).show();
-                                    }
-                                }
-                            });
-                        }
-                    }
-                }).setNeutralButton("Tidak", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
-                    }
-                });
-                AlertDialog dialog = builder.create();
-                dialog.show();
-            }
-        });
+//        Remove.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                final AlertDialog.Builder builder = new AlertDialog.Builder(ProfilActivity.this);
+//                builder.setMessage("Apakah anda yakin ingin menghapus akun ini?");
+//                builder.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        if (user != null) {
+//                            user.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
+//                                @Override
+//                                public void onComplete(@NonNull Task<Void> task) {
+//                                    if (task.isSuccessful()) {
+//                                        Toast.makeText(ProfilActivity.this, "Akun berhasil terhapus", Toast.LENGTH_SHORT).show();
+//                                        startActivity(new Intent(ProfilActivity.this, Login.class));
+//                                        finish();
+//                                    } else {
+//                                        Toast.makeText(ProfilActivity.this, "Gagal mengapus akun!", Toast.LENGTH_SHORT).show();
+//                                    }
+//                                }
+//                            });
+//                        }
+//                    }
+//                }).setNeutralButton("Tidak", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        dialog.cancel();
+//                    }
+//                });
+//                AlertDialog dialog = builder.create();
+//                dialog.show();
+//            }
+//        });
 
         Add.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -114,14 +112,15 @@ public class ProfilActivity extends AppCompatActivity {
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                Integer saldo = dataSnapshot.child(idusernya).child("saldo").getValue(Integer.class);
-               String nama = dataSnapshot.child(idusernya).child("nama").getValue(String.class);
-               String email = dataSnapshot.child(idusernya).child("email").getValue(String.class);
-               String nohp = dataSnapshot.child(idusernya).child("telepon").getValue(String.class);
+                String saldo = dataSnapshot.child("users").child(idusernya).child("balance").getValue(String.class);
+               String nama = dataSnapshot.child("users").child(idusernya).child("name").getValue(String.class);
+               String email = dataSnapshot.child("users").child(idusernya).child("email").getValue(String.class);
+               String nomorhp = dataSnapshot.child("users").child(idusernya).child("telepon").getValue(String.class);
                getName.setText(nama);
                getEmail.setText(email);
-               getNoHp.setText(nohp);
-               getSaldo.setText(Integer.toString(saldo));
+               getNoHp.setText(nomorhp);
+               getSaldo.setText(saldo);
+//               getSaldo.setText(Integer.toString(saldoo));
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
@@ -154,11 +153,6 @@ public class ProfilActivity extends AppCompatActivity {
 
     }
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        startActivity(new Intent(ProfilActivity.this, MainActivity.class));
-    }
 
 
 }

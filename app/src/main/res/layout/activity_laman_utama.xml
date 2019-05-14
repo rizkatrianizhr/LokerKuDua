@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/lll"
+    tools:context=".LamanUtama">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="59dp"
+        android:background="@color/bluedark"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="My Locker"
+            android:textColor="@color/white"
+            android:layout_marginLeft="150dp"
+            android:textSize="23dp"
+            android:textStyle="bold"
+            />
+
+    </android.support.v7.widget.Toolbar>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="70dp"
+        android:textSize="15dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:text="Welcome back"/>
+
+    <TextView android:id="@+id/names"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="25dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="95dp"
+        android:textStyle="bold" />
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginTop="140dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        app:cardCornerRadius="12dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/bluedark"
+                android:text="Balance"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="50dp"
+                android:textSize="17dp" />
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/circle"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="40dp"/>
+
+        <Button android:id="@+id/topup"
+
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="240dp"
+            android:layout_marginTop="30dp"
+            android:text="TOP-UP"
+            android:textStyle="bold"
+            android:textSize="18dp"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="45dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/lokasi"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:textColor="@color/bluedark"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/balance"
+
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:textColor="@color/bluedark"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="85dp"
+        android:layout_marginTop="270dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        app:cardCornerRadius="12dp">
+
+        <Button android:id="@+id/order"
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"/>
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="My Locker"
+            android:layout_marginTop="70dp"
+            android:gravity="center"
+            android:textColor="@color/bluedark"
+            android:textSize="10dp"
+            android:textStyle="bold"/>
+
+        <LinearLayout
+            android:layout_width="61dp"
+            android:layout_height="60dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="9dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/circle"
+            android:gravity="center"
+            >
+            <RelativeLayout
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/ic_pesan" />
+
+            </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:layout_marginLeft="100dp"
+            android:padding="10dp"
+            android:orientation="vertical">
+
+
+                <TextView
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:textColor="@color/bluedark"
+                    android:padding="5dp"
+                    android:textSize="20dp"
+                    android:text="Rent Locker"
+                    android:textStyle="bold"/>
+
+            </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="85dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="370dp"
+        android:alignmentMode="alignMargins"
+        android:background="@color/lll"
+        android:columnCount="3"
+        android:columnOrderPreserved="false"
+        >
+
+        <android.support.v7.widget.CardView
+            android:layout_width="0.5dp"
+            android:layout_height="wrap_content"
+            android:layout_rowWeight="1"
+            android:layout_marginRight="10dp"
+            android:layout_columnWeight="1"
+            android:background="@color/abu"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="6dp">
+
+            <Button android:id="@+id/check"
+
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="My Locker"
+                android:layout_marginTop="70dp"
+                android:gravity="center"
+                android:textColor="@color/bluedark"
+                android:textSize="10dp"
+                android:textStyle="bold"/>
+
+            <LinearLayout
+                android:layout_width="61dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/circle"
+                android:gravity="center"
+                >
+                <RelativeLayout
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:layout_centerHorizontal="true"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:src="@drawable/ic_box" />
+
+                </RelativeLayout>
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+        <android.support.v7.widget.CardView
+            android:layout_width="1dp"
+            android:layout_height="wrap_content"
+            android:layout_rowWeight="1"
+            android:layout_marginRight="10dp"
+            android:layout_columnWeight="1"
+            app:cardElevation="6dp"
+            app:cardCornerRadius="12dp"
+            >
+
+            <Button
+                android:id="@+id/profile"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="My Profile"
+                android:layout_marginTop="70dp"
+                android:gravity="center"
+                android:textColor="@color/bluedark"
+                android:textSize="10dp"
+                android:textStyle="bold"/>
+
+            <LinearLayout
+                android:layout_width="61dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/circle"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/ic_account" />
+
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="1dp"
+            android:layout_height="85dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="6dp">
+
+            <Button
+                android:id="@+id/help"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="70dp"
+                android:gravity="center"
+                android:text="Help"
+                android:textColor="@color/bluedark"
+                android:textSize="10dp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="61dp"
+                android:layout_height="60dp"
+                android:layout_marginBottom="5dp"
+                android:layout_gravity="center"
+                android:background="@drawable/circle"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/ic_help" />
+
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+    </GridLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="480dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Promo"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_marginLeft="30dp"/>
+
+    </LinearLayout>
+
+
+    <RelativeLayout
+        android:layout_width="250dp"
+        android:layout_height="150dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="530dp">
+
+        <ViewFlipper
+            android:id="@+id/flipper"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/abu" />
+
+
+    </RelativeLayout>
+
+</RelativeLayout>

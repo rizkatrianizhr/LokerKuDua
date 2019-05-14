@@ -16,7 +16,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Ukuranlocker"></activity>
+        <activity android:name=".noLocker"></activity>
+        <activity android:name=".confirmOrder" />
+        <activity android:name=".rentLocker" />
+        <activity android:name=".LamanUtama" />
+        <activity android:name=".Ukuranlocker" />
         <activity android:name=".Uploadbukti" />
         <activity android:name=".Pilihanbank" />
         <activity android:name=".Ecash" />

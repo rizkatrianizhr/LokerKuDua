@@ -87,7 +87,7 @@ public class TopUp extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Masukan Nominal", Toast.LENGTH_SHORT).show();
                 }
                 if (!TextUtils.isEmpty(saldoInput)) {
-                    databaseReference.child(iduser).child("saldo").setValue(Integer.parseInt(saldoInput) + saldonya);
+                    databaseReference.child("users").child(iduser).child("balance").setValue(Integer.parseInt(saldoInput) + saldonya);
                     Toast.makeText(TopUp.this, "Pengisian Saldo Berhasil", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(TopUp.this, ProfilActivity.class));
                 }

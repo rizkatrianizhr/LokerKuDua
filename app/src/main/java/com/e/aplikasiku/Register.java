@@ -48,8 +48,8 @@ public class Register extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-      //  user = auth.getCurrentUser();
-        //iduser = user.getUid();
+//        user = auth.getCurrentUser();
+//        iduser = user.getUid();
         Progressbar = (ProgressBar) findViewById(R.id.progressbar);
         Progressbar.setVisibility(View.GONE);
         userDatabase = FirebaseDatabase.getInstance();
@@ -89,13 +89,13 @@ public class Register extends AppCompatActivity {
         btnregis.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final String name = Names.getText().toString().trim();
+                final String namee = Names.getText().toString().trim();
                 final String email = Emaill.getText().toString().trim();
                 String pass = Pass.getText().toString().trim();
                 String C_pass = confPass.getText().toString().trim();
                 final String nohp = Nohp.getText().toString().trim();
 
-                if (TextUtils.isEmpty(name)) {
+                if (TextUtils.isEmpty(namee)) {
                     Toast.makeText(getApplicationContext(), "Masukan Nama Pengguna!", Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -123,6 +123,7 @@ public class Register extends AppCompatActivity {
                         return;
                     }
                 }
+//
                 Progressbar.setVisibility(View.VISIBLE);
 
                 auth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener(Register.this, new OnCompleteListener<AuthResult>() {
@@ -135,10 +136,10 @@ public class Register extends AppCompatActivity {
                         Toast.makeText(Register.this, "Gagal!," + task.getException(),
                                 Toast.LENGTH_SHORT).show();
                     } else {
-                        databaseReference.child(auth.getUid()).child("nama").setValue(name);
-                        databaseReference.child(auth.getUid()).child("telepon").setValue(nohp);
-                        databaseReference.child(auth.getUid()).child("email").setValue(email);
-                        databaseReference.child(auth.getUid()).child("saldo").setValue("0");
+                        databaseReference.child("users").child(auth.getUid()).child("name").setValue(namee);
+                        databaseReference.child("users").child(auth.getUid()).child("telepon").setValue(nohp);
+                        databaseReference.child("users").child(auth.getUid()).child("email").setValue(email);
+                        databaseReference.child("users").child(auth.getUid()).child("balance").setValue("0");
                         startActivity(new Intent(Register.this, Login.class));
                         finish();
                     }

@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/white"
+    android:layout_height="match_parent"
+    tools:context=".rentLocker">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="49dp"
+        android:background="@color/bluedark"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+        <ImageView android:id="@+id/btnBack"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/ic_back"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Size"
+            android:paddingEnd="40dp"
+            android:layout_marginRight="20dp"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="18dp"
+            android:textStyle="bold" />
+
+
+    </android.support.v7.widget.Toolbar>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Step 1 of 3"
+        android:layout_marginTop="65dp"
+        android:textSize="15dp"
+
+        android:layout_marginLeft="20dp"
+        android:textStyle="bold"
+        />
+
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Select Locker Size"
+        android:layout_marginTop="85dp"
+        android:textSize="19dp"
+        android:textColor="@color/bluedark"
+        android:layout_marginLeft="20dp"
+        android:textStyle="bold"
+        />
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="135dp"
+        android:layout_centerHorizontal="true"
+        android:alignmentMode="alignMargins"
+        android:columnOrderPreserved="false">
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="140dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="20dp"
+            android:background="@color/white"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="6dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/bluedark">
+
+                    <ImageView
+                        android:id="@+id/img1"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="25dp"
+                        android:layout_marginLeft="15dp"
+                        android:src="@drawable/ic_box" />
+
+                    <TextView
+                        android:id="@+id/small"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/img1"
+                        android:layout_marginLeft="15dp"
+                        android:text="Small"
+                        android:textColor="@color/white"
+                        android:textSize="20dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/small"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="10dp"
+                        android:text="T 30cm x P 30cm x L 40 cm"
+                        android:textColor="@color/lll"
+                        android:textSize="15dp"
+                        android:textStyle="bold" />
+
+
+                    <Button
+                        android:id="@+id/btnSmall"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@android:color/transparent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="220dp"
+                android:layout_marginTop="40dp"
+                android:textSize="23dp"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:text="Rp.5000"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="250dp"
+                android:layout_marginTop="70dp"
+                android:textColor="@color/lll"
+                android:textSize="17dp"
+                android:textStyle="bold"
+                android:text="/hour"/>
+
+</RelativeLayout>
+        </android.support.v7.widget.CardView>
+    </GridLayout>
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="300dp"
+        android:layout_centerHorizontal="true"
+        android:alignmentMode="alignMargins"
+        android:columnOrderPreserved="false"
+        >
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="140dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="20dp"
+            android:background="@color/white"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="6dp">
+
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/lll"
+                >
+
+                <ImageView
+                    android:id="@+id/img2"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="15dp"
+                    android:src="@drawable/ic_boxx" />
+
+                <TextView
+                    android:id="@+id/medium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/img2"
+                    android:layout_marginLeft="20dp"
+                    android:text="Medium"
+                    android:textColor="@color/bluedark"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/medium"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="10dp"
+                    android:text="T 30cm x P 30cm x L 40 cm"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="15dp"
+                    android:textStyle="bold" />
+
+
+                <Button
+                    android:id="@+id/btnMedium"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/transparent" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="220dp"
+                    android:layout_marginTop="40dp"
+                    android:textSize="23dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/bluedark"
+                    android:text="Rp.7000"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="250dp"
+                    android:layout_marginTop="70dp"
+                    android:textSize="17dp"
+                    android:textStyle="bold"
+                    android:text="/hour"/>
+
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+
+
+
+    </GridLayout>
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="460dp"
+        android:layout_centerHorizontal="true"
+        android:alignmentMode="alignMargins"
+        android:columnOrderPreserved="false"
+        >
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="145dp"
+            android:layout_marginLeft="15dp"
+            android:background="@color/white"
+            android:layout_marginRight="20dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="6dp">
+
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/bluedark"
+                >
+
+                <ImageView
+                    android:id="@+id/img3"
+                    android:layout_width="75dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_height="75dp"
+                    android:layout_marginLeft="10dp"
+                    android:src="@drawable/ic_box" />
+
+                <TextView
+                    android:id="@+id/large"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/img3"
+                    android:layout_marginLeft="15dp"
+                    android:text="Large"
+                    android:textColor="@color/white"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/large"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="10dp"
+                    android:text="T 30cm x P 30cm x L 40 cm"
+                    android:textColor="@color/lll"
+                    android:textSize="15dp"
+                    android:textStyle="bold" />
+
+
+                <Button
+                    android:id="@+id/btnLarge"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/transparent" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="220dp"
+                    android:layout_marginTop="45dp"
+                    android:textSize="23dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:text="Rp.9000"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="250dp"
+                    android:layout_marginTop="75dp"
+                    android:textSize="17dp"
+                    android:textColor="@color/lll"
+                    android:textStyle="bold"
+                    android:text="/hour"/>
+
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+
+
+
+    </GridLayout>
+
+
+
+</RelativeLayout>
