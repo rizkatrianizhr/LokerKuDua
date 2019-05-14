@@ -135,10 +135,10 @@ public class Register extends AppCompatActivity {
                         Toast.makeText(Register.this, "Gagal!," + task.getException(),
                                 Toast.LENGTH_SHORT).show();
                     } else {
-                        databaseReference.child(auth.getUid()).child("nama").setValue(name);
-                        databaseReference.child(auth.getUid()).child("telepon").setValue(nohp);
+                        //databaseReference.child(auth.getUid()).child("nama").setValue(name);
+                        //databaseReference.child(auth.getUid()).child("telepon").setValue(nohp);
                         databaseReference.child(auth.getUid()).child("email").setValue(email);
-                        databaseReference.child(auth.getUid()).child("saldo").setValue("0");
+                        databaseReference.child(auth.getUid()).child("balance").setValue(0);
                         startActivity(new Intent(Register.this, Login.class));
                         finish();
                     }

@@ -21,6 +21,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.e.aplikasiku.model.Order;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -30,6 +31,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.zxing.Result;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
 import static android.Manifest.permission.CAMERA;
@@ -37,6 +42,8 @@ import static android.Manifest.permission.CAMERA;
 public class Scan extends AppCompatActivity implements ZXingScannerView.ResultHandler {
     private static final int REQUEST_CAMERA = 1;
     private ZXingScannerView mScannerView;
+    private DatabaseReference mDatabase;
+    private FirebaseAuth authentication;
 //    private FirebaseAuth auth;
 //    private DatabaseReference databaseReference;
 //    private FirebaseDatabase userDatabase;
@@ -140,27 +147,64 @@ public class Scan extends AppCompatActivity implements ZXingScannerView.ResultHa
     private void showResult (final String id) {
 
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Scan Result");
-        builder.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+//        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//        builder.setTitle("Scan Result");
+//        builder.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int i) {
+//                mScannerView.resumeCameraPreview(Scan.this);
+//
+//            }
+//        });
+//        builder.setNeutralButton("Visit", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int i) {
+//                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(id));
+//                startActivity(intent);
+//
+//            }
+//        });
+//        builder.setMessage(id);
+//        AlertDialog alert = builder.create();
+//        alert.show();
+
+
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+
+        final boolean sameUser = true;
+
+        mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onClick(DialogInterface dialog, int i) {
-                mScannerView.resumeCameraPreview(Scan.this);
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                int isOccupied = dataSnapshot.child("lockers").child(id).child("isOpen").getValue(Integer.class);
+                FirebaseUser currentUser = authentication.getCurrentUser();
+
+                if(isOccupied == 0|| (isOccupied == 1  && sameUser)){
+                    if(isOccupied == 0){
+                        Order newOrder = new Order(0,currentUser.getEmail(),id, new Date());
+                        mDatabase.child("orders").child("asb36fbsdf").setValue(newOrder);
+
+                        mDatabase.child("lockers").child(id).child("isOccupied").setValue(1);
+                        mDatabase.child("lockers").child(id).child("occupiedBy").setValue(currentUser.getEmail());
+
+                        mDatabase.child("lockers").child(id).child("isOpen").setValue(1);
+                    }else{
+                        String email = dataSnapshot.child("lockers").child(id).child("occupiedBy").getValue(String.class);
+                        if(email == currentUser.getEmail()){
+                            mDatabase.child("lockers").child(id).child("isOpen").setValue(1);
+                        }else{
+                            //TODO: Show dialog that restrict user to open locker
+                            Toast.makeText(Scan.this, "Locker is Occupied", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
         });
-        builder.setNeutralButton("Visit", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int i) {
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(id));
-                startActivity(intent);
-
-            }
-        });
-        builder.setMessage(id);
-        AlertDialog alert = builder.create();
-        alert.show();
-
     }
 }
 

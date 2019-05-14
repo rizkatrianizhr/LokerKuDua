@@ -114,14 +114,17 @@ public class ProfilActivity extends AppCompatActivity {
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                Integer saldo = dataSnapshot.child(idusernya).child("saldo").getValue(Integer.class);
-               String nama = dataSnapshot.child(idusernya).child("nama").getValue(String.class);
-               String email = dataSnapshot.child(idusernya).child("email").getValue(String.class);
-               String nohp = dataSnapshot.child(idusernya).child("telepon").getValue(String.class);
-               getName.setText(nama);
-               getEmail.setText(email);
-               getNoHp.setText(nohp);
-               getSaldo.setText(Integer.toString(saldo));
+                Integer saldo = dataSnapshot.child(idusernya).child("balance").getValue(Integer.class);
+                //String nama = dataSnapshot.child(idusernya).child("nama").getValue(String.class);
+                String email = dataSnapshot.child(idusernya).child("email").getValue(String.class);
+                //String nohp = dataSnapshot.child(idusernya).child("telepon").getValue(String.class);
+                //getName.setText(nama);
+
+                //getEmail.setText(email);
+
+                //getNoHp.setText(nohp);
+
+                //getSaldo.setText(Integer.toString(saldo));
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
