@@ -3,244 +3,344 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/satu">
+    android:background="@color/white">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="59dp"
-        android:background="@color/bluedark"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+        <ImageView android:id="@+id/btnBack"
+
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/ic_backblue"/>
+
+        <TextView
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Orders"
+            android:paddingEnd="10dp"
+            android:gravity="center"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:textColor="@color/bluedark"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="20dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Locker Detail"
+            android:textColor="@color/bluedark"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="75dp"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Pesanan Anda"
-            android:textColor="@color/white"
-            android:textSize="23dp"
-            android:textStyle="bold" />
+            android:text="ID"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            android:textColor="@color/bluedark"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="105dp"/>
 
-    </android.support.v7.widget.Toolbar>
-
-    <GridLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="80dp"
-        android:alignmentMode="alignMargins"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:columnCount="1"
-        android:columnOrderPreserved="false"
-        android:rowCount="1">
-
-        <android.support.v7.widget.CardView
-            android:layout_width="match_parent"
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:cardCornerRadius="12dp">
+            android:text="Size"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            android:textColor="@color/bluedark"
+            android:layout_marginLeft="130dp"
+            android:layout_marginTop="105dp"/>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/white"
-                android:orientation="vertical"
-                android:padding="15dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Lokasi"
-                    android:textColor="@color/bluedark"
-                    android:textSize="15dp"
-                    android:textStyle="bold" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:layout_marginTop="10dp"
-                        android:src="@drawable/ic_location_on_black_24dp" />
-
-                    <TextView android:id="@+id/lokasi"
-
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="8dp"
-                        android:textColor="@color/bluedark"
-                        android:textSize="15dp"
-                        android:background="@color/lll"
-                        android:textStyle="bold" />
-                    
-                    
-                    
-                    
-
-                </LinearLayout>
-                
-                
-            </LinearLayout>
-        </android.support.v7.widget.CardView>
-
-        
-        <android.support.v7.widget.CardView
-            android:layout_width="match_parent"
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:cardCornerRadius="12dp"
-           >
+            android:text="Hourly Cost"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            android:textColor="@color/bluedark"
+            android:layout_marginLeft="230dp"
+            android:layout_marginTop="105dp"/>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:padding="15dp"
-                android:orientation="vertical">
+        <TextView android:id="@+id/idloker"
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/bluedark"
-                    android:text="No. Locker"
-                    android:textSize="15dp"
-                    android:textStyle="bold"/>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_marginTop="8dp"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="13dp"
+            android:textStyle="bold"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="135dp"/>
 
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:src="@drawable/ic_boxx"
-                        android:layout_marginTop="10dp"/>
+        <TextView android:id="@+id/size"
 
-                    <TextView android:id="@+id/noLocker"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:textColor="@color/bluedark"
-                        android:background="@color/lll"
-                        android:textSize="15dp"
-                        android:layout_marginLeft="10dp"
-                        android:textStyle="bold"/>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="13dp"
+            android:textStyle="bold"
+            android:layout_marginLeft="130dp"
+            android:layout_marginTop="135dp"/>
 
-                </LinearLayout>
-            </LinearLayout>
-        </android.support.v7.widget.CardView>
+        <TextView android:id="@+id/cost"
 
-        
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="13dp"
+            android:textStyle="bold"
+            android:layout_marginLeft="230dp"
+            android:layout_marginTop="135dp"/>
+
+
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="15dp"
-            android:layout_marginTop="5dp"
-            android:text="Waktu"
-            android:textStyle="bold">
-        </TextView>
+            android:text="Reserver Detail"
+            android:textSize="20dp"
+            android:textColor="@color/bluedark"
+            android:textStyle="bold"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="170dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Reserver Name"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            android:textColor="@color/bluedark"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="205dp"/>
+
+        <TextView android:id="@+id/nameUser"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="13dp"
+            android:textStyle="bold"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="233dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Email"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            android:textColor="@color/bluedark"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="265dp"/>
+
+        <TextView android:id="@+id/emailUser"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="13dp"
+            android:textStyle="bold"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="295dp"/>
+
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_marginTop="335dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="6dp">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="170dp"
+                android:background="@color/abu">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Hours"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            android:textColor="@color/bluedark"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"/>
 
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
             app:cardCornerRadius="12dp"
-            android:layout_marginTop="10dp">
+            app:cardElevation="6dp">
 
-            <LinearLayout
+
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:backgroundTint="@color/abu"
+                android:background="@color/white">
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:background="@color/abu"
+                    android:src="@drawable/ic_waktu"
+                    />
+
+
+                <TextView android:id="@+id/hours"
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="03.30"
+                    android:background="@color/white"
+                    android:paddingStart="10dp"
+                    android:layout_marginLeft="30dp"
+                    android:textSize="20dp"
+                    android:textColor="@color/bluedark"
+                    android:textStyle="bold"
+                    />
+
+
+
+            </RelativeLayout>
+
+
+
+
+        </android.support.v7.widget.CardView>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Total"
+                    android:textSize="18dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/bluedark"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="80dp"/>
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="110dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="6dp">
+
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:backgroundTint="@color/abu"
+                        android:background="@color/white">
+
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:background="@color/abu"
+                            android:src="@drawable/ic_payment_black_24dp"
+                            />
+
+
+                        <TextView android:id="@+id/pay"
+
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="S-2"
+                            android:background="@color/white"
+                            android:paddingStart="10dp"
+                            android:layout_marginLeft="30dp"
+                            android:textSize="20dp"
+                            android:textColor="@color/bluedark"
+                            android:textStyle="bold"
+                            />
+
+
+
+                    </RelativeLayout>
+
+
+
+
+                </android.support.v7.widget.CardView>
+
+            </RelativeLayout>
+
+
+        </android.support.v7.widget.CardView>
+
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="90dp"
+            android:layout_marginTop="510dp"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/qrcode"
+            />
+        <TextView
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="605dp"
+            android:gravity="center"
+            android:text="Scan QR Code"
+            android:textSize="15dp"
+            android:textColor="@color/bluedark"
+            android:textStyle="bold"/>
+
+        <Button android:id="@+id/scan"
+            android:layout_width="130dp"
+            android:layout_height="120dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="505dp"
+            android:background="@android:color/transparent"/>
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="645dp"
+                android:alignmentMode="alignMargins"
                 android:background="@color/white"
-                android:padding="15dp"
-                android:orientation="horizontal">
+                android:layout_marginLeft="45dp"
+                android:columnCount="1"
+                android:columnOrderPreserved="false">
+
+            <android.support.v7.widget.CardView android:id="@+id/finish"
+                android:layout_width="0.0dp"
+                android:layout_height="wrap_content"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                app:cardBackgroundColor="@color/bluedark"
+                app:cardElevation="6dp"
+                app:cardCornerRadius="16dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/bluedark"
-                    android:text="Sisa Waktu"
-                    android:textSize="15dp"
-                    android:textStyle="bold"/>
-
-                <TextView android:id="@+id/waktu"
-
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/bluedark"
-                    android:layout_marginLeft="170dp"
+                    android:layout_gravity="center"
+                    android:text="Finished Order"
+                    android:textColor="@color/white"
                     android:textSize="20dp"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
+
+            </android.support.v7.widget.CardView>
+            </GridLayout>
 
 
-            </LinearLayout>
-        </android.support.v7.widget.CardView>
+        </RelativeLayout>
+    </ScrollView>
 
-    </GridLayout>
-
-    <LinearLayout
-        android:gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginTop="570dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginLeft="30dp"
-        android:layout_centerHorizontal="true"
-        android:orientation="horizontal">
-        
-        <Button android:id="@+id/lanjut"
-
-            android:layout_width="150dp"
-            android:layout_height="match_parent"
-           android:layout_marginRight="20dp"
-            android:background="@color/bluedark"
-            android:text="Lanjut"
-            android:textSize="20dp"
-            android:textColor="@color/white"
-            android:textStyle="bold"/>
-
-        <Button android:id="@+id/selesai"
-            android:layout_width="150dp"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="20dp"
-            android:background="@color/bluedark"
-            android:text="Selesai"
-            android:textSize="20dp"
-            android:textColor="@color/white"
-            android:textStyle="bold"/>
-        
-    </LinearLayout>
-    
-
-        
-        <ImageView
-            android:layout_width="110dp"
-            android:layout_height="110dp"
-            android:layout_marginTop="380dp"
-            android:layout_centerHorizontal="true"
-            android:src="@drawable/qrcode"
-           />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="500dp"
-        android:text="Scan QR Code"
-        android:textSize="20dp"
-        android:textColor="@color/bluedark"
-        android:textStyle="bold"/>
-
-    <Button android:id="@+id/scan"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="377dp"
-        android:background="@android:color/transparent"/>
-        
-
-
-
-</RelativeLayout>
+    </RelativeLayout>

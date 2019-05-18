@@ -111,11 +111,11 @@ public class rentLocker extends AppCompatActivity {
                 if (auth.getCurrentUser() != null) {
                     FirebaseUser user = auth.getCurrentUser();
                     iduser = user.getUid();
-
                     Intent i = new Intent(rentLocker.this, noLocker.class);
 
                     //TODO HINT: Perlu dingat data ini akan dikirim kan ke noLockerActivity
                     i.putExtra("locker", "large");
+
 
                     startActivity(i);
                 }

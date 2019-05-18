@@ -71,55 +71,84 @@ public class noLocker extends AppCompatActivity {
                 // TODO HINT: Penambahan satu kondisi pada "IF" Untuk men-disable onClick saat UKURAN tidak sesuai
                 if(dataSnapshot.child("lockers").child("small-1").child("isOccupied").getValue(Integer.class)==1
                         || !size.equals("small")){
-                    S1.setCardBackgroundColor(getResources().getColor(R.color.abu));
+                        S1.setCardBackgroundColor(getResources().getColor(R.color.abu));
+                        // TODO HINT: Untuk men-disable onClick saat locker sudah ter-occupied
+                        S1.setClickable(false);
 
-                    // TODO HINT: Untuk men-disable onClick saat locker sudah ter-occupied
-                    S1.setClickable(false);
                 }
 
-                if(dataSnapshot.child("lockers").child("small-2").child("isOccupied").getValue(Integer.class)==1){
+                if(dataSnapshot.child("lockers").child("small-2").child("isOccupied").getValue(Integer.class)==1
+                        || !size.equals("small")){
                     S2.setCardBackgroundColor(getResources().getColor(R.color.abu));
+                    S2.setClickable(false);
                 }
-                if(dataSnapshot.child("lockers").child("small-3").child("isOccupied").getValue(Integer.class)==1){
+                if(dataSnapshot.child("lockers").child("small-3").child("isOccupied").getValue(Integer.class)==1
+                        || !size.equals("small")) {
                     S3.setCardBackgroundColor(getResources().getColor(R.color.abu));
+                    S3.setClickable(false);
+
                 }
-                if(dataSnapshot.child("lockers").child("small-4").child("isOccupied").getValue(Integer.class)==1){
+                if(dataSnapshot.child("lockers").child("small-4").child("isOccupied").getValue(Integer.class)==1
+                        || !size.equals("small")){
                     S4.setCardBackgroundColor(getResources().getColor(R.color.abu));
+                    S4.setClickable(false);
                 }
-                if(dataSnapshot.child("lockers").child("small-5").child("isOccupied").getValue(Integer.class)==1){
+                if(dataSnapshot.child("lockers").child("small-5").child("isOccupied").getValue(Integer.class)==1
+                        || !size.equals("small")) {
                     S5.setCardBackgroundColor(getResources().getColor(R.color.abu));
+                    S5.setClickable(false);
                 }
 
-                if(dataSnapshot.child("lockers").child("medium-1").child("isOccupied").getValue(Integer.class)==1){
+                if(dataSnapshot.child("lockers").child("medium-1").child("isOccupied").getValue(Integer.class)==1
+                        || !size.equals("medium")){
                     M1.setCardBackgroundColor(getResources().getColor(R.color.abu));
+                    M1.setClickable(false);
                 }
-                if(dataSnapshot.child("lockers").child("medium-2").child("isOccupied").getValue(Integer.class)==1){
+                if(dataSnapshot.child("lockers").child("medium-2").child("isOccupied").getValue(Integer.class)==1
+                        || !size.equals("medium")){
                     M2.setCardBackgroundColor(getResources().getColor(R.color.abu));
+                    M2.setClickable(false);
                 }
-                if(dataSnapshot.child("lockers").child("medium-3").child("isOccupied").getValue(Integer.class)==1){
+                if(dataSnapshot.child("lockers").child("medium-3").child("isOccupied").getValue(Integer.class)==1
+                        || !size.equals("medium")){
                     M3.setCardBackgroundColor(getResources().getColor(R.color.abu));
+                    M3.setClickable(false);
                 }
-                if(dataSnapshot.child("lockers").child("medium-4").child("isOccupied").getValue(Integer.class)==1){
+                if(dataSnapshot.child("lockers").child("medium-4").child("isOccupied").getValue(Integer.class)==1
+                        || !size.equals("medium")){
                     M4.setCardBackgroundColor(getResources().getColor(R.color.abu));
+                    M4.setClickable(false);
                 }
-                if(dataSnapshot.child("lockers").child("medium-5").child("isOccupied").getValue(Integer.class)==1){
+                if(dataSnapshot.child("lockers").child("medium-5").child("isOccupied").getValue(Integer.class)==1
+                        || !size.equals("medium")){
                     M5.setCardBackgroundColor(getResources().getColor(R.color.abu));
+                    M5.setClickable(false);
                 }
 
-                if(dataSnapshot.child("lockers").child("large-1").child("isOccupied").getValue(Integer.class)==1){
+                if(dataSnapshot.child("lockers").child("large-1").child("isOccupied").getValue(Integer.class)==1
+                        || !size.equals("large")){
                     L1.setCardBackgroundColor(getResources().getColor(R.color.abu));
+                    L1.setClickable(false);
                 }
-                if(dataSnapshot.child("lockers").child("large-2").child("isOccupied").getValue(Integer.class)==1){
+                if(dataSnapshot.child("lockers").child("large-2").child("isOccupied").getValue(Integer.class)==1
+                        || !size.equals("large")){
                     L2.setCardBackgroundColor(getResources().getColor(R.color.abu));
+                    L2.setClickable(false);
                 }
-                if(dataSnapshot.child("lockers").child("large-3").child("isOccupied").getValue(Integer.class)==1){
+                if(dataSnapshot.child("lockers").child("large-3").child("isOccupied").getValue(Integer.class)==1
+                        || !size.equals("large")){
                     L3.setCardBackgroundColor(getResources().getColor(R.color.abu));
+                    L3.setClickable(false);
                 }
-                if(dataSnapshot.child("lockers").child("large-4").child("isOccupied").getValue(Integer.class)==1){
+                if(dataSnapshot.child("lockers").child("large-4").child("isOccupied").getValue(Integer.class)==1
+                        || !size.equals("large")){
                     L4.setCardBackgroundColor(getResources().getColor(R.color.abu));
+                    L4.setClickable(false);
                 }
-                if(dataSnapshot.child("lockers").child("large-5").child("isOccupied").getValue(Integer.class)==1){
+                if(dataSnapshot.child("lockers").child("large-5").child("isOccupied").getValue(Integer.class)==1
+                        || !size.equals("large")){
                     L5.setCardBackgroundColor(getResources().getColor(R.color.abu));
+                    L5.setClickable(false);
                 }
             }
 

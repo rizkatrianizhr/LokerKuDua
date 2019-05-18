@@ -11,6 +11,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Camera;
 import android.net.Uri;
 import android.os.Build;
+import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -37,19 +38,20 @@ import static android.Manifest.permission.CAMERA;
 public class Scan extends AppCompatActivity implements ZXingScannerView.ResultHandler {
     private static final int REQUEST_CAMERA = 1;
     private ZXingScannerView mScannerView;
-//    private FirebaseAuth auth;
-//    private DatabaseReference databaseReference;
-//    private FirebaseDatabase userDatabase;
-//    private FirebaseUser user;
-//    String iduser;
-
+    private FirebaseAuth firebaseAuth;
+    private FirebaseDatabase firebaseDatabase;
+    private DatabaseReference databaseReference;
+    private String idusernya;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        auth = FirebaseAuth.getInstance();
-//        userDatabase = FirebaseDatabase.getInstance();
-//        databaseReference = userDatabase.getReference();
+        firebaseAuth = FirebaseAuth.getInstance();
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = firebaseDatabase.getReference();
+        final FirebaseUser user = firebaseAuth.getCurrentUser();
+        idusernya = user.getUid();
+
         mScannerView = new ZXingScannerView(this);
         setContentView(mScannerView);
 
@@ -133,14 +135,91 @@ public class Scan extends AppCompatActivity implements ZXingScannerView.ResultHa
     @Override
     public void handleResult(Result result) {
         final String scanResult = result.getText();
-//        Toast.makeText(this, "Result", Toast.LENGTH_SHORT).show();
         showResult(scanResult);
     }
 
     private void showResult (final String id) {
 
+        final String idlocker = getIntent().getExtras().getString("id");
+        final String size = getIntent().getExtras().getString("locker");
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+
+
+                if (id != null && id.equals("small-1") || !idlocker.equals("S-1")
+                        || dataSnapshot.child("lockers").child("small-1").child("occupiedBy").getValue(String.class)
+                        == dataSnapshot.child("users").child(idusernya).child("email").getValue(String.class)){
+                    databaseReference.child("lockers").child("small-1").child("occupiedBy").setValue(String.class);
+
+
+
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
+
+        if (!idlocker.equals("S-1")) {
+            databaseReference.child("lockers").child("small-1").child("isOpen").setValue(0);
+            AlertDialog.Builder builder = new AlertDialog.Builder(Scan.this);
+            builder.setMessage("Silahkan scan nomor locker yang anda pilih");
+            builder.setPositiveButton("Scan lagi", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    mScannerView.resumeCameraPreview(Scan.this);
+                }
+            });
+
+        }
+
+        if (id.equals("small-2")){
+            databaseReference.child("lockers").child("small-2").child("isOpen").setValue(1);
+            startActivity(new Intent(Scan.this, Pesanan.class));
+
+        }
+
+        if (!idlocker.equals("S-2")) {
+            databaseReference.child("lockers").child("small-2").child("isOpen").setValue(1);
+            AlertDialog.Builder builder = new AlertDialog.Builder(Scan.this);
+            builder.setMessage("Silahkan scan nomor locker yang anda pilih");
+            builder.setPositiveButton("Scan lagi", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    mScannerView.resumeCameraPreview(Scan.this);
+                }
+            });
+
+        }
+        if (!id.equals("small-3") || !idlocker.equals("S-3") ){
+            databaseReference.child("lockers").child("small-3").setValue(0);
+            AlertDialog.Builder builder = new AlertDialog.Builder(Scan.this);
+            builder.setMessage("Silahkan scan nomor locker yang anda pilih");
+            builder.setPositiveButton("Scan lagi", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    mScannerView.resumeCameraPreview(Scan.this);
+                }
+            });
+        }
+
+
+
+
+//        if (id.equals("small-01")){
+//            databaseReference.child("lockers").child("small-1").child("isOpen").setValue(1);
+//            startActivity(new Intent(Scan.this, Pesanan.class));
+//            finish();
+        }
+        /*AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Scan Result");
         builder.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
             @Override
@@ -159,8 +238,7 @@ public class Scan extends AppCompatActivity implements ZXingScannerView.ResultHa
         });
         builder.setMessage(id);
         AlertDialog alert = builder.create();
-        alert.show();
+        alert.show();*/
 
     }
-}
 
