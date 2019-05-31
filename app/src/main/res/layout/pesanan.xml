@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -14,12 +15,20 @@
             android:layout_height="match_parent">
 
 
-        <ImageView android:id="@+id/btnBack"
+        <ImageView
 
             android:layout_width="35dp"
             android:layout_height="35dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="15dp"
             android:src="@drawable/ic_backblue"/>
+
+            <Button android:id="@+id/btnBack"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:background="@android:color/transparent"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="10dp"/>
 
         <TextView
 
@@ -32,7 +41,7 @@
             android:textStyle="bold"
             android:textColor="@color/bluedark"
             android:layout_marginLeft="30dp"
-            android:layout_marginTop="20dp"/>
+            android:layout_marginTop="13dp"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -113,24 +122,6 @@
             android:layout_marginLeft="30dp"
             android:layout_marginTop="170dp"/>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Reserver Name"
-            android:textSize="18dp"
-            android:textStyle="bold"
-            android:textColor="@color/bluedark"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="205dp"/>
-
-        <TextView android:id="@+id/nameUser"
-
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="13dp"
-            android:textStyle="bold"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="233dp"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -140,161 +131,209 @@
             android:textStyle="bold"
             android:textColor="@color/bluedark"
             android:layout_marginLeft="30dp"
-            android:layout_marginTop="265dp"/>
+            android:layout_marginTop="205dp"/>
 
         <TextView android:id="@+id/emailUser"
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="13dp"
             android:textStyle="bold"
             android:layout_marginLeft="30dp"
-            android:layout_marginTop="295dp"/>
+            android:layout_marginTop="235dp"/>
 
-
-        <android.support.v7.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:layout_marginTop="335dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="6dp">
-
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="170dp"
-                android:background="@color/abu">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Hours"
-            android:textSize="18dp"
-            android:textStyle="bold"
-            android:textColor="@color/bluedark"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="10dp"/>
-
-        <android.support.v7.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="6dp">
-
-
-            <RelativeLayout
+            <TextView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:backgroundTint="@color/abu"
-                android:background="@color/white">
+                android:layout_height="wrap_content"
+                android:text="OrderDetail"
+                android:textSize="20dp"
+                android:gravity="center"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/bluedark"
+                android:textStyle="bold"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="260dp"/>
 
-                <ImageView
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:background="@color/abu"
-                    android:src="@drawable/ic_waktu"
-                    />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="290dp"
+                android:text="Date"
+                android:textColor="@color/bluedark"
+                android:textSize="15dp"
+                android:textStyle="bold" />
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="315dp"
+                android:layout_marginRight="30dp"
+                app:cardElevation="6dp">
 
 
-                <TextView android:id="@+id/hours"
-
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="03.30"
+                    android:layout_height="match_parent"
                     android:background="@color/white"
-                    android:paddingStart="10dp"
-                    android:layout_marginLeft="30dp"
-                    android:textSize="20dp"
-                    android:textColor="@color/bluedark"
-                    android:textStyle="bold"
-                    />
+                    android:backgroundTint="@color/white">
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:src="@drawable/ic_date"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="6dp"/>
 
 
 
-            </RelativeLayout>
+                    <TextView android:id="@+id/date"
 
-
-
-
-        </android.support.v7.widget.CardView>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Total"
-                    android:textSize="18dp"
-                    android:textStyle="bold"
-                    android:textColor="@color/bluedark"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginTop="80dp"/>
-
-                <android.support.v7.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="110dp"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginRight="30dp"
-                    app:cardCornerRadius="12dp"
-                    app:cardElevation="6dp">
-
-
-                    <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:backgroundTint="@color/abu"
-                        android:background="@color/white">
-
-                        <ImageView
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
-                            android:background="@color/abu"
-                            android:src="@drawable/ic_payment_black_24dp"
-                            />
-
-
-                        <TextView android:id="@+id/pay"
-
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="S-2"
-                            android:background="@color/white"
-                            android:paddingStart="10dp"
-                            android:layout_marginLeft="30dp"
-                            android:textSize="20dp"
-                            android:textColor="@color/bluedark"
-                            android:textStyle="bold"
-                            />
+                        android:background="@color/lll"
+                        android:paddingStart="15dp"
+                        android:layout_marginLeft="40dp"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:textColor="@color/bluedark"
+                        android:textSize="20dp"
+                        android:textStyle="bold" />
 
 
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
 
-                    </RelativeLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="360dp"
+                android:text="Hours"
+                android:textColor="@color/bluedark"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="390dp"
+                android:layout_marginRight="30dp"
+                app:cardElevation="6dp">
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/white"
+                    android:backgroundTint="@color/white">
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="6dp"
+                        android:src="@drawable/ic_waktu" />
+
+                    <TextView
+                        android:id="@+id/hour"
+
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/lll"
+                        android:paddingStart="15dp"
+                        android:layout_marginLeft="40dp"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:textColor="@color/bluedark"
+                        android:textSize="20dp"
+                        android:textStyle="bold" />
+
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
+
+            <!--<ImageView-->
+                <!--android:layout_width="25dp"-->
+                <!--android:layout_height="25dp"-->
+                <!--android:src="@drawable/ic_payment_black_24dp"-->
+                <!--android:layout_marginTop="490dp"-->
+                <!--android:layout_marginLeft="30dp"/>-->
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="455dp"
+                android:layout_marginRight="30dp"
+                app:cardElevation="6dp">
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/white"
+                    android:backgroundTint="@color/white">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/lll"
+                        android:paddingStart="15dp"
+                        android:paddingTop="5dp"
+                        android:text="Total"
+                        android:paddingBottom="5dp"
+                        android:textColor="@color/bluedark"
+                        android:textSize="20dp"
+                        android:textStyle="bold" />
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:background="@color/lll"
+                        android:layout_marginLeft="180dp"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:textColor="@color/bluedark"
+                        android:textSize="20dp"
+                        android:text="Rp."
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/pay"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginLeft="210dp"
+                        android:layout_marginTop="0dp"
+                        android:background="@color/lll"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:textColor="@color/bluedark"
+                        android:textSize="20dp"
+                        android:textStyle="bold" />
+
+
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
 
 
 
-
-                </android.support.v7.widget.CardView>
-
-            </RelativeLayout>
-
-
-        </android.support.v7.widget.CardView>
 
 
         <ImageView
             android:layout_width="100dp"
             android:layout_height="90dp"
-            android:layout_marginTop="510dp"
+            android:layout_marginTop="520dp"
             android:layout_centerHorizontal="true"
-            android:src="@drawable/qrcode"
-            />
+            android:src="@drawable/qrcode" />
         <TextView
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="605dp"
+            android:layout_marginTop="615dp"
             android:gravity="center"
             android:text="Scan QR Code"
             android:textSize="15dp"
@@ -302,42 +341,53 @@
             android:textStyle="bold"/>
 
         <Button android:id="@+id/scan"
+
             android:layout_width="130dp"
             android:layout_height="120dp"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="505dp"
+            android:layout_marginTop="515dp"
             android:background="@android:color/transparent"/>
+
             <GridLayout
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="645dp"
+                android:layout_marginTop="655dp"
                 android:alignmentMode="alignMargins"
                 android:background="@color/white"
                 android:layout_marginLeft="45dp"
                 android:columnCount="1"
                 android:columnOrderPreserved="false">
 
-            <android.support.v7.widget.CardView android:id="@+id/finish"
-                android:layout_width="0.0dp"
-                android:layout_height="wrap_content"
-                android:layout_rowWeight="1"
-                android:layout_columnWeight="1"
-                app:cardBackgroundColor="@color/bluedark"
-                app:cardElevation="6dp"
-                app:cardCornerRadius="16dp">
+                <android.support.v7.widget.CardView
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="Finished Order"
-                    android:textColor="@color/white"
-                    android:textSize="20dp"
-                    android:textStyle="bold" />
+                    android:id="@+id/finish"
+                    android:layout_width="match_parent"
+                    android:layout_height="28dp"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    app:cardBackgroundColor="@color/bluedark"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="6dp">
 
-            </android.support.v7.widget.CardView>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="Finished Order"
+                        android:textColor="@color/white"
+                        android:textSize="18dp"
+                        android:textStyle="bold" />
+
+                </android.support.v7.widget.CardView>
             </GridLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginTop="770dp">
+
+            </LinearLayout>
 
 
         </RelativeLayout>

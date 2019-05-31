@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/lll"
+    tools:context=".addsaldo">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/bluedark"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Top Up"
+            android:layout_marginRight="20dp"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="18dp"
+            android:textStyle="bold" />
+
+
+    </android.support.v7.widget.Toolbar>
+
+    <ImageView
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:src="@drawable/ic_back"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="10dp"/>
+
+    <Button android:id="@+id/btnBack"
+
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="10dp"
+        android:background="@android:color/transparent"/>
+
+
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cv_saldo"
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        android:layout_marginTop="70dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        app:cardCornerRadius="12dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Your Balance"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:textSize="15dp" />
+
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/lokasi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="Rp."
+                android:textColor="@color/bluedark"
+                android:textSize="30dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/balance"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:textColor="@color/bluedark"
+                android:textSize="30dp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="15dp"
+        android:layout_marginLeft="30dp"
+        android:textColor="@color/bluedark"
+        android:text="Nominal Top Up"
+        android:layout_marginTop="220dp"/>
+
+    <TextView
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:padding="10dp"
+        android:textColor="@color/bluedark"
+        android:layout_marginLeft="30dp"
+        android:background="@color/abu"
+        android:text="Rp"
+        android:layout_marginTop="250dp"
+        android:textSize="18dp" />
+
+    <EditText
+        android:id="@+id/topup"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginStart="75dp"
+        android:layout_marginTop="250dp"
+        android:layout_marginEnd="30dp"
+        android:background="@color/white"
+        android:hint="Minimum Top Up 0"
+        android:paddingStart="20dp"
+        android:inputType="textEmailAddress"
+        android:padding="10dp"
+        android:textColor="@color/bluedark"
+        android:textColorHint="@color/abu"
+        android:textSize="15dp" />
+
+    <ProgressBar android:id="@+id/proses"
+
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="300dp"/>
+
+    <Button android:id="@+id/bayar"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="346dp"
+        android:text="BAYAR SEKARANG"
+        android:textColor="@color/white"
+        android:textSize="13dp"
+
+        android:textStyle="bold"
+        android:background="@color/bluedark"
+        android:layout_marginRight="30dp"
+        android:layout_marginLeft="30dp"/>
+
+</RelativeLayout>

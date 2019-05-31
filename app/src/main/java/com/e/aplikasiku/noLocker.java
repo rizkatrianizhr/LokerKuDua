@@ -1,11 +1,14 @@
 package com.e.aplikasiku;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,6 +28,7 @@ public class noLocker extends AppCompatActivity {
 
     private CardView S1, S2, S3,S4,S5, M1, M2, M3, M4, M5, L1, L2, L3, L4, L5;
     private ProgressBar loading;
+    private Button Back;
     private FirebaseAuth firebaseAuth;
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
@@ -41,6 +45,7 @@ public class noLocker extends AppCompatActivity {
 
         final FirebaseUser user = firebaseAuth.getCurrentUser();
         idusernya = user.getUid();
+        Back = (Button) findViewById(R.id.btnBack);
 
         S1 = (CardView) findViewById(R.id.s1);
         S2 = (CardView) findViewById(R.id.s2);
@@ -157,216 +162,783 @@ public class noLocker extends AppCompatActivity {
 
             }
         });
+
         S1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(noLocker.this, confirmOrder.class);
-                String idlocker = "S-1";
-                String size= "Small";
-                String cost = "6000";
-                i.putExtra("id", idlocker);
-                i.putExtra("sizelocker", size);
-                i.putExtra("hourlycost", cost);
-                startActivity(i);
+
+                databaseReference.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        String balance = dataSnapshot.child("users").child(idusernya).child("balance").getValue(String.class);
+                        Integer saldominimum = 10000;
+                        int saldo = Integer.parseInt(balance);
+                        if (saldo <= saldominimum) {
+                            android.app.AlertDialog.Builder builder = new AlertDialog.Builder(noLocker.this);
+                            builder.setMessage("Your balance is less than Rp. 10.000!");
+                            builder.setNeutralButton("No", null);
+                            builder.setPositiveButton("Top Up", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    startActivity(new Intent(noLocker.this, addsaldo.class));
+                                }
+                            });
+                            builder.create().show();
+                        }
+
+                        if (saldo >= saldominimum) {
+                            Intent i = new Intent(noLocker.this, confirmOrder.class);
+                            String idlocker = "small-1";
+                            String size= "Small";
+                            String cost = "5000";
+                            i.putExtra("id", idlocker);
+                            i.putExtra("sizelocker", size);
+                            i.putExtra("hourlycost", cost);
+                            startActivity(i);
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+
+
+//                Intent i = new Intent(noLocker.this, confirmOrder.class);
+//                String idlocker = "small-1";
+//                String size= "Small";
+//                String cost = "6000";
+//                i.putExtra("id", idlocker);
+//                i.putExtra("sizelocker", size);
+//                i.putExtra("hourlycost", cost);
+//                startActivity(i);
             }
         });
 
         S2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(noLocker.this, confirmOrder.class);
-                String idlocker = "S-2";
-                String size= "Small";
-                String cost = "6000";
-                i.putExtra("id", idlocker);
-                i.putExtra("sizelocker", size);
-                i.putExtra("hourlycost", cost);
-                startActivity(i);
+
+                databaseReference.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        String balance = dataSnapshot.child("users").child(idusernya).child("balance").getValue(String.class);
+                        Integer saldominimum = 10000;
+                        int saldo = Integer.parseInt(balance);
+                        if (saldo <= saldominimum) {
+                            android.app.AlertDialog.Builder builder = new AlertDialog.Builder(noLocker.this);
+                            builder.setMessage("Your balance is less than Rp. 10.000!");
+                            builder.setNeutralButton("No", null);
+                            builder.setPositiveButton("Top Up", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    startActivity(new Intent(noLocker.this, addsaldo.class));
+                                }
+                            });
+                            builder.create().show();
+                        }
+
+                        if (saldo >= saldominimum) {
+                            Intent i = new Intent(noLocker.this, confirmOrder.class);
+                            String idlocker = "small-2";
+                            String size= "Small";
+                            String cost = "5000";
+                            i.putExtra("id", idlocker);
+                            i.putExtra("sizelocker", size);
+                            i.putExtra("hourlycost", cost);
+                            startActivity(i);
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+//                Intent i = new Intent(noLocker.this, confirmOrder.class);
+//                String idlocker = "small-2";
+//                String size= "Small";
+//                String cost = "6000";
+//                i.putExtra("id", idlocker);
+//                i.putExtra("sizelocker", size);
+//                i.putExtra("hourlycost", cost);
+//                startActivity(i);
             }
         });
 
         S3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(noLocker.this, confirmOrder.class);
-                String idlocker = "S-3";
-                String size= "Small";
-                String cost = "6000";
-                i.putExtra("id", idlocker);
-                i.putExtra("sizelocker", size);
-                i.putExtra("hourlycost", cost);
-                startActivity(i);
+
+                databaseReference.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        String balance = dataSnapshot.child("users").child(idusernya).child("balance").getValue(String.class);
+                        Integer saldominimum = 10000;
+                        int saldo = Integer.parseInt(balance);
+                        if (saldo <= saldominimum) {
+                            android.app.AlertDialog.Builder builder = new AlertDialog.Builder(noLocker.this);
+                            builder.setMessage("Your balance is less than Rp. 10.000!");
+                            builder.setNeutralButton("No", null);
+                            builder.setPositiveButton("Top Up", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    startActivity(new Intent(noLocker.this, addsaldo.class));
+                                }
+                            });
+                            builder.create().show();
+                        }
+
+                        if (saldo >= saldominimum) {
+                            Intent i = new Intent(noLocker.this, confirmOrder.class);
+                            String idlocker = "small-3";
+                            String size= "Small";
+                            String cost = "5000";
+                            i.putExtra("id", idlocker);
+                            i.putExtra("sizelocker", size);
+                            i.putExtra("hourlycost", cost);
+                            startActivity(i);
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+//                Intent i = new Intent(noLocker.this, confirmOrder.class);
+//                String idlocker = "small-3";
+//                String size= "Small";
+//                String cost = "6000";
+//                i.putExtra("id", idlocker);
+//                i.putExtra("sizelocker", size);
+//                i.putExtra("hourlycost", cost);
+//                startActivity(i);
             }
         });
 
         S4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(noLocker.this, confirmOrder.class);
-                String idlocker = "S-4";
-                String size= "Small";
-                String cost = "6000";
-                i.putExtra("id", idlocker);
-                i.putExtra("sizelocker", size);
-                i.putExtra("hourlycost", cost);
-                startActivity(i);
+
+                databaseReference.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        String balance = dataSnapshot.child("users").child(idusernya).child("balance").getValue(String.class);
+                        Integer saldominimum = 10000;
+                        int saldo = Integer.parseInt(balance);
+                        if (saldo <= saldominimum) {
+                            android.app.AlertDialog.Builder builder = new AlertDialog.Builder(noLocker.this);
+                            builder.setMessage("Your balance is less than Rp. 10.000!");
+                            builder.setNeutralButton("No", null);
+                            builder.setPositiveButton("Top Up", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    startActivity(new Intent(noLocker.this, addsaldo.class));
+                                }
+                            });
+                            builder.create().show();
+                        }
+
+                        if (saldo >= saldominimum) {
+                            Intent i = new Intent(noLocker.this, confirmOrder.class);
+                            String idlocker = "small-4";
+                            String size= "Small";
+                            String cost = "5000";
+                            i.putExtra("id", idlocker);
+                            i.putExtra("sizelocker", size);
+                            i.putExtra("hourlycost", cost);
+                            startActivity(i);
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+//                Intent i = new Intent(noLocker.this, confirmOrder.class);
+//                String idlocker = "small-4";
+//                String size= "Small";
+//                String cost = "6000";
+//                i.putExtra("id", idlocker);
+//                i.putExtra("sizelocker", size);
+//                i.putExtra("hourlycost", cost);
+//                startActivity(i);
             }
         });
 
         S5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(noLocker.this, confirmOrder.class);
-                String idlocker = "S-5";
-                String size= "Small";
-                String cost = "6000";
-                i.putExtra("id", idlocker);
-                i.putExtra("sizelocker", size);
-                i.putExtra("hourlycost", cost);
-                startActivity(i);
+
+                databaseReference.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        String balance = dataSnapshot.child("users").child(idusernya).child("balance").getValue(String.class);
+                        Integer saldominimum = 10000;
+                        int saldo = Integer.parseInt(balance);
+                        if (saldo <= saldominimum) {
+                            android.app.AlertDialog.Builder builder = new AlertDialog.Builder(noLocker.this);
+                            builder.setMessage("Your balance is less than Rp. 10.000!");
+                            builder.setNeutralButton("No", null);
+                            builder.setPositiveButton("Top Up", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    startActivity(new Intent(noLocker.this, addsaldo.class));
+                                }
+                            });
+                            builder.create().show();
+                        }
+
+                        if (saldo >= saldominimum) {
+                            Intent i = new Intent(noLocker.this, confirmOrder.class);
+                            String idlocker = "small-5";
+                            String size= "Small";
+                            String cost = "5000";
+                            i.putExtra("id", idlocker);
+                            i.putExtra("sizelocker", size);
+                            i.putExtra("hourlycost", cost);
+                            startActivity(i);
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+//                Intent i = new Intent(noLocker.this, confirmOrder.class);
+//                String idlocker = "small-5";
+//                String size= "Small";
+//                String cost = "6000";
+//                i.putExtra("id", idlocker);
+//                i.putExtra("sizelocker", size);
+//                i.putExtra("hourlycost", cost);
+//                startActivity(i);
             }
         });
 
         M1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(noLocker.this, confirmOrder.class);
-                String idlocker = "M-1";
-                String size= "Medium";
-                String cost = "7500";
-                i.putExtra("id", idlocker);
-                i.putExtra("sizelocker", size);
-                i.putExtra("hourlycost", cost);
-                startActivity(i);
+
+                databaseReference.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        String balance = dataSnapshot.child("users").child(idusernya).child("balance").getValue(String.class);
+                        Integer saldominimum = 10000;
+                        int saldo = Integer.parseInt(balance);
+                        if (saldo <= saldominimum) {
+                            android.app.AlertDialog.Builder builder = new AlertDialog.Builder(noLocker.this);
+                            builder.setMessage("Your balance is less than Rp. 10.000!");
+                            builder.setNeutralButton("No", null);
+                            builder.setPositiveButton("Top Up", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    startActivity(new Intent(noLocker.this, addsaldo.class));
+                                }
+                            });
+                            builder.create().show();
+                        }
+
+                        if (saldo >= saldominimum) {
+                            Intent i = new Intent(noLocker.this, confirmOrder.class);
+                            String idlocker = "medium-1";
+                            String size= "Medium";
+                            String cost = "6000";
+                            i.putExtra("id", idlocker);
+                            i.putExtra("sizelocker", size);
+                            i.putExtra("hourlycost", cost);
+                            startActivity(i);
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+//                Intent i = new Intent(noLocker.this, confirmOrder.class);
+//                String idlocker = "medium-1";
+//                String size= "Medium";
+//                String cost = "7500";
+//                i.putExtra("id", idlocker);
+//                i.putExtra("sizelocker", size);
+//                i.putExtra("hourlycost", cost);
+//                startActivity(i);
             }
         });
 
         M2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(noLocker.this, confirmOrder.class);
-                String idlocker = "M-2";
-                String size= "Medium";
-                String cost = "7500";
-                i.putExtra("id", idlocker);
-                i.putExtra("sizelocker", size);
-                i.putExtra("hourlycost", cost);
-                startActivity(i);
+
+                databaseReference.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        String balance = dataSnapshot.child("users").child(idusernya).child("balance").getValue(String.class);
+                        Integer saldominimum = 10000;
+                        int saldo = Integer.parseInt(balance);
+                        if (saldo <= saldominimum) {
+                            android.app.AlertDialog.Builder builder = new AlertDialog.Builder(noLocker.this);
+                            builder.setMessage("Your balance is less than Rp. 10.000!");
+                            builder.setNeutralButton("No", null);
+                            builder.setPositiveButton("Top Up", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    startActivity(new Intent(noLocker.this, addsaldo.class));
+                                }
+                            });
+                            builder.create().show();
+                        }
+
+                        if (saldo >= saldominimum) {
+                            Intent i = new Intent(noLocker.this, confirmOrder.class);
+                            String idlocker = "medium-2";
+                            String size= "Medium";
+                            String cost = "6000";
+                            i.putExtra("id", idlocker);
+                            i.putExtra("sizelocker", size);
+                            i.putExtra("hourlycost", cost);
+                            startActivity(i);
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+//                Intent i = new Intent(noLocker.this, confirmOrder.class);
+//                String idlocker = "medium-2";
+//                String size= "Medium";
+//                String cost = "7500";
+//                i.putExtra("id", idlocker);
+//                i.putExtra("sizelocker", size);
+//                i.putExtra("hourlycost", cost);
+//                startActivity(i);
             }
         });
 
         M3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(noLocker.this, confirmOrder.class);
-                String idlocker = "M-3";
-                String size= "Medium";
-                String cost = "7500";
-                i.putExtra("id", idlocker);
-                i.putExtra("sizelocker", size);
-                i.putExtra("hourlycost", cost);
-                startActivity(i);
+
+                databaseReference.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        String balance = dataSnapshot.child("users").child(idusernya).child("balance").getValue(String.class);
+                        Integer saldominimum = 10000;
+                        int saldo = Integer.parseInt(balance);
+                        if (saldo <= saldominimum) {
+                            android.app.AlertDialog.Builder builder = new AlertDialog.Builder(noLocker.this);
+                            builder.setMessage("Your balance is less than Rp. 10.000!");
+                            builder.setNeutralButton("No", null);
+                            builder.setPositiveButton("Top Up", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    startActivity(new Intent(noLocker.this, addsaldo.class));
+                                }
+                            });
+                            builder.create().show();
+                        }
+
+                        if (saldo >= saldominimum) {
+                            Intent i = new Intent(noLocker.this, confirmOrder.class);
+                            String idlocker = "medium-3";
+                            String size= "Medium";
+                            String cost = "6000";
+                            i.putExtra("id", idlocker);
+                            i.putExtra("sizelocker", size);
+                            i.putExtra("hourlycost", cost);
+                            startActivity(i);
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+//                Intent i = new Intent(noLocker.this, confirmOrder.class);
+//                String idlocker = "medium-3";
+//                String size= "Medium";
+//                String cost = "7500";
+//                i.putExtra("id", idlocker);
+//                i.putExtra("sizelocker", size);
+//                i.putExtra("hourlycost", cost);
+//                startActivity(i);
             }
         });
 
         M4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(noLocker.this, confirmOrder.class);
-                String idlocker = "M-4";
-                String size= "Medium";
-                String cost = "7500";
-                i.putExtra("id", idlocker);
-                i.putExtra("sizelocker", size);
-                i.putExtra("hourlycost", cost);
-                startActivity(i);
+
+                databaseReference.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        String balance = dataSnapshot.child("users").child(idusernya).child("balance").getValue(String.class);
+                        Integer saldominimum = 10000;
+                        int saldo = Integer.parseInt(balance);
+                        if (saldo <= saldominimum) {
+                            android.app.AlertDialog.Builder builder = new AlertDialog.Builder(noLocker.this);
+                            builder.setMessage("Your balance is less than Rp. 10.000!");
+                            builder.setNeutralButton("No", null);
+                            builder.setPositiveButton("Top Up", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    startActivity(new Intent(noLocker.this, addsaldo.class));
+                                }
+                            });
+                            builder.create().show();
+                        }
+
+                        if (saldo >= saldominimum) {
+                            Intent i = new Intent(noLocker.this, confirmOrder.class);
+                            String idlocker = "medium-4";
+                            String size= "Medium";
+                            String cost = "6000";
+                            i.putExtra("id", idlocker);
+                            i.putExtra("sizelocker", size);
+                            i.putExtra("hourlycost", cost);
+                            startActivity(i);
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+//                Intent i = new Intent(noLocker.this, confirmOrder.class);
+//                String idlocker = "medium-4";
+//                String size= "Medium";
+//                String cost = "7500";
+//                i.putExtra("id", idlocker);
+//                i.putExtra("sizelocker", size);
+//                i.putExtra("hourlycost", cost);
+//                startActivity(i);
             }
         });
 
         M5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(noLocker.this, confirmOrder.class);
-                String idlocker = "M-5";
-                String size = "Medium";
-                String cost = "7500";
-                i.putExtra("id", idlocker);
-                i.putExtra("sizelocker", size);
-                i.putExtra("hourlycost", cost);
-                startActivity(i);
+
+                databaseReference.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        String balance = dataSnapshot.child("users").child(idusernya).child("balance").getValue(String.class);
+                        Integer saldominimum = 10000;
+                        int saldo = Integer.parseInt(balance);
+                        if (saldo <= saldominimum) {
+                            android.app.AlertDialog.Builder builder = new AlertDialog.Builder(noLocker.this);
+                            builder.setMessage("Your balance is less than Rp. 10.000!");
+                            builder.setNeutralButton("No", null);
+                            builder.setPositiveButton("Top Up", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    startActivity(new Intent(noLocker.this, addsaldo.class));
+                                }
+                            });
+                            builder.create().show();
+                        }
+
+                        if (saldo >= saldominimum) {
+                            Intent i = new Intent(noLocker.this, confirmOrder.class);
+                            String idlocker = "medium-5";
+                            String size= "Medium";
+                            String cost = "6000";
+                            i.putExtra("id", idlocker);
+                            i.putExtra("sizelocker", size);
+                            i.putExtra("hourlycost", cost);
+                            startActivity(i);
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+//                Intent i = new Intent(noLocker.this, confirmOrder.class);
+//                String idlocker = "medium-5";
+//                String size = "Medium";
+//                String cost = "7500";
+//                i.putExtra("id", idlocker);
+//                i.putExtra("sizelocker", size);
+//                i.putExtra("hourlycost", cost);
+//                startActivity(i);
             }
         });
 
         L1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(noLocker.this, confirmOrder.class);
-                String idlocker = "L-1";
-                String size= "Large";
-                String cost = "9000";
-                i.putExtra("id", idlocker);
-                i.putExtra("sizelocker", size);
-                i.putExtra("hourlycost", cost);
-                startActivity(i);
+
+                databaseReference.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        String balance = dataSnapshot.child("users").child(idusernya).child("balance").getValue(String.class);
+                        Integer saldominimum = 10000;
+                        int saldo = Integer.parseInt(balance);
+                        if (saldo <= saldominimum) {
+                            android.app.AlertDialog.Builder builder = new AlertDialog.Builder(noLocker.this);
+                            builder.setMessage("Your balance is less than Rp. 10.000!");
+                            builder.setNeutralButton("No", null);
+                            builder.setPositiveButton("Top Up", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    startActivity(new Intent(noLocker.this, addsaldo.class));
+                                }
+                            });
+                            builder.create().show();
+                        }
+
+                        if (saldo >= saldominimum) {
+                            Intent i = new Intent(noLocker.this, confirmOrder.class);
+                            String idlocker = "large-1";
+                            String size= "Large";
+                            String cost = "7000";
+                            i.putExtra("id", idlocker);
+                            i.putExtra("sizelocker", size);
+                            i.putExtra("hourlycost", cost);
+                            startActivity(i);
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+//                Intent i = new Intent(noLocker.this, confirmOrder.class);
+//                String idlocker = "large-1";
+//                String size= "Large";
+//                String cost = "9000";
+//                i.putExtra("id", idlocker);
+//                i.putExtra("sizelocker", size);
+//                i.putExtra("hourlycost", cost);
+//                startActivity(i);
             }
         });
 
         L2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(noLocker.this, confirmOrder.class);
-                String idlocker = "L-2";
-                String size= "Large";
-                String cost = "9000";
-                i.putExtra("id", idlocker);
-                i.putExtra("sizelocker", size);
-                i.putExtra("hourlycost", cost);
-                startActivity(i);
+
+                databaseReference.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        String balance = dataSnapshot.child("users").child(idusernya).child("balance").getValue(String.class);
+                        Integer saldominimum = 10000;
+                        int saldo = Integer.parseInt(balance);
+                        if (saldo <= saldominimum) {
+                            android.app.AlertDialog.Builder builder = new AlertDialog.Builder(noLocker.this);
+                            builder.setMessage("Your balance is less than Rp. 10.000!");
+                            builder.setNeutralButton("No", null);
+                            builder.setPositiveButton("Top Up", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    startActivity(new Intent(noLocker.this, addsaldo.class));
+                                }
+                            });
+                            builder.create().show();
+                        }
+
+                        if (saldo >= saldominimum) {
+                            Intent i = new Intent(noLocker.this, confirmOrder.class);
+                            String idlocker = "large-2";
+                            String size= "Large";
+                            String cost = "7000";
+                            i.putExtra("id", idlocker);
+                            i.putExtra("sizelocker", size);
+                            i.putExtra("hourlycost", cost);
+                            startActivity(i);
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+//                Intent i = new Intent(noLocker.this, confirmOrder.class);
+//                String idlocker = "large-2";
+//                String size= "Large";
+//                String cost = "9000";
+//                i.putExtra("id", idlocker);
+//                i.putExtra("sizelocker", size);
+//                i.putExtra("hourlycost", cost);
+//                startActivity(i);
             }
         });
 
         L3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(noLocker.this, confirmOrder.class);
-                String idlocker = "L-3";
-                String size= "Large";
-                String cost = "9000";
-                i.putExtra("id", idlocker);
-                i.putExtra("sizelocker", size);
-                i.putExtra("hourlycost", cost);
+
+                databaseReference.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        String balance = dataSnapshot.child("users").child(idusernya).child("balance").getValue(String.class);
+                        Integer saldominimum = 10000;
+                        int saldo = Integer.parseInt(balance);
+                        if (saldo <= saldominimum) {
+                            android.app.AlertDialog.Builder builder = new AlertDialog.Builder(noLocker.this);
+                            builder.setMessage("Your balance is less than Rp. 10.000!");
+                            builder.setNeutralButton("No", null);
+                            builder.setPositiveButton("Top Up", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    startActivity(new Intent(noLocker.this, addsaldo.class));
+                                }
+                            });
+                            builder.create().show();
+                        }
+
+                        if (saldo >= saldominimum) {
+                            Intent i = new Intent(noLocker.this, confirmOrder.class);
+                            String idlocker = "large-3";
+                            String size= "Large";
+                            String cost = "7000";
+                            i.putExtra("id", idlocker);
+                            i.putExtra("sizelocker", size);
+                            i.putExtra("hourlycost", cost);
+                            startActivity(i);
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+//                Intent i = new Intent(noLocker.this, confirmOrder.class);
+//                String idlocker = "large-3";
+//                String size= "Large";
+//                String cost = "9000";
+//                i.putExtra("id", idlocker);
+//                i.putExtra("sizelocker", size);
+//                i.putExtra("hourlycost", cost);
             }
         });
 
         L4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(noLocker.this, confirmOrder.class);
-                String idlocker = "L-4";
-                String size= "Large";
-                String cost = "9000";
-                i.putExtra("id", idlocker);
-                i.putExtra("sizelocker", size);
-                i.putExtra("hourlycost", cost);
-                startActivity(i);
+
+                databaseReference.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        String balance = dataSnapshot.child("users").child(idusernya).child("balance").getValue(String.class);
+                        Integer saldominimum = 10000;
+                        int saldo = Integer.parseInt(balance);
+                        if (saldo <= saldominimum) {
+                            android.app.AlertDialog.Builder builder = new AlertDialog.Builder(noLocker.this);
+                            builder.setMessage("Your balance is less than Rp. 10.000!");
+                            builder.setNeutralButton("No", null);
+                            builder.setPositiveButton("Top Up", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    startActivity(new Intent(noLocker.this, addsaldo.class));
+                                }
+                            });
+                            builder.create().show();
+                        }
+
+                        if (saldo >= saldominimum) {
+                            Intent i = new Intent(noLocker.this, confirmOrder.class);
+                            String idlocker = "large-4";
+                            String size= "Large";
+                            String cost = "7000";
+                            i.putExtra("id", idlocker);
+                            i.putExtra("sizelocker", size);
+                            i.putExtra("hourlycost", cost);
+                            startActivity(i);
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+//                Intent i = new Intent(noLocker.this, confirmOrder.class);
+//                String idlocker = "large-4";
+//                String size= "Large";
+//                String cost = "9000";
+//                i.putExtra("id", idlocker);
+//                i.putExtra("sizelocker", size);
+//                i.putExtra("hourlycost", cost);
+//                startActivity(i);
             }
         });
 
         L5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(noLocker.this, confirmOrder.class);
-                String idlocker = "L-5";
-                String size= "Large";
-                String cost = "9000";
-                i.putExtra("id", idlocker);
-                i.putExtra("sizelocker", size);
-                i.putExtra("hourlycost", cost);
-                startActivity(i);
+
+                databaseReference.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        String balance = dataSnapshot.child("users").child(idusernya).child("balance").getValue(String.class);
+                        Integer saldominimum = 10000;
+                        int saldo = Integer.parseInt(balance);
+                        if (saldo <= saldominimum) {
+                            android.app.AlertDialog.Builder builder = new AlertDialog.Builder(noLocker.this);
+                            builder.setMessage("Your balance is less than Rp. 10.000!");
+                            builder.setNeutralButton("No", null);
+                            builder.setPositiveButton("Top Up", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    startActivity(new Intent(noLocker.this, addsaldo.class));
+                                }
+                            });
+                            builder.create().show();
+                        }
+
+                        if (saldo >= saldominimum) {
+                            Intent i = new Intent(noLocker.this, confirmOrder.class);
+                            String idlocker = "large-5";
+                            String size= "Large";
+                            String cost = "7000";
+                            i.putExtra("id", idlocker);
+                            i.putExtra("sizelocker", size);
+                            i.putExtra("hourlycost", cost);
+                            startActivity(i);
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+//                Intent i = new Intent(noLocker.this, confirmOrder.class);
+//                String idlocker = "large-5";
+//                String size= "Large";
+//                String cost = "9000";
+//                i.putExtra("id", idlocker);
+//                i.putExtra("sizelocker", size);
+//                i.putExtra("hourlycost", cost);
+//                startActivity(i);
             }
         });
 
-
-
+        Back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(noLocker.this, rentLocker.class));
+            }
+        });
+    }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        startActivity(new Intent(noLocker.this, rentLocker.class));
     }
 }

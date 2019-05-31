@@ -9,35 +9,44 @@
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="59dp"
+        android:layout_height="49dp"
         android:background="@color/bluedark"
         android:minHeight="?attr/actionBarSize"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
-        <LinearLayout
+
+        <TextView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:text="Payment"
+            android:layout_marginRight="20dp"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="18dp"
+            android:textStyle="bold" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="120dp"
-                android:padding="15dp"
-                android:text="Profil"
-                android:textColor="@color/white"
-                android:textSize="23dp"
-                android:textStyle="bold" />
-
-
-        </LinearLayout>
 
     </android.support.v7.widget.Toolbar>
+
+    <ImageView
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:src="@drawable/ic_back"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="10dp"/>
+
+    <Button android:id="@+id/btnBack"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="10dp"
+        android:background="@android:color/transparent"/>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="59dp">
+        android:layout_marginTop="50dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -53,9 +62,7 @@
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
-
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -65,8 +72,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal"
-                >
+                android:orientation="horizontal">
 
 
                 <TextView
@@ -74,14 +80,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="20dp"
-                    android:drawableRight="@drawable/down"
                     android:textStyle="bold"
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="22dp"
-                    android:text="Total Pembayaran"
+                    android:text="Total Payment"
                     android:textColor="@color/bluedark"
-                    android:textSize="20dp"
-                   />
+                    android:textSize="20dp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -99,10 +103,11 @@
                         android:layout_marginLeft="20dp"/>
 
                     <TextView android:id="@+id/totall"
+
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textStyle="bold"
-                        android:textSize="25dp"
+                        android:textSize="20dp"
                         android:textColor="@color/black"
                         android:layout_marginLeft="10dp"/>
 
@@ -117,29 +122,20 @@
 
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:layout_marginTop="80dp"
-            >
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="70dp"
-                android:background="@color/white"
-                >
+            android:layout_height="55dp"
+            android:layout_marginTop="70dp">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    >
+                    android:orientation="horizontal">
 
                     <ImageView
                         android:id="@+id/img1"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:layout_marginLeft="25dp"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginTop="8dp"
                         android:src="@drawable/ic_credit" />
 
                     <TextView
@@ -150,10 +146,10 @@
                         android:drawableRight="@drawable/down"
                         android:textStyle="bold"
                         android:layout_marginLeft="80dp"
-                        android:layout_marginTop="22dp"
-                        android:text="Pilih Transfer Bank"
+                        android:layout_marginTop="18dp"
+                        android:text="Select bank transfer"
                         android:textColor="@color/bluedark"
-                        android:textSize="20dp"
+                        android:textSize="15dp"
                         />
 
 
@@ -163,32 +159,24 @@
                         android:layout_height="match_parent"
                         android:background="@android:color/transparent" />
                 </RelativeLayout>
-            </LinearLayout>
         </android.support.v7.widget.CardView>
 
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:layout_marginTop="5dp"
-            >
+            android:layout_height="55dp"
+            android:layout_marginTop="5dp">
 
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="70dp"
-                android:background="@color/white">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    >
+                    android:orientation="horizontal">
 
                     <ImageView
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:layout_marginLeft="25dp"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginTop="8dp"
                         android:src="@drawable/bcalogo" />
 
                     <TextView
@@ -196,11 +184,11 @@
                         android:layout_height="wrap_content"
                         android:layout_marginRight="20dp"
                         android:layout_marginLeft="80dp"
-                        android:layout_marginTop="22dp"
-                        android:text="Bank BCA (Dicek Manual)"
+                        android:layout_marginTop="18dp"
+                        android:text="BCA Bank (Manually Checked)"
                         android:textStyle="bold"
                         android:textColor="@color/bluedark"
-                        android:textSize="20dp"
+                        android:textSize="15dp"
                         />
 
                     <Button android:id="@+id/bca"
@@ -211,20 +199,12 @@
 
 
                 </RelativeLayout>
-            </LinearLayout>
         </android.support.v7.widget.CardView>
 
         <android.support.v7.widget.CardView
             android:id="@+id/cvbca"
             android:layout_width="match_parent"
-            android:layout_height="180dp"
-            >
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="180dp"
-                android:background="@color/white">
+            android:layout_height="155dp">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -232,17 +212,15 @@
                     android:background="@color/satu"
                     android:orientation="vertical">
 
-
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="20dp"
-                        android:layout_marginTop="15dp"
-                        android:layout_marginLeft="20dp"
-                        android:text="1. Gunakan ATM / mBanking untuk transfer ke rekening E-locker beriku ini: "
+                        android:layout_marginRight="18dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="18dp"
+                        android:text="1. Use ATM/M-Banking to transfer to Mylocker account: "
                         android:textColor="@color/bluedark"
-                        android:textSize="15dp"
-                        />
+                        android:textSize="15dp" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -251,29 +229,25 @@
                         android:orientation="vertical"
                         android:background="@color/white"
                         android:layout_marginRight="20dp"
-                        android:layout_marginTop="55dp">
+                        android:layout_marginTop="36dp">
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="30dp"
-                            android:textSize="15dp"
-                            android:text="No. Rekening : 9887878728728" />
+                            android:layout_marginLeft="15dp"
+                            android:textSize="18dp"
+                            android:textStyle="bold"
+                            android:layout_marginTop="5dp"
+                            android:text="Account No. : 9887878728728" />
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textSize="15dp"
-                            android:text="Nama Rekening : PT. AirPay International"
-                            android:layout_marginLeft="30dp"/>
-
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textSize="15dp"
-                            android:layout_marginLeft="30dp"
-                            android:text="Cabang : Slipi"/>
+                            android:textSize="18dp"
+                            android:textStyle="bold"
+                            android:layout_marginBottom="5dp"
+                            android:text="Account Name : PT. AirPay International"
+                            android:layout_marginLeft="15dp"/>
 
                     </LinearLayout>
 
@@ -281,38 +255,28 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textSize="15dp"
-                        android:layout_marginTop="120dp"
-                        android:text="*Hanya menerima dari bank BCA"
+                        android:layout_marginTop="100dp"
+                        android:text="*Only accept from BCA Bank"
                         android:layout_marginLeft="20dp"
-                        android:textColor="@color/bluedark"
-                        />
+                        android:textColor="@color/bluedark" />
+
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textSize="15dp"
-                        android:layout_marginTop="145dp"
-                        android:text="2. Silahkan Upload bukti apabila sudah transfer"
+                        android:layout_marginTop="123dp"
+                        android:text="2. Please Upload proof of transfer if you have transfered"
                         android:layout_marginLeft="20dp"
-                        android:textColor="@color/bluedark"
-                        />
-
+                        android:textColor="@color/bluedark" />
 
                 </RelativeLayout>
-            </LinearLayout>
         </android.support.v7.widget.CardView>
 
 
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:layout_marginTop="5dp"
-            >
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="70dp"
-                android:background="@color/white">
+            android:layout_height="55dp"
+            android:layout_marginTop="5dp">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -324,7 +288,7 @@
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:layout_marginLeft="25dp"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginTop="8dp"
                         android:src="@drawable/brilogo" />
 
                     <TextView
@@ -332,12 +296,12 @@
                         android:layout_height="wrap_content"
                         android:layout_marginRight="20dp"
                         android:layout_marginLeft="80dp"
-                        android:layout_marginTop="22dp"
-                        android:text="Bank BRI (Dicek Manual)"
+                        android:drawableRight="@drawable/down"
+                        android:layout_marginTop="18dp"
+                        android:text="BRI Bank (Manually Checked)"
                         android:textStyle="bold"
                         android:textColor="@color/bluedark"
-                        android:textSize="20dp"
-                        />
+                        android:textSize="15dp" />
 
 
                     <Button
@@ -346,20 +310,12 @@
                         android:layout_height="match_parent"
                         android:background="@android:color/transparent" />
                 </RelativeLayout>
-            </LinearLayout>
         </android.support.v7.widget.CardView>
 
         <android.support.v7.widget.CardView
             android:id="@+id/cvbri"
             android:layout_width="match_parent"
-            android:layout_height="180dp"
-            >
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="180dp"
-                android:background="@color/white">
+            android:layout_height="155dp">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -371,13 +327,12 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="20dp"
-                        android:layout_marginTop="15dp"
-                        android:layout_marginLeft="20dp"
-                        android:text="1. Gunakan ATM / mBanking untuk transfer ke rekening E-locker beriku ini: "
+                        android:layout_marginRight="18dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="18dp"
+                        android:text="1. Use ATM/M-Banking to transfer to Mylocker account: "
                         android:textColor="@color/bluedark"
-                        android:textSize="15dp"
-                        />
+                        android:textSize="15dp" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -386,29 +341,25 @@
                         android:orientation="vertical"
                         android:background="@color/white"
                         android:layout_marginRight="20dp"
-                        android:layout_marginTop="55dp">
+                        android:layout_marginTop="36dp">
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="30dp"
-                            android:textSize="15dp"
-                            android:text="No. Rekening : 9887878728728" />
+                            android:layout_marginLeft="15dp"
+                            android:textSize="18dp"
+                            android:textStyle="bold"
+                            android:layout_marginTop="5dp"
+                            android:text="Account No. : 9887878728728" />
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textSize="15dp"
-                            android:text="Nama Rekening : PT. AirPay International"
-                            android:layout_marginLeft="30dp"/>
-
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textSize="15dp"
-                            android:layout_marginLeft="30dp"
-                            android:text="Cabang : Slipi"/>
+                            android:textSize="18dp"
+                            android:textStyle="bold"
+                            android:layout_marginBottom="5dp"
+                            android:text="Account Name : PT. AirPay International"
+                            android:layout_marginLeft="15dp"/>
 
                     </LinearLayout>
 
@@ -416,49 +367,40 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textSize="15dp"
-                        android:layout_marginTop="120dp"
-                        android:text="*Hanya menerima dari bank BRI"
+                        android:layout_marginTop="100dp"
+                        android:text="*Only accept from BRI Bank"
                         android:layout_marginLeft="20dp"
-                        android:textColor="@color/bluedark"
-                        />
+                        android:textColor="@color/bluedark" />
+
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textSize="15dp"
-                        android:layout_marginTop="145dp"
-                        android:text="2. Silahkan Upload bukti apabila sudah transfer"
+                        android:layout_marginTop="123dp"
+                        android:text="2. Please Upload proof of transfer if you have transfered"
                         android:layout_marginLeft="20dp"
-                        android:textColor="@color/bluedark"
-                        />
+                        android:textColor="@color/bluedark" />
 
 
                 </RelativeLayout>
-            </LinearLayout>
         </android.support.v7.widget.CardView>
 
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:layout_marginTop="5dp"
-            >
+            android:layout_height="55dp"
+            android:layout_marginTop="5dp">
 
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="70dp"
-                android:background="@color/white">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    >
+                    android:orientation="horizontal">
 
                     <ImageView
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:layout_marginLeft="25dp"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginTop="8dp"
                         android:src="@drawable/mandirilogo" />
 
                     <TextView
@@ -466,12 +408,12 @@
                         android:layout_height="wrap_content"
                         android:layout_marginRight="20dp"
                         android:layout_marginLeft="80dp"
-                        android:layout_marginTop="22dp"
-                        android:text="Bank Mandiri (Dicek Manual)"
+                        android:layout_marginTop="18dp"
+                        android:drawableRight="@drawable/down"
+                        android:text="Mandiri Bank (Manually Checked)"
                         android:textColor="@color/bluedark"
                         android:textStyle="bold"
-                        android:textSize="20dp"
-                        />
+                        android:textSize="15dp" />
 
 
                     <Button
@@ -480,20 +422,12 @@
                         android:layout_height="match_parent"
                         android:background="@android:color/transparent" />
                 </RelativeLayout>
-            </LinearLayout>
         </android.support.v7.widget.CardView>
 
         <android.support.v7.widget.CardView
             android:id="@+id/cvmandiri"
             android:layout_width="match_parent"
-            android:layout_height="180dp"
-            >
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="180dp"
-                android:background="@color/white">
+            android:layout_height="155dp">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -501,17 +435,15 @@
                     android:background="@color/satu"
                     android:orientation="vertical">
 
-
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="20dp"
-                        android:layout_marginTop="15dp"
-                        android:layout_marginLeft="20dp"
-                        android:text="1. Gunakan ATM / mBanking untuk transfer ke rekening E-locker beriku ini: "
+                        android:layout_marginRight="18dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="18dp"
+                        android:text="1. Use ATM/M-Banking to transfer to Mylocker account: "
                         android:textColor="@color/bluedark"
-                        android:textSize="15dp"
-                        />
+                        android:textSize="15dp" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -520,29 +452,25 @@
                         android:orientation="vertical"
                         android:background="@color/white"
                         android:layout_marginRight="20dp"
-                        android:layout_marginTop="55dp">
+                        android:layout_marginTop="36dp">
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="30dp"
-                            android:textSize="15dp"
-                            android:text="No. Rekening : 9887878728728" />
+                            android:layout_marginLeft="15dp"
+                            android:textSize="18dp"
+                            android:textStyle="bold"
+                            android:layout_marginTop="5dp"
+                            android:text="Account No. : 9887878728728" />
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textSize="15dp"
-                            android:text="Nama Rekening : PT. AirPay International"
-                            android:layout_marginLeft="30dp"/>
-
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textSize="15dp"
-                            android:layout_marginLeft="30dp"
-                            android:text="Cabang : Slipi"/>
+                            android:textSize="18dp"
+                            android:textStyle="bold"
+                            android:layout_marginBottom="5dp"
+                            android:text="Account Name : PT. AirPay International"
+                            android:layout_marginLeft="15dp"/>
 
                     </LinearLayout>
 
@@ -550,37 +478,28 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textSize="15dp"
-                        android:layout_marginTop="120dp"
-                        android:text="*Hanya menerima dari bank Mandiri"
+                        android:layout_marginTop="100dp"
+                        android:text="*Only accept from Mandiri Bank"
                         android:layout_marginLeft="20dp"
-                        android:textColor="@color/bluedark"
-                        />
+                        android:textColor="@color/bluedark" />
+
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textSize="15dp"
-                        android:layout_marginTop="145dp"
-                        android:text="2. Silahkan Upload bukti apabila sudah transfer"
+                        android:layout_marginTop="123dp"
+                        android:text="2. Please Upload proof of transfer if you have transfered"
                         android:layout_marginLeft="20dp"
-                        android:textColor="@color/bluedark"
-                        />
-
+                        android:textColor="@color/bluedark" />
 
                 </RelativeLayout>
-            </LinearLayout>
         </android.support.v7.widget.CardView>
 
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:layout_marginTop="5dp"
-            >
+            android:layout_height="55dp"
+            android:layout_marginTop="5dp">
 
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="70dp"
-                android:background="@color/white">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -592,7 +511,7 @@
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:layout_marginLeft="25dp"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginTop="8dp"
                         android:src="@drawable/bni_logo" />
 
                     <TextView
@@ -600,12 +519,12 @@
                         android:layout_height="wrap_content"
                         android:layout_marginRight="20dp"
                         android:layout_marginLeft="80dp"
-                        android:layout_marginTop="22dp"
-                        android:text="Bank BNI (Dicek Manual)"
+                        android:layout_marginTop="18dp"
+                        android:text="BNI Bank (Manually Checked)"
                         android:textColor="@color/bluedark"
+                        android:drawableRight="@drawable/down"
                         android:textStyle="bold"
-                        android:textSize="20dp"
-                        />
+                        android:textSize="15dp" />
 
 
                     <Button
@@ -614,20 +533,12 @@
                         android:layout_height="match_parent"
                         android:background="@android:color/transparent" />
                 </RelativeLayout>
-            </LinearLayout>
         </android.support.v7.widget.CardView>
 
         <android.support.v7.widget.CardView
             android:id="@+id/cvbni"
             android:layout_width="match_parent"
-            android:layout_height="180dp"
-            >
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="180dp"
-                android:background="@color/white">
+            android:layout_height="155dp">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -639,13 +550,12 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="20dp"
-                        android:layout_marginTop="15dp"
-                        android:layout_marginLeft="20dp"
-                        android:text="1. Gunakan ATM / mBanking untuk transfer ke rekening E-locker beriku ini: "
+                        android:layout_marginRight="18dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="18dp"
+                        android:text="1. Use ATM/M-Banking to transfer to Mylocker account: "
                         android:textColor="@color/bluedark"
-                        android:textSize="15dp"
-                        />
+                        android:textSize="15dp" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -654,29 +564,25 @@
                         android:orientation="vertical"
                         android:background="@color/white"
                         android:layout_marginRight="20dp"
-                        android:layout_marginTop="55dp">
+                        android:layout_marginTop="36dp">
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="30dp"
-                            android:textSize="15dp"
-                            android:text="No. Rekening : 9887878728728" />
+                            android:layout_marginLeft="15dp"
+                            android:textSize="18dp"
+                            android:textStyle="bold"
+                            android:layout_marginTop="5dp"
+                            android:text="Account No. : 9887878728728" />
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textSize="15dp"
-                            android:text="Nama Rekening : PT. AirPay International"
-                            android:layout_marginLeft="30dp"/>
-
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textSize="15dp"
-                            android:layout_marginLeft="30dp"
-                            android:text="Cabang : Slipi"/>
+                            android:textSize="18dp"
+                            android:textStyle="bold"
+                            android:layout_marginBottom="5dp"
+                            android:text="Account Name : PT. AirPay International"
+                            android:layout_marginLeft="15dp"/>
 
                     </LinearLayout>
 
@@ -684,31 +590,28 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textSize="15dp"
-                        android:layout_marginTop="120dp"
-                        android:text="*Hanya menerima dari bank BCA"
+                        android:layout_marginTop="100dp"
+                        android:text="*Only accept from BNI Bank"
                         android:layout_marginLeft="20dp"
-                        android:textColor="@color/bluedark"
-                        />
+                        android:textColor="@color/bluedark" />
+
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textSize="15dp"
-                        android:layout_marginTop="145dp"
-                        android:text="2. Silahkan Upload bukti apabila sudah transfer"
+                        android:layout_marginTop="123dp"
+                        android:text="2. Please Upload proof of transfer if you have transfered"
                         android:layout_marginLeft="20dp"
-                        android:textColor="@color/bluedark"
-                        />
-
+                        android:textColor="@color/bluedark" />
 
                 </RelativeLayout>
-            </LinearLayout>
         </android.support.v7.widget.CardView>
     </GridLayout>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Bayar pesanan sesuai jumlah diatas!"
+        android:text="Pay order occording to the amount above!"
         android:gravity="center"
         android:layout_marginTop="110dp"
         android:textSize="15dp"/>
@@ -716,26 +619,25 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Dicek dalam 24 jam setelah bukti transfer diupload."
+        android:text="Check in 24 hours after the proof of transfer is upload"
         android:gravity="center"
         android:layout_marginTop="140dp"
         android:textSize="15dp"/>
 
             <Button android:id="@+id/upload"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="1300dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="1125dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:textColor="@color/white"
                 android:textStyle="bold"
                 android:text="Upload Bukti Bayar"
                 android:background="@color/bluedark"
-                android:textSize="20dp"/>
+                android:textSize="15dp"/>
 
 
         </RelativeLayout>
-
 
     </ScrollView>
 

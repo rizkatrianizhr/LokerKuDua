@@ -1,172 +1,710 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:background="@color/white"
+    android:background="@color/lll"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="59dp"
+        android:layout_height="49dp"
         android:background="@color/bluedark"
         android:minHeight="?attr/actionBarSize"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
+
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="TOP-UP SALDO"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Payment"
+            android:layout_marginRight="20dp"
+            android:gravity="center"
             android:textColor="@color/white"
-            android:textSize="23dp"
+            android:textSize="18dp"
             android:textStyle="bold" />
+
 
     </android.support.v7.widget.Toolbar>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="180dp"
-        android:layout_marginTop="59dp"
-        android:layout_centerHorizontal="true">
-        <ImageView
-            android:layout_width="140dp"
-            android:layout_height="140dp"
-            android:layout_marginLeft="150dp"
-            android:layout_marginRight="150dp"
-            android:src="@drawable/download"
-            android:layout_gravity="center"
-            />
-    </LinearLayout>
+    <ImageView
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:src="@drawable/ic_back"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="10dp"/>
 
-    <GridLayout
+    <Button android:id="@+id/btnBack"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="10dp"
+        android:background="@android:color/transparent"/>
+
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="250dp"
-        android:alignmentMode="alignMargins"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:columnCount="1"
-        android:columnOrderPreserved="false"
-        android:rowCount="1">
+        android:layout_marginTop="50dp">
 
-    <android.support.v7.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardCornerRadius="12dp">
-
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/lll"
-            android:padding="15dp"
-            android:orientation="horizontal">
+            android:layout_height="match_parent">
+
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:alignmentMode="alignMargins"
+                android:columnCount="1"
+                android:columnOrderPreserved="false"
+                android:rowCount="1">
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:background="@color/white">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
 
 
-            <ImageView
-                android:layout_width="80dp"
-                android:layout_height="35dp"
-                android:src="@drawable/mandirilogo"/>
+                            <TextView
+                                android:id="@+id/total"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="20dp"
+                                android:textStyle="bold"
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginTop="22dp"
+                                android:text="Total Payment"
+                                android:textColor="@color/bluedark"
+                                android:textSize="20dp" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="60dp"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textStyle="bold"
+                                    android:text="Rp."
+                                    android:textSize="20dp"
+                                    android:textColor="@color/black"
+                                    android:layout_marginLeft="20dp"/>
+
+                                <TextView android:id="@+id/totall"
+
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textStyle="bold"
+                                    android:textSize="20dp"
+                                    android:textColor="@color/black"
+                                    android:layout_marginLeft="10dp"/>
+
+                            </LinearLayout>
+
+
+                        </RelativeLayout>
+
+
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:layout_marginTop="70dp">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:background="@color/white">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:id="@+id/img1"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:layout_marginLeft="25dp"
+                                android:layout_marginTop="8dp"
+                                android:src="@drawable/ic_credit" />
+
+                            <TextView
+                                android:id="@+id/small"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="20dp"
+                                android:drawableRight="@drawable/down"
+                                android:textStyle="bold"
+                                android:layout_marginLeft="80dp"
+                                android:layout_marginTop="18dp"
+                                android:text="Select bank transfer"
+                                android:textColor="@color/bluedark"
+                                android:textSize="15dp"
+                                />
+
+
+                            <Button android:id="@+id/btnbank"
+
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@android:color/transparent" />
+                        </RelativeLayout>
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:layout_marginTop="5dp">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="70dp"
+                        android:background="@color/white">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:layout_marginLeft="25dp"
+                                android:layout_marginTop="8dp"
+                                android:src="@drawable/bcalogo" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="20dp"
+                                android:layout_marginLeft="80dp"
+                                android:layout_marginTop="18dp"
+                                android:text="BCA Bank (Manually Checked)"
+                                android:textStyle="bold"
+                                android:textColor="@color/bluedark"
+                                android:textSize="15dp"
+                                />
+
+                            <Button android:id="@+id/bca"
+
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@android:color/transparent" />
+
+
+                        </RelativeLayout>
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/cvbca"
+                    android:layout_width="match_parent"
+                    android:layout_height="155dp"
+                    >
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="160dp"
+                        android:background="@color/white">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@color/satu"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="18dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginLeft="18dp"
+                                android:text="1. Use ATM/M-Banking to transfer to Mylocker account: "
+                                android:textColor="@color/bluedark"
+                                android:textSize="15dp" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="20dp"
+                                android:orientation="vertical"
+                                android:background="@color/white"
+                                android:layout_marginRight="20dp"
+                                android:layout_marginTop="36dp">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="15dp"
+                                    android:textSize="18dp"
+                                    android:textStyle="bold"
+                                    android:layout_marginTop="5dp"
+                                    android:text="Account No. : 9887878728728" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="18dp"
+                                    android:textStyle="bold"
+                                    android:layout_marginBottom="5dp"
+                                    android:text="Account Name : PT. AirPay International"
+                                    android:layout_marginLeft="15dp"/>
+
+                            </LinearLayout>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textSize="15dp"
+                                android:layout_marginTop="100dp"
+                                android:text="*Only accept from BCA Bank"
+                                android:layout_marginLeft="20dp"
+                                android:textColor="@color/bluedark" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textSize="15dp"
+                                android:layout_marginTop="123dp"
+                                android:text="2. Please Upload proof of transfer if you have transfered"
+                                android:layout_marginLeft="20dp"
+                                android:textColor="@color/bluedark" />
+
+
+                        </RelativeLayout>
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
+
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:layout_marginTop="5dp"
+                    >
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="70dp"
+                        android:background="@color/white">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal"
+                            >
+
+                            <ImageView
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:layout_marginLeft="25dp"
+                                android:layout_marginTop="8dp"
+                                android:src="@drawable/brilogo" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="20dp"
+                                android:layout_marginLeft="80dp"
+                                android:drawableRight="@drawable/down"
+                                android:layout_marginTop="18dp"
+                                android:text="BRI Bank (Manually Checked)"
+                                android:textStyle="bold"
+                                android:textColor="@color/bluedark"
+                                android:textSize="15dp" />
+
+
+                            <Button
+                                android:id="@+id/bri"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@android:color/transparent" />
+                        </RelativeLayout>
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/cvbri"
+                    android:layout_width="match_parent"
+                    android:layout_height="155dp"
+                    >
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/white">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@color/satu"
+                            android:orientation="vertical">
+
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="18dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginLeft="18dp"
+                                android:text="1. Use ATM/M-Banking to transfer to Mylocker account: "
+                                android:textColor="@color/bluedark"
+                                android:textSize="15dp" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="20dp"
+                                android:orientation="vertical"
+                                android:background="@color/white"
+                                android:layout_marginRight="20dp"
+                                android:layout_marginTop="36dp">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="15dp"
+                                    android:textSize="18dp"
+                                    android:textStyle="bold"
+                                    android:layout_marginTop="5dp"
+                                    android:text="Account No. : 9887878728728" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="18dp"
+                                    android:textStyle="bold"
+                                    android:layout_marginBottom="5dp"
+                                    android:text="Account Name : PT. AirPay International"
+                                    android:layout_marginLeft="15dp"/>
+
+                            </LinearLayout>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textSize="15dp"
+                                android:layout_marginTop="100dp"
+                                android:text="*Only accept from BRI Bank"
+                                android:layout_marginLeft="20dp"
+                                android:textColor="@color/bluedark" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textSize="15dp"
+                                android:layout_marginTop="123dp"
+                                android:text="2. Please Upload proof of transfer if you have transfered"
+                                android:layout_marginLeft="20dp"
+                                android:textColor="@color/bluedark" />
+
+
+                        </RelativeLayout>
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:layout_marginTop="5dp"
+                    >
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="55dp"
+                        android:background="@color/white">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:layout_marginLeft="25dp"
+                                android:layout_marginTop="8dp"
+                                android:src="@drawable/mandirilogo" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="20dp"
+                                android:layout_marginLeft="80dp"
+                                android:layout_marginTop="18dp"
+                                android:drawableRight="@drawable/down"
+                                android:text="Mandiri Bank (Manually Checked)"
+                                android:textColor="@color/bluedark"
+                                android:textStyle="bold"
+                                android:textSize="15dp" />
+
+
+                            <Button
+                                android:id="@+id/mandiri"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@android:color/transparent" />
+                        </RelativeLayout>
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/cvmandiri"
+                    android:layout_width="match_parent"
+                    android:layout_height="155dp">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/white">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@color/satu"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="18dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginLeft="18dp"
+                                android:text="1. Use ATM/M-Banking to transfer to Mylocker account: "
+                                android:textColor="@color/bluedark"
+                                android:textSize="15dp" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="20dp"
+                                android:orientation="vertical"
+                                android:background="@color/white"
+                                android:layout_marginRight="20dp"
+                                android:layout_marginTop="36dp">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="15dp"
+                                    android:textSize="18dp"
+                                    android:textStyle="bold"
+                                    android:layout_marginTop="5dp"
+                                    android:text="Account No. : 9887878728728" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="18dp"
+                                    android:textStyle="bold"
+                                    android:layout_marginBottom="5dp"
+                                    android:text="Account Name : PT. AirPay International"
+                                    android:layout_marginLeft="15dp"/>
+
+                            </LinearLayout>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textSize="15dp"
+                                android:layout_marginTop="100dp"
+                                android:text="*Only accept from Mandiri Bank"
+                                android:layout_marginLeft="20dp"
+                                android:textColor="@color/bluedark" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textSize="15dp"
+                                android:layout_marginTop="123dp"
+                                android:text="2. Please Upload proof of transfer if you have transfered"
+                                android:layout_marginLeft="20dp"
+                                android:textColor="@color/bluedark" />
+
+                        </RelativeLayout>
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:layout_marginTop="5dp"
+                    >
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/white">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal"
+                            >
+
+                            <ImageView
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:layout_marginLeft="25dp"
+                                android:layout_marginTop="8dp"
+                                android:src="@drawable/bni_logo" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="20dp"
+                                android:layout_marginLeft="80dp"
+                                android:layout_marginTop="18dp"
+                                android:text="BNI Bank (Manually Checked)"
+                                android:textColor="@color/bluedark"
+                                android:drawableRight="@drawable/down"
+                                android:textStyle="bold"
+                                android:textSize="15dp" />
+
+
+                            <Button
+                                android:id="@+id/bni"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@android:color/transparent" />
+                        </RelativeLayout>
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/cvbni"
+                    android:layout_width="match_parent"
+                    android:layout_height="155dp"
+                    >
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/white">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@color/satu"
+                            android:orientation="vertical">
+
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="18dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginLeft="18dp"
+                                android:text="1. Use ATM/M-Banking to transfer to Mylocker account: "
+                                android:textColor="@color/bluedark"
+                                android:textSize="15dp" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="20dp"
+                                android:orientation="vertical"
+                                android:background="@color/white"
+                                android:layout_marginRight="20dp"
+                                android:layout_marginTop="36dp">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="15dp"
+                                    android:textSize="18dp"
+                                    android:textStyle="bold"
+                                    android:layout_marginTop="5dp"
+                                    android:text="Account No. : 9887878728728" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="18dp"
+                                    android:textStyle="bold"
+                                    android:layout_marginBottom="5dp"
+                                    android:text="Account Name : PT. AirPay International"
+                                    android:layout_marginLeft="15dp"/>
+
+                            </LinearLayout>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textSize="15dp"
+                                android:layout_marginTop="100dp"
+                                android:text="*Only accept from BNI Bank"
+                                android:layout_marginLeft="20dp"
+                                android:textColor="@color/bluedark" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textSize="15dp"
+                                android:layout_marginTop="123dp"
+                                android:text="2. Please Upload proof of transfer if you have transfered"
+                                android:layout_marginLeft="20dp"
+                                android:textColor="@color/bluedark" />
+
+                        </RelativeLayout>
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
+            </GridLayout>
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:textColor="@color/black"
-                android:text="Bank Mandiri"
-                android:textSize="15dp"
-                android:layout_marginLeft="10dp" />
-        </LinearLayout>
-    </android.support.v7.widget.CardView>
-
-        <android.support.v7.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            app:cardCornerRadius="12dp">
-
-            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/lll"
-                android:padding="15dp"
-                android:orientation="horizontal">
+                android:text="Pay order occording to the amount above!"
+                android:gravity="center"
+                android:layout_marginTop="110dp"
+                android:textSize="15dp"/>
 
-
-                <ImageView
-                    android:layout_width="80dp"
-                    android:layout_height="35dp"
-                    android:src="@drawable/bcalogo"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:textColor="@color/black"
-                    android:text="Bank BCA"
-                    android:textSize="15dp"
-                    android:layout_marginLeft="10dp" />
-            </LinearLayout>
-        </android.support.v7.widget.CardView>
-        <android.support.v7.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            app:cardCornerRadius="12dp">
-
-            <LinearLayout
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/lll"
-                android:padding="15dp"
-                android:orientation="horizontal">
+                android:text="Check in 24 hours after the proof of transfer is upload"
+                android:gravity="center"
+                android:layout_marginTop="140dp"
+                android:textSize="15dp"/>
 
-
-                <ImageView
-                    android:layout_width="80dp"
-                    android:layout_height="35dp"
-                    android:src="@drawable/bni_logo"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:textColor="@color/black"
-                    android:text="Bank BNI"
-                    android:textSize="15dp"
-                    android:layout_marginLeft="10dp" />
-            </LinearLayout>
-        </android.support.v7.widget.CardView>
-
-        <android.support.v7.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            app:cardCornerRadius="12dp">
-
-            <LinearLayout
+            <Button android:id="@+id/upload"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/lll"
-                android:padding="15dp"
-                android:orientation="horizontal">
+                android:layout_height="40dp"
+                android:layout_marginTop="1125dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:text="Upload Bukti Bayar"
+                android:background="@color/bluedark"
+                android:textSize="20dp"/>
 
 
-                <ImageView
-                    android:layout_width="80dp"
-                    android:layout_height="35dp"
-                    android:src="@drawable/brilogo"/>
+        </RelativeLayout>
+    </ScrollView>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:textColor="@color/black"
-                    android:text="Bank BRI"
-                    android:textSize="15dp"
-                    android:layout_marginLeft="10dp" />
-            </LinearLayout>
-        </android.support.v7.widget.CardView>
-    </GridLayout>
 
 </RelativeLayout>

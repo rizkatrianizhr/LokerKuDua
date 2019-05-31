@@ -34,8 +34,8 @@ import com.google.firebase.database.ValueEventListener;
 
 
 public class ProfilActivity extends AppCompatActivity {
-    private TextView getName, getNoHp, getEmail, getSaldo;
-    private Button ubahPassword, Add;
+    private TextView getName, getNoHp, getEmail;
+    private Button ubahPassword, Back;
     private FirebaseAuth firebaseAuth;
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
@@ -50,13 +50,13 @@ public class ProfilActivity extends AppCompatActivity {
         databaseReference = firebaseDatabase.getReference();
         final FirebaseUser user = firebaseAuth.getCurrentUser();
         idusernya = user.getUid();
-        Add = (Button) findViewById(R.id.add);
-        getSaldo = (TextView) findViewById(R.id.saldo);
         getName = (TextView) findViewById(R.id.nama);
         getEmail = (TextView) findViewById(R.id.email);
         getNoHp = (TextView) findViewById(R.id.nohp);
         ubahPassword = (Button) findViewById(R.id.ubahpassword);
         Toolbar toolbar = findViewById(R.id.toolbar);
+        Back = (Button) findViewById(R.id.btnBack);
+
         setSupportActionBar(toolbar);
 
         ubahPassword.setOnClickListener(new View.OnClickListener() {
@@ -100,31 +100,29 @@ public class ProfilActivity extends AppCompatActivity {
 //            }
 //        });
 
-        Add.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(ProfilActivity.this, TopUp.class));
-            }
-        });
-
 
 
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                String saldo = dataSnapshot.child("users").child(idusernya).child("balance").getValue(String.class);
                String nama = dataSnapshot.child("users").child(idusernya).child("name").getValue(String.class);
                String email = dataSnapshot.child("users").child(idusernya).child("email").getValue(String.class);
                String nomorhp = dataSnapshot.child("users").child(idusernya).child("telepon").getValue(String.class);
                getName.setText(nama);
                getEmail.setText(email);
                getNoHp.setText(nomorhp);
-               getSaldo.setText(saldo);
-//               getSaldo.setText(Integer.toString(saldoo));
+
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
+            }
+        });
+
+        Back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ProfilActivity.this, LamanUtama.class));
             }
         });
 
@@ -151,8 +149,12 @@ public class ProfilActivity extends AppCompatActivity {
         }
         return true;
 
+
     }
 
-
-
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        startActivity(new Intent(ProfilActivity.this, LamanUtama.class));
+    }
 }

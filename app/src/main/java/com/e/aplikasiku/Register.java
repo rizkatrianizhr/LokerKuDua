@@ -8,6 +8,7 @@ import android.text.Layout;
 import android.text.TextUtils;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.Button;
@@ -32,12 +33,12 @@ public class Register extends AppCompatActivity {
 
 
     private EditText Emaill, Pass, Names, confPass, Nohp;
-    private Button btnregis;
+    private Button btnregis, Back;
     private TextView TextLogin;
     private CheckBox Unhide;
     private ProgressBar Progressbar;
     private FirebaseAuth auth;
-//    private RadioButton rbpria,rbwanita;
+
     private DatabaseReference databaseReference;
     private FirebaseDatabase userDatabase;
     private FirebaseUser user;
@@ -48,20 +49,18 @@ public class Register extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-//        user = auth.getCurrentUser();
-//        iduser = user.getUid();
+
         Progressbar = (ProgressBar) findViewById(R.id.progressbar);
         Progressbar.setVisibility(View.GONE);
         userDatabase = FirebaseDatabase.getInstance();
         databaseReference = userDatabase.getReference();
         auth = FirebaseAuth.getInstance();
-//        rbpria = (RadioButton)findViewById(R.id.pria);
-//        rbwanita = (RadioButton)findViewById(R.id.wanita);
         Names= (EditText) findViewById(R.id.name);
         Emaill= (EditText) findViewById(R.id.email);
         Pass = (EditText) findViewById(R.id.pass);
         confPass = (EditText) findViewById(R.id.C_pass);
         btnregis= (Button) findViewById(R.id.btn_regis);
+        Back = (Button) findViewById(R.id.btnBack);
         Unhide = (CheckBox) findViewById(R.id.unhide);
         TextLogin = (TextView) findViewById(R.id.textLogin);
         Nohp = (EditText) findViewById(R.id.nohp);
@@ -96,30 +95,30 @@ public class Register extends AppCompatActivity {
                 final String nohp = Nohp.getText().toString().trim();
 
                 if (TextUtils.isEmpty(namee)) {
-                    Toast.makeText(getApplicationContext(), "Masukan Nama Pengguna!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Input Username!", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if (TextUtils.isEmpty(email)) {
-                    Toast.makeText(getApplicationContext(), "Masukan Email Anda!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Input Your Email!", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if (TextUtils.isEmpty(nohp)) {
-                    Toast.makeText(getApplicationContext(), "Masukan Nomor Telepon  Anda!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Input Your Handphone!", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if (TextUtils.isEmpty(pass)) {
-                    Toast.makeText(getApplicationContext(), "Masukan Password!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Make a Password!", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if (pass.length() < 6) {
-                    Toast.makeText(getApplicationContext(), "Password Minimum 6 Karakter!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Minimum Password of 6 characters!", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if (TextUtils.isEmpty(C_pass)) {
-                    Toast.makeText(getApplicationContext(), "Konfirmasi Password", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Confirmation Password", Toast.LENGTH_SHORT).show();
 
                     if (pass != C_pass) {
-                        Toast.makeText(Register.this, "Password tidak sama", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Register.this, "Password Not Match!", Toast.LENGTH_SHORT).show();
                         return;
                     }
                 }
@@ -127,35 +126,70 @@ public class Register extends AppCompatActivity {
                 Progressbar.setVisibility(View.VISIBLE);
 
                 auth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener(Register.this, new OnCompleteListener<AuthResult>() {
-                @Override
-                public void onComplete(@NonNull Task<AuthResult> task) {
-                    Toast.makeText(Register.this, "createUserWithEmail:onComplete;" + task.isSuccessful(), Toast.LENGTH_SHORT).show();
-                    Progressbar.setVisibility(View.GONE);
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if (task.isSuccessful()) {
+                                    FirebaseUser user = auth.getCurrentUser();
+                                    Intent intent = new Intent(Register.this, Login.class);
+                                    databaseReference.child("users").child(auth.getUid()).child("name").setValue(namee);
+                                    databaseReference.child("users").child(auth.getUid()).child("telepon").setValue(nohp);
+                                    databaseReference.child("users").child(auth.getUid()).child("email").setValue(email);
+                                    databaseReference.child("users").child(auth.getUid()).child("balance").setValue("0");
+                                    startActivity(intent);
+                                    finish();
+                                } else {
+                                    Toast.makeText(Register.this, "Account Registration Failed : " +  task.getException(),
+                                            Toast.LENGTH_LONG).show();
+                                }
+                                Progressbar.setVisibility(View.GONE);
+                            }
+                });
+            }
+        });
 
-                    if (!task.isSuccessful()) {
-                        Toast.makeText(Register.this, "Gagal!," + task.getException(),
-                                Toast.LENGTH_SHORT).show();
-                    } else {
-                        databaseReference.child("users").child(auth.getUid()).child("name").setValue(namee);
-                        databaseReference.child("users").child(auth.getUid()).child("telepon").setValue(nohp);
-                        databaseReference.child("users").child(auth.getUid()).child("email").setValue(email);
-                        databaseReference.child("users").child(auth.getUid()).child("balance").setValue("0");
-                        startActivity(new Intent(Register.this, Login.class));
-                        finish();
-                    }
-
-
-                }
-            });
-        }
-
-    });
-}
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-       Progressbar.setVisibility(View.GONE);
+        Back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Register.this, Login.class));
+            }
+        });
 
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        startActivity(new Intent(Register.this, Login.class));
+    }
 }
+
+//                        Toast.makeText(Register.this, "createUserWithEmail:onComplete;" + task.isSuccessful(), Toast.LENGTH_SHORT).show();
+//                        Progressbar.setVisibility(View.GONE);
+
+//                    if (!task.isSuccessful()) {
+//                        Toast.makeText(Register.this, "Gagal!," + task.getException(),
+//                                Toast.LENGTH_SHORT).show();
+//                    } else {
+//                        databaseReference.child("users").child(auth.getUid()).child("name").setValue(namee);
+//                        databaseReference.child("users").child(auth.getUid()).child("telepon").setValue(nohp);
+//                        databaseReference.child("users").child(auth.getUid()).child("email").setValue(email);
+//                        databaseReference.child("users").child(auth.getUid()).child("balance").setValue("0");
+//                        startActivity(new Intent(Register.this, Login.class));
+//                        finish();
+//                    }
+//
+//
+//                }
+//            });
+//        }
+//
+//    });
+//}
+//
+//    @Override
+//    protected void onResume() {
+//        super.onResume();
+//       Progressbar.setVisibility(View.GONE);
+//
+//    }
+//}

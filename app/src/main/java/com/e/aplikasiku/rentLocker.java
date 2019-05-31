@@ -15,7 +15,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class rentLocker extends AppCompatActivity {
 
-    private Button Small, Medium, Large;
+    private Button Small, Medium, Large, Back;
     private FirebaseAuth auth;
     private DatabaseReference databaseReference;
     private FirebaseDatabase userDatabase;
@@ -33,14 +33,15 @@ public class rentLocker extends AppCompatActivity {
         Small = (Button) findViewById(R.id.btnSmall);
         Medium = (Button) findViewById(R.id.btnMedium);
         Large = (Button) findViewById(R.id.btnLarge);
+        Back = (Button) findViewById(R.id.btnBack);
 
         Small.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (auth.getCurrentUser() == null) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(rentLocker.this);
-                    builder.setMessage("Silahkan Login terlebih dahulu! Untuk melanjutkan proses pemesanan");
-                    builder.setNeutralButton("Tidak", null);
+                    builder.setMessage("Please, login first to continue the order process ");
+                    builder.setNeutralButton("No", null);
                     builder.setPositiveButton("Login", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
@@ -49,6 +50,7 @@ public class rentLocker extends AppCompatActivity {
                     });
                     builder.create().show();
                 }
+
                 if (auth.getCurrentUser() != null) {
                     FirebaseUser user = auth.getCurrentUser();
                     iduser = user.getUid();
@@ -62,13 +64,14 @@ public class rentLocker extends AppCompatActivity {
             }
 
         });
+
         Medium.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (auth.getCurrentUser() == null) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(rentLocker.this);
-                    builder.setMessage("Silahkan Login terlebih dahulu! Untuk melanjutkan proses pemesanan");
-                    builder.setNeutralButton("Tidak", null);
+                    builder.setMessage("Please, login first to continue the order process");
+                    builder.setNeutralButton("No", null);
                     builder.setPositiveButton("Login", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
@@ -88,18 +91,17 @@ public class rentLocker extends AppCompatActivity {
                     i.putExtra("locker", "medium");
 
                     startActivity(i);
-
-
                 }
             }
         });
+
         Large.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (auth.getCurrentUser() == null) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(rentLocker.this);
-                    builder.setMessage("Silahkan Login terlebih dahulu! Untuk melanjutkan proses pemesanan");
-                    builder.setNeutralButton("Tidak", null);
+                    builder.setMessage("Please, login first to continue the order process");
+                    builder.setNeutralButton("No", null);
                     builder.setPositiveButton("Login", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
@@ -121,6 +123,19 @@ public class rentLocker extends AppCompatActivity {
                 }
             }
         });
+
+        Back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(rentLocker.this, LamanUtama.class));
+            }
+        });
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        startActivity(new Intent(rentLocker.this, LamanUtama.class));
     }
 }
 

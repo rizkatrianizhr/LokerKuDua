@@ -1,23 +1,46 @@
 package com.e.aplikasiku;
 
-import android.Manifest;
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
-public class Pilihanbank extends AppCompatActivity {
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+public class Bank extends AppCompatActivity {
 
     private Button btnBank, Bca, Bri, Mandiri, Bni, Upload;
     private CardView cvBCA, cvBRI, cvMandiri, cvBNI;
+    private TextView Total;
+
+    private FirebaseAuth auth;
+    private DatabaseReference databaseReference;
+    private FirebaseDatabase userDatabase;
+    private FirebaseUser user;
+    String iduser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pilihanbank);
+        setContentView(R.layout.activity_bank);
 
+        auth = FirebaseAuth.getInstance();
+        FirebaseUser user = auth.getCurrentUser();
+        iduser = user.getUid();
+        userDatabase = FirebaseDatabase.getInstance();
+        databaseReference = userDatabase.getReference();
+
+        Total = (TextView) findViewById(R.id.totall);
         btnBank = (Button) findViewById(R.id.btnbank);
         Bca = (Button) findViewById(R.id.bca);
         Bri = (Button)  findViewById(R.id.bri);
@@ -28,23 +51,28 @@ public class Pilihanbank extends AppCompatActivity {
         cvBNI = (CardView) findViewById(R.id.cvbni);
         cvMandiri = (CardView) findViewById(R.id.cvmandiri);
         cvBRI = (CardView) findViewById(R.id.cvbri);
-//
-        Bca.setVisibility(View.GONE);
-        Bni.setVisibility(View.GONE);
-        Bri.setVisibility(View.GONE);
-        Mandiri.setVisibility(View.GONE);
+
         cvBRI.setVisibility(View.GONE);
         cvMandiri.setVisibility(View.GONE);
         cvBNI.setVisibility(View.GONE);
         cvBCA.setVisibility(View.GONE);
+        Bca.setVisibility(View.VISIBLE);
+        Bri.setVisibility(View.VISIBLE);
+        Mandiri.setVisibility(View.VISIBLE);
+        Bni.setVisibility(View.VISIBLE);
 
-        btnBank.setOnClickListener(new View.OnClickListener() {
+
+        databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onClick(View v) {
-                Bca.setVisibility(View.VISIBLE);
-                Bri.setVisibility(View.VISIBLE);
-                Mandiri.setVisibility(View.VISIBLE);
-                Bni.setVisibility(View.VISIBLE);
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                databaseReference.child("users").child(auth.getCurrentUser().getUid()).child("isVerified").setValue(false);
+                String jumlah = dataSnapshot.child("users").child(auth.getCurrentUser().getUid()).child("balanceSuspend").getValue(String.class);
+                Total.setText(jumlah);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
             }
         });
 
@@ -89,9 +117,8 @@ public class Pilihanbank extends AppCompatActivity {
         Upload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Pilihanbank.this, Uploadbukti.class));
+                startActivity(new Intent(Bank.this, Uploadbukti.class));
             }
         });
-
     }
 }
