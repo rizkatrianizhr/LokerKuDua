@@ -183,7 +183,7 @@ public class Pesanan extends AppCompatActivity {
         Back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Pesanan.this, LamanUtama.class));
+                finish();
             }
         });
     }
@@ -219,13 +219,5 @@ public class Pesanan extends AppCompatActivity {
 //////                Hours.setText(hours+"");
 //                Toast.makeText(Pesanan.this, "Total Price: "+totalPrice, Toast.LENGTH_SHORT).show();
         }
-    }
-
-
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        startActivity(new Intent(Pesanan.this, LamanUtama.class));
     }
 }

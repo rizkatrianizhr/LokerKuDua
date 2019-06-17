@@ -122,7 +122,7 @@ public class ProfilActivity extends AppCompatActivity {
         Back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(ProfilActivity.this, LamanUtama.class));
+                finish();
             }
         });
 
@@ -150,11 +150,5 @@ public class ProfilActivity extends AppCompatActivity {
         return true;
 
 
-    }
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        startActivity(new Intent(ProfilActivity.this, LamanUtama.class));
     }
 }

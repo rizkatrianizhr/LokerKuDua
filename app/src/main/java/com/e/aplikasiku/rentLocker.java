@@ -127,15 +127,9 @@ public class rentLocker extends AppCompatActivity {
         Back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(rentLocker.this, LamanUtama.class));
+                finish();
             }
         });
-    }
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        startActivity(new Intent(rentLocker.this, LamanUtama.class));
     }
 }
 

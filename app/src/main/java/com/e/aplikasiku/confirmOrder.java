@@ -105,15 +105,10 @@ public class confirmOrder extends AppCompatActivity {
         Back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-             startActivity(new Intent(confirmOrder.this, noLocker.class));
+                finish();
             }
         });
 
 
-    }
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        startActivity(new Intent(confirmOrder.this, noLocker.class));
     }
 }

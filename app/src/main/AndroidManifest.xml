@@ -16,20 +16,26 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".scanPesanan"></activity>
+        <activity android:name=".scanPesanan"
+            android:parentActivityName=".Pesanan"></activity>
         <activity android:name=".Bank" />
-        <activity android:name=".addsaldo" />
+        <activity android:name=".addsaldo"
+            android:parentActivityName=".LamanUtama"/>
         <activity android:name=".Settings" />
-        <activity android:name=".noLocker" />
-        <activity android:name=".confirmOrder" />
-        <activity android:name=".rentLocker" />
+        <activity android:name=".noLocker"
+            android:parentActivityName=".rentLocker"/>
+        <activity android:name=".confirmOrder"
+            android:parentActivityName=".noLocker"/>
+        <activity android:name=".rentLocker"
+            android:parentActivityName=".LamanUtama"/>
         <activity android:name=".MainActivity" />
         <activity android:name=".Ukuranlocker" />
         <activity android:name=".Uploadbukti" />
         <activity android:name=".Pilihanbank" />
         <activity android:name=".Ecash" />
         <activity android:name=".GantiPassword" />
-        <activity android:name=".Scan" />
+        <activity android:name=".Scan"
+            android:parentActivityName=".confirmOrder"/>
         <activity android:name=".Help" />
         <activity android:name=".resetPass" />
         <activity android:name=".Register" />
@@ -42,8 +48,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Pesanan" />
-        <activity android:name=".ProfilActivity" />
+        <activity android:name=".Pesanan"
+            android:parentActivityName=".LamanUtama"/>
+        <activity android:name=".ProfilActivity"
+            android:parentActivityName=".LamanUtama"/>
         <activity android:name=".PilihLocker" />
         <activity android:name=".TopUp" />
         <activity android:name=".Atm" />
