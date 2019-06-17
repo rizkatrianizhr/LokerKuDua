@@ -31,6 +31,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.TimerTask;
 import java.util.concurrent.Delayed;
 import java.util.concurrent.TimeUnit;
 
@@ -46,6 +47,9 @@ public class Pesanan extends AppCompatActivity {
 
     String orderDate = "";
     int hourlyCost = 0;
+    long currentTime = 0;
+    int totalPrice = 0;
+    String currentdate;
 
     Handler handler = new Handler();
     Runnable timedTask = new Runnable(){
@@ -85,10 +89,10 @@ public class Pesanan extends AppCompatActivity {
 
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+            public void onDataChange(@NonNull final DataSnapshot dataSnapshot) {
                 DataSnapshot orderDs = dataSnapshot.child("users").child(idusernya).child("order");
 
-                String idLocker = orderDs.child("idLocker").getValue(String.class);
+                final String idLocker = orderDs.child("idLocker").getValue(String.class);
                 orderDate = orderDs.child("oorderDate").getValue(String.class);
 
                 hourlyCost = dataSnapshot.child("lockers").child(idLocker).child("cost").getValue(Integer.class);
@@ -107,6 +111,49 @@ public class Pesanan extends AppCompatActivity {
                 Date.setText(orderDate);
 
                 calcDuration();
+
+                Scan.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        Intent intent = new Intent(Pesanan.this, scanPesanan.class);
+                        intent.putExtra("id",idLocker);
+                        databaseReference.child("users").child(firebaseAuth.getCurrentUser().getUid()).child("order").child("bill").setValue(totalPrice);
+                        startActivity(intent);
+
+                    }
+                });
+
+                Finish.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        calcDuration();
+                        int balance = Integer.parseInt(dataSnapshot.child("users").child(firebaseAuth.getCurrentUser().getUid()).child("balance").getValue(String.class));
+
+                        if(totalPrice > balance){
+                            Toast.makeText(Pesanan.this, "Saldo tidak cukup", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+
+                        balance = balance - totalPrice;
+
+                        databaseReference.child("users").child(firebaseAuth.getCurrentUser().getUid()).child("order").removeValue();
+                        databaseReference.child("users").child(firebaseAuth.getCurrentUser().getUid()).child("balance").setValue(balance+"");
+
+                        databaseReference.child("lockers").child(idLocker).child("isOccupied").setValue(0);
+                        databaseReference.child("lockers").child(idLocker).child("occupiedBy").setValue("");
+
+                        Order order = new Order(idLocker, firebaseAuth.getCurrentUser().getEmail(), currentdate.toString(), totalPrice);
+
+                        databaseReference.child("orders").push().setValue(order);
+
+                        Toast.makeText(Pesanan.this, "Selesai", Toast.LENGTH_SHORT).show();
+
+                        Intent intent = new Intent(Pesanan.this, LamanUtama.class);
+                        startActivity(intent);
+                    }
+                });
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
@@ -141,21 +188,25 @@ public class Pesanan extends AppCompatActivity {
         });
     }
 
+
+
     private void calcDuration(){
         if (orderDate != "") {
             Calendar thatDay = Calendar.getInstance();
-            String currentdate = DateFormat.getDateInstance().format(thatDay.getTimeInMillis());
-            Date.setText(currentdate);
             thatDay.setTime(new Date(orderDate));
-            Calendar today = Calendar.getInstance();
+            currentdate = DateFormat.getDateInstance().format(thatDay.getTimeInMillis());
+            Date.setText(currentdate);
 
-            long diff = (today.getTimeInMillis() - thatDay.getTimeInMillis()) / 1000;
+            Calendar today = Calendar.getInstance();
+            currentTime = today.getTimeInMillis();
+
+            long diff = (currentTime - thatDay.getTimeInMillis()) / 1000;
             long hours = diff / 3600;
             long minutes = (diff % 3600) / 60;
             long seconds = (diff % 3600) % 60;
 //                long hours = diff / (60*60*1000);
 
-            long totalPrice = (hours + 1) * hourlyCost;
+            totalPrice = (int) ((hours + 1) * hourlyCost);
             Hours.setText(String.format("%02d:%02d:%02d", hours, minutes, seconds));
 
 //                long totalPrice = hourlyCost * diff;
@@ -168,13 +219,6 @@ public class Pesanan extends AppCompatActivity {
 //////                Hours.setText(hours+"");
 //                Toast.makeText(Pesanan.this, "Total Price: "+totalPrice, Toast.LENGTH_SHORT).show();
         }
-
-        Finish.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
     }
 
 

@@ -484,7 +484,7 @@ public class noLocker extends AppCompatActivity {
                         if (saldo <= saldominimum) {
                             android.app.AlertDialog.Builder builder = new AlertDialog.Builder(noLocker.this);
                             builder.setMessage("Your balance is less than Rp. 10.000!");
-                            builder.setNeutralButton("No", null);
+                            builder.setNeutralButton("No",null);
                             builder.setPositiveButton("Top Up", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {

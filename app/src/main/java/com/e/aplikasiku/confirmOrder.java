@@ -80,6 +80,22 @@ public class confirmOrder extends AppCompatActivity {
         Scan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+//                Toast.makeText(confirmOrder.this, "Locker: " + id, Toast.LENGTH_SHORT).show();
+//                final String idlocker = getIntent().getExtras().getString("id");
+//                final String size = getIntent().getExtras().getString("locker");
+//                databaseReference.child("lockers").child(idlocker).child("occupiedBy").setValue(firebaseAuth.getCurrentUser().getEmail());
+//                databaseReference.child("lockers").child(idlocker).child("isOpen").setValue(1);
+//                databaseReference.child("lockers").child(idlocker).child("isOccupied").setValue(1);
+//
+//                Order order = new Order(idlocker, firebaseAuth.getCurrentUser().getEmail(), (Calendar.getInstance().getTime()).toString(), 0);
+//                databaseReference.child("users")
+//                        .child(firebaseAuth.getCurrentUser().getUid())
+//                        .child("order").setValue(order);
+//
+//                databaseReference.child("orders").push().setValue(order);
+//
+//                startActivity(new Intent(confirmOrder.this, Pesanan.class));
+
                 Intent intent = new Intent(confirmOrder.this, Scan.class);
                 intent.putExtra("id",id);
                 startActivity(intent);

@@ -212,7 +212,7 @@
                 android:layout_marginTop="360dp"
                 android:text="Hours"
                 android:textColor="@color/bluedark"
-                android:textSize="18dp"
+                android:textSize="15dp"
                 android:textStyle="bold" />
 
             <android.support.v7.widget.CardView
@@ -265,7 +265,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
-                android:layout_marginTop="455dp"
+                android:layout_marginTop="495dp"
                 android:layout_marginRight="30dp"
                 app:cardElevation="6dp">
 
@@ -326,14 +326,14 @@
         <ImageView
             android:layout_width="100dp"
             android:layout_height="90dp"
-            android:layout_marginTop="520dp"
+            android:layout_marginTop="558dp"
             android:layout_centerHorizontal="true"
             android:src="@drawable/qrcode" />
         <TextView
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="615dp"
+            android:layout_marginTop="655dp"
             android:gravity="center"
             android:text="Scan QR Code"
             android:textSize="15dp"
@@ -345,14 +345,14 @@
             android:layout_width="130dp"
             android:layout_height="120dp"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="515dp"
+            android:layout_marginTop="555dp"
             android:background="@android:color/transparent"/>
 
             <GridLayout
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="655dp"
+                android:layout_marginTop="695dp"
                 android:alignmentMode="alignMargins"
                 android:background="@color/white"
                 android:layout_marginLeft="45dp"

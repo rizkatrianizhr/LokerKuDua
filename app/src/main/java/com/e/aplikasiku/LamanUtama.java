@@ -46,6 +46,7 @@ public class LamanUtama extends AppCompatActivity {
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
     private String idusernya;
+    String occupiedBy;
 
 
     @Override
@@ -106,6 +107,7 @@ public class LamanUtama extends AppCompatActivity {
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     String name = dataSnapshot.child("users").child(idusernya).child("name").getValue(String.class);
                     String dompet = dataSnapshot.child("users").child(idusernya).child("balance").getValue(String.class);
+//                    occupiedBy = dataSnapshot.child("users").child(auth.getCurrentUser().getUid()).child("order").getValue(String.class);
                     Names.setText(name);
                     Balance.setText(dompet);
                 }
@@ -129,6 +131,7 @@ public class LamanUtama extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+
                 if (auth.getCurrentUser() == null) {
 //                    AlertDialog.Builder builder = new AlertDialog.Builder(LamanUtama.this);
 //                    builder.setMessage("Silahkan Login terlebih dahulu!");
@@ -138,15 +141,22 @@ public class LamanUtama extends AppCompatActivity {
 //                        public void onClick(DialogInterface dialog, int which) {
                     startActivity(new Intent(LamanUtama.this, Login.class));
 //                        }
-//                    });
+//                   });
 //                    builder.create().show();
                 }
                 if (auth.getCurrentUser() != null) {
-
                     //apakah sudah pesan
                     startActivity(new Intent(LamanUtama.this, Pesanan.class));
+//                } else {
+//                    AlertDialog.Builder builder = new AlertDialog.Builder(LamanUtama.this);
+//                    builder.setMessage("You don't have any orderd yet");
+//                    builder.setPositiveButton("Ok!", null);
+//                    builder.create().show();
+//
                 }
             }
+
+
 //                    }else{
 //                    AlertDialog.Builder builder = new AlertDialog.Builder(LamanUtama.this);
 //                    builder.setMessage("Silahkan pesan");
