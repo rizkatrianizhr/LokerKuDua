@@ -615,7 +615,7 @@
                     android:textColor="@color/white"
                     android:textStyle="bold"
                     android:layout_marginBottom="20dp"
-                    android:text="Upload Bukti Bayar"
+                    android:text="Upload proof of payment"
                     android:background="@color/bluedark"
                     android:textSize="15dp"/>
 

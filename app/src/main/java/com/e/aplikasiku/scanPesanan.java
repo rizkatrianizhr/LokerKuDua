@@ -142,7 +142,7 @@ public class scanPesanan extends AppCompatActivity implements ZXingScannerView.R
 
     private void showResult(final String id) {
 
-        databaseReference.addValueEventListener(new ValueEventListener() {
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 balance = dataSnapshot.child("users")
@@ -156,8 +156,8 @@ public class scanPesanan extends AppCompatActivity implements ZXingScannerView.R
 
                 if (id.equals(idlocker) && saldo >= bill) {
                     databaseReference.child("lockers").child(idlocker).child("isOpen").setValue(1);
-                    finish();
                     startActivity(new Intent(getApplicationContext(), Pesanan.class));
+
                 } else if (saldo <= bill) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(scanPesanan.this);
                     builder.setMessage("Sorry, Your balance is insufficient! Please, do top up to open your locker");
@@ -169,7 +169,7 @@ public class scanPesanan extends AppCompatActivity implements ZXingScannerView.R
                     });
                 } else {
                     AlertDialog.Builder builder = new AlertDialog.Builder(scanPesanan.this);
-                    builder.setMessage("Please, scan the number locker y ou selected!");
+                    builder.setMessage("Please, scan the number locker you selected!");
                     builder.setPositiveButton("Scan Again", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
@@ -179,13 +179,62 @@ public class scanPesanan extends AppCompatActivity implements ZXingScannerView.R
                     AlertDialog alert = builder.create();
                     alert.show();
                 }
+
             }
+
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
         });
+        }
 
-    }
+//        databaseReference.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                balance = dataSnapshot.child("users")
+//                        .child(firebaseAuth.getCurrentUser().getUid()).child("balance").getValue(String.class);
+//                bill = dataSnapshot.child("users").child(firebaseAuth.getCurrentUser().getUid()).child("order").child("bill").getValue(Integer.class);
+//
+//                Toast.makeText(scanPesanan.this, "balance: "+balance, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(scanPesanan.this, "bill: "+bill, Toast.LENGTH_SHORT).show();
+//
+//                int saldo = Integer.parseInt(balance);
+//
+//                if (id.equals(idlocker) && saldo >= bill) {
+//                    databaseReference.child("lockers").child(idlocker).child("isOpen").setValue(1);
+//                    startActivity(new Intent(getApplicationContext(), Pesanan.class));
+//
+//                } else if (saldo <= bill) {
+//                    AlertDialog.Builder builder = new AlertDialog.Builder(scanPesanan.this);
+//                    builder.setMessage("Sorry, Your balance is insufficient! Please, do top up to open your locker");
+//                    builder.setPositiveButton("Top Up", new DialogInterface.OnClickListener() {
+//                        @Override
+//                        public void onClick(DialogInterface dialog, int which) {
+//                            startActivity(new Intent(getApplicationContext(), Ecash.class));
+//                        }
+//                    });
+//                } else {
+//                    AlertDialog.Builder builder = new AlertDialog.Builder(scanPesanan.this);
+//                    builder.setMessage("Please, scan the number locker you selected!");
+//                    builder.setPositiveButton("Scan Again", new DialogInterface.OnClickListener() {
+//                        @Override
+//                        public void onClick(DialogInterface dialog, int which) {
+//                            mScannerView.resumeCameraPreview(scanPesanan.this);
+//                        }
+//                    });
+//                    AlertDialog alert = builder.create();
+//                    alert.show();
+//                }
+//
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//            }
+//        });
+
+//    }
 }

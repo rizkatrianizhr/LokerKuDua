@@ -2,16 +2,13 @@ package com.e.aplikasiku;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.e.aplikasiku.models.Order;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -20,9 +17,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.Calendar;
+public class confirm extends AppCompatActivity {
 
-public class confirmOrder extends AppCompatActivity {
     private TextView name, Size, Cost, emaill, Id, Number;
     private Button Scan, Back;
     private ProgressBar Probar;
@@ -31,10 +27,11 @@ public class confirmOrder extends AppCompatActivity {
     private DatabaseReference databaseReference;
     private String idusernya;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_confirm_order);
+        setContentView(R.layout.activity_confirm);
 
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseDatabase = FirebaseDatabase.getInstance();
@@ -79,7 +76,7 @@ public class confirmOrder extends AppCompatActivity {
         Scan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(confirmOrder.this, Scan.class);
+                Intent intent = new Intent(confirm.this, Scan.class);
                 intent.putExtra("id",id);
                 startActivity(intent);
             }

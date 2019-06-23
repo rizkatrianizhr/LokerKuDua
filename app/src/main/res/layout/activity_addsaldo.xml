@@ -145,7 +145,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="346dp"
-        android:text="BAYAR SEKARANG"
+        android:text="Pay"
         android:textColor="@color/white"
         android:textSize="13dp"
 

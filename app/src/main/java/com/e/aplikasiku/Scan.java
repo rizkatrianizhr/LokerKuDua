@@ -133,7 +133,6 @@ public class Scan extends AppCompatActivity implements ZXingScannerView.ResultHa
                 .setNegativeButton("Cancel", null)
                 .create()
                 .show();
-
     }
 
     @Override
@@ -164,7 +163,6 @@ public class Scan extends AppCompatActivity implements ZXingScannerView.ResultHa
                     databaseReference.child("users")
                             .child(firebaseAuth.getCurrentUser().getUid())
                             .child("order").setValue(order);
-//                    startActivity(new Intent(Scan.this, Pesanan.class));
 
                     startActivity(new Intent(getApplicationContext(), Pesanan.class));
                 }

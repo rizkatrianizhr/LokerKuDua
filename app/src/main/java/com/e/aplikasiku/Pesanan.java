@@ -161,25 +161,6 @@ public class Pesanan extends AppCompatActivity {
             }
         });
 
-//        Scan.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                startActivity(new Intent(Pesanan.this, Scan.class));
-//            }
-//        });
-//
-//        Finish.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//            }
-//        });
-//        Scan.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//            startActivity(new Intent(Pesanan.this, com.e.aplikasiku.Scan.class));
-//            }
-//        });
-
         Back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -187,7 +168,6 @@ public class Pesanan extends AppCompatActivity {
             }
         });
     }
-
 
 
     private void calcDuration(){
@@ -204,20 +184,12 @@ public class Pesanan extends AppCompatActivity {
             long hours = diff / 3600;
             long minutes = (diff % 3600) / 60;
             long seconds = (diff % 3600) % 60;
-//                long hours = diff / (60*60*1000);
 
             totalPrice = (int) ((hours + 1) * hourlyCost);
             Hours.setText(String.format("%02d:%02d:%02d", hours, minutes, seconds));
 
-//                long totalPrice = hourlyCost * diff;
-//                Hours.setText(diff + "");
-
             Pay.setText(totalPrice + "");
 
-//                Toast.makeText(Pesanan.this, "Hours: "+ hours+" | Total: "+totalPrice, Toast.LENGTH_SHORT).show();
-////
-//////                Hours.setText(hours+"");
-//                Toast.makeText(Pesanan.this, "Total Price: "+totalPrice, Toast.LENGTH_SHORT).show();
         }
     }
 }
