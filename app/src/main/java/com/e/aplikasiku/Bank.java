@@ -120,5 +120,12 @@ public class Bank extends AppCompatActivity {
                 startActivity(new Intent(Bank.this, Uploadbukti.class));
             }
         });
+
+        btnBank.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 }

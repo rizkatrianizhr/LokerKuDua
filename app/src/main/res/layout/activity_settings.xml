@@ -1,9 +1,215 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/lll"
     tools:context=".Settings">
 
-</android.support.constraint.ConstraintLayout>
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/bluedark"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Setting Account"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="18dp"
+            android:textStyle="bold" />
+
+
+    </android.support.v7.widget.Toolbar>
+
+    <ImageView
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:src="@drawable/ic_back"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="10dp"/>
+
+    <Button android:id="@+id/btnBack"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="10dp"
+        android:background="@android:color/transparent"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="12dp"
+        android:text="My Account"
+        android:layout_marginTop="60dp"
+        android:layout_marginLeft="10dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="98dp"
+        android:layout_marginTop="85dp"
+        android:background="@color/lll"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_marginTop="6dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:background="@color/white"
+                android:text="My Profile"
+                android:padding="10dp"
+                android:drawableEnd="@drawable/ic_next"
+                android:textStyle="bold"
+                android:textColor="@color/bluedark"
+                android:textColorHint="@color/bluedark"
+                android:textSize="15dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_marginTop="5dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:background="@color/white"
+                android:text="Change Password"
+                android:padding="10dp"
+                android:drawableEnd="@drawable/ic_next"
+                android:textStyle="bold"
+                android:textColor="@color/bluedark"
+                android:textColorHint="@color/bluedark"
+                android:textSize="15dp" />
+
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="12dp"
+        android:text="Support"
+        android:layout_marginTop="195dp"
+        android:layout_marginLeft="10dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="220dp"
+        android:background="@color/lll"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_marginTop="6dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:background="@color/white"
+                android:text="Help Center"
+                android:padding="10dp"
+                android:drawableEnd="@drawable/ic_next"
+                android:textStyle="bold"
+                android:textColor="@color/bluedark"
+                android:textColorHint="@color/bluedark"
+                android:textSize="15dp" />
+
+
+
+
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_marginTop="6dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:background="@color/white"
+                android:text="Deactivate Account"
+                android:padding="10dp"
+                android:drawableEnd="@drawable/ic_next"
+                android:textStyle="bold"
+                android:textColor="@color/bluedark"
+                android:textColorHint="@color/bluedark"
+                android:textSize="15dp" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <Button android:id="@+id/logout"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="350dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@color/bluedark"
+        android:text="logout"
+        android:textColor="@color/white"
+        android:textSize="14dp"/>
+
+    <Button android:id="@+id/myprofile"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="85dp"
+        android:background="@android:color/transparent"/>
+
+    <Button android:id="@+id/pw"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="130dp"
+        android:background="@android:color/transparent" />
+
+    <Button android:id="@+id/help"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="220dp"
+        android:background="@android:color/transparent" />
+
+    <Button android:id="@+id/delete"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="265dp"
+        android:background="@android:color/transparent" />
+
+
+</RelativeLayout>

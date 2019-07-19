@@ -12,7 +12,6 @@ import android.widget.TextView;
 public class SplashScreen extends AppCompatActivity {
     private static int timeout=5000;
 
-    private TextView Text;
     private ImageView Img;
 
     @Override
@@ -20,12 +19,11 @@ public class SplashScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
 
-        Text = (TextView) findViewById(R.id.textt);
         Img = (ImageView) findViewById(R.id.imgg);
 
         Animation animation= AnimationUtils.loadAnimation(SplashScreen.this, R.anim.animation);
         Img.startAnimation(animation);
-        Text.startAnimation(animation);
+
 
         Handler handler= new Handler();
         handler.postDelayed(new Runnable() {

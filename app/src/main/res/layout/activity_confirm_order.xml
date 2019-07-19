@@ -4,50 +4,61 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     tools:context=".confirmOrder">
 
-    <ImageView
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="53dp"
+        android:background="@color/bluedark"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Confirmation Order"
+            android:layout_marginRight="20dp"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="18dp"
+            android:textStyle="bold" />
+
+
+    </android.support.v7.widget.Toolbar>
+
+    <ImageView
         android:layout_width="35dp"
         android:layout_height="35dp"
-        android:layout_marginLeft="12dp"
-        android:layout_marginTop="10dp"
-        android:src="@drawable/ic_backblue"/>
+        android:src="@drawable/ic_back"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="10dp"/>
 
     <Button android:id="@+id/btnBack"
         android:layout_width="35dp"
         android:layout_height="35dp"
-        android:layout_marginTop="10dp"
         android:layout_marginLeft="15dp"
+        android:layout_marginTop="10dp"
         android:background="@android:color/transparent"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Confirmation"
-        android:paddingEnd="10dp"
+        android:text="Locker Details"
+        android:textColor="@color/bluedark"
+        android:textSize="17dp"
         android:gravity="center"
-        android:textSize="20dp"
         android:textStyle="bold"
-        android:textColor="@color/bluedark"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="10dp"/>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Locker Detail"
-        android:textColor="@color/bluedark"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="75dp"/>
+        android:layout_marginTop="63dp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="ID"
-        android:textSize="18dp"
+        android:textSize="15dp"
         android:textStyle="bold"
         android:textColor="@color/bluedark"
         android:layout_marginLeft="30dp"
@@ -57,27 +68,27 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Size"
-        android:textSize="18dp"
+        android:textSize="15dp"
         android:textStyle="bold"
         android:textColor="@color/bluedark"
-        android:layout_marginLeft="130dp"
+        android:layout_marginLeft="140dp"
         android:layout_marginTop="105dp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Hourly Cost"
-        android:textSize="18dp"
+        android:textSize="15dp"
         android:textStyle="bold"
         android:textColor="@color/bluedark"
-        android:layout_marginLeft="230dp"
+        android:layout_marginLeft="250dp"
         android:layout_marginTop="105dp"/>
 
     <TextView android:id="@+id/idloker"
 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="13dp"
+        android:textSize="15dp"
         android:textStyle="bold"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="135dp"/>
@@ -86,75 +97,169 @@
 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="13dp"
+        android:textSize="15dp"
         android:textStyle="bold"
-        android:layout_marginLeft="130dp"
+        android:layout_marginLeft="140dp"
         android:layout_marginTop="135dp"/>
 
     <TextView android:id="@+id/cost"
 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="13dp"
+        android:textSize="15dp"
         android:textStyle="bold"
-        android:layout_marginLeft="230dp"
+        android:layout_marginLeft="250dp"
         android:layout_marginTop="135dp"/>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="95dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@color/bluedark">
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="168dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@color/bluedark">
+
+    </LinearLayout>
+
 
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Reserver Detail"
-        android:textSize="20dp"
+        android:text="Reserver Details"
+        android:textSize="17dp"
         android:textColor="@color/bluedark"
         android:textStyle="bold"
-        android:layout_marginLeft="30dp"
+        android:gravity="center"
         android:layout_marginTop="180dp"/>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Reserver Name"
-        android:textSize="18dp"
-        android:textStyle="bold"
-        android:textColor="@color/bluedark"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="215dp"/>
-
-    <TextView android:id="@+id/nameUser"
-
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="13dp"
-        android:textStyle="bold"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="243dp"/>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Email"
-        android:textSize="18dp"
-        android:textStyle="bold"
-        android:textColor="@color/bluedark"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="280dp"/>
-
-    <TextView android:id="@+id/emailUser"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="13dp"
-        android:textStyle="bold"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="308dp"/>
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_marginTop="350dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="220dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        app:cardCornerRadius="12dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/lll"
+            android:orientation="vertical"
+            android:padding="3dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Reserver Name"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="3dp"
+                android:textColor="@color/bluedark"
+                android:textSize="13dp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="5dp"
+                    android:src="@drawable/ic_user" />
+
+                <TextView android:id="@+id/nameUser"
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="3dp"
+                    android:background="@color/white"
+                    android:padding="3dp"
+                    android:layout_marginRight="10dp"
+                    android:paddingStart="20dp"
+                    android:textColor="@color/bluedark"
+                    android:textSize="15dp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="290dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        app:cardCornerRadius="12dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/lll"
+            android:orientation="vertical"
+            android:padding="3dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Email User"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="3dp"
+                android:textColor="@color/bluedark"
+                android:textSize="13dp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="5dp"
+                    android:src="@drawable/ic_emaill" />
+
+                <TextView android:id="@+id/emailUser"
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="3dp"
+                    android:background="@color/white"
+                    android:padding="3dp"
+                    android:paddingStart="20dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/bluedark"
+                    android:textSize="15dp" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="95dp"
+        android:layout_marginTop="370dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
         app:cardCornerRadius="12dp"
         app:cardElevation="6dp">
 
@@ -168,8 +273,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Please, scan the QR Code on Locker"
-                android:textSize="17dp"
-                android:layout_marginTop="13dp"
+                android:textSize="15dp"
+                android:layout_marginTop="8dp"
                 android:textStyle="bold"
                 android:gravity="center"/>
 
@@ -177,23 +282,20 @@
 
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="S-2"
-                android:textSize="20dp"
+                android:textSize="17dp"
                 android:gravity="center"
                 android:textColor="@color/bluedark"
-                android:layout_marginTop="40dp"
-                android:textStyle="bold"
-                />
+                android:layout_marginTop="37dp"
+                android:textStyle="bold" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="to procesed the reservation"
-                android:textSize="17dp"
+                android:textSize="15dp"
                 android:layout_marginLeft="70dp"
                 android:layout_marginTop="65dp"
-                android:textStyle="bold"
-                />
+                android:textStyle="bold" />
 
         </RelativeLayout>
 
@@ -207,29 +309,37 @@
         <!--android:layout_marginTop="580dp"-->
         <!--android:layout_centerHorizontal="true"/>-->
 
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="90dp"
-        android:layout_marginTop="470dp"
+    <LinearLayout
+        android:layout_width="115dp"
+        android:layout_height="115dp"
+        android:background="@drawable/circle3"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/qrcode"
-        />
+        android:layout_marginTop="490dp">
+
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="70dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="498dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/qrcode" />
     <TextView
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="565dp"
+        android:layout_marginTop="573dp"
         android:gravity="center"
         android:text="Scan QR Code"
-        android:textSize="15dp"
+        android:textSize="13dp"
         android:textColor="@color/bluedark"
         android:textStyle="bold"/>
 
     <Button android:id="@+id/scan"
-        android:layout_width="130dp"
+        android:layout_width="120dp"
         android:layout_height="120dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="465dp"
+        android:layout_marginTop="480dp"
         android:background="@android:color/transparent"/>
 
 

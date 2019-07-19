@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Aplikasiku</string>
+    <string name="app_name">MyLocker</string>
     <string name="minimum_password">Password Minimum 6 Karakter</string>
     <string name="auth_failed">Autentikasi Gagal, periksa Email dan Password atau Registrasi</string>
 

@@ -1,10 +1,14 @@
 package com.e.aplikasiku;
 
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
+import android.sax.StartElementListener;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.util.Log;
@@ -34,10 +38,11 @@ import java.util.Date;
 import java.util.TimerTask;
 import java.util.concurrent.Delayed;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.locks.Condition;
 
 public class Pesanan extends AppCompatActivity {
 
-    private TextView name, Size, Cost, emaill, Id, Number, Date, Hours, Pay;
+    private TextView name, Size, Cost, emaill, Id, Status, Date, Hours, Pay;
     private Button Scan, Back;
     private CardView Finish;
     private FirebaseAuth firebaseAuth;
@@ -45,11 +50,13 @@ public class Pesanan extends AppCompatActivity {
     private DatabaseReference databaseReference;
     private String idusernya;
 
+
     String orderDate = "";
     int hourlyCost = 0;
     long currentTime = 0;
     int totalPrice = 0;
     String currentdate;
+
 
     Handler handler = new Handler();
     Runnable timedTask = new Runnable(){
@@ -80,10 +87,12 @@ public class Pesanan extends AppCompatActivity {
         name = (TextView) findViewById(R.id.nameUser);
         emaill = (TextView) findViewById(R.id.emailUser);
         Size = (TextView) findViewById(R.id.size);
+        Status = (TextView)  findViewById(R.id.status);
         Id = (TextView) findViewById(R.id.idloker);
         Cost = (TextView) findViewById(R.id.cost);
         Scan = (Button) findViewById(R.id.scan);
         Back = (Button) findViewById(R.id.btnBack);
+
 
         handler.post(timedTask);
 
@@ -106,9 +115,19 @@ public class Pesanan extends AppCompatActivity {
                 Id.setText(idLocker);
                 Cost.setText(hourlyCost + "");
 
+                if (dataSnapshot.child("lockers").child(idLocker).child("isOpen").getValue(Integer.class) == 1
+                || dataSnapshot.child("lockers").child(idLocker).child("notif").getValue(String.class) == "Terbuka") {
+                    Status.setText("Opened");
+                    Status.setTextColor(getResources().getColor(R.color.indigo));
+                } else {
+                    Status.setText("Closed");
+                    Status.setTextColor(getResources().getColor(R.color.bluedark));
+                }
+
                 emaill.setText(firebaseAuth.getCurrentUser().getEmail());
 
                 Date.setText(orderDate);
+
 
                 calcDuration();
 
@@ -128,32 +147,44 @@ public class Pesanan extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
 
-                        calcDuration();
-                        int balance = Integer.parseInt(dataSnapshot.child("users").child(firebaseAuth.getCurrentUser().getUid()).child("balance").getValue(String.class));
+                        AlertDialog.Builder builder = new AlertDialog.Builder(Pesanan.this);
+                        builder.setTitle("Are you sure?");
+                        builder.setMessage("Are you really want to finish this order?");
+                        builder.setPositiveButton("Finish", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                calcDuration();
+                                int balance = Integer.parseInt(dataSnapshot.child("users").child(firebaseAuth.getCurrentUser().getUid()).child("balance").getValue(String.class));
 
-                        if(totalPrice > balance){
-                            Toast.makeText(Pesanan.this, "Saldo tidak cukup", Toast.LENGTH_SHORT).show();
-                            return;
-                        }
+                                if(totalPrice > balance){
+                                    Toast.makeText(Pesanan.this, "Your balance is not enough", Toast.LENGTH_SHORT).show();
+                                    return;
+                                }
 
-                        balance = balance - totalPrice;
+                                balance = balance - totalPrice;
 
-                        databaseReference.child("users").child(firebaseAuth.getCurrentUser().getUid()).child("order").removeValue();
-                        databaseReference.child("users").child(firebaseAuth.getCurrentUser().getUid()).child("balance").setValue(balance+"");
 
-                        databaseReference.child("lockers").child(idLocker).child("isOccupied").setValue(0);
-                        databaseReference.child("lockers").child(idLocker).child("occupiedBy").setValue("");
+                                databaseReference.child("users").child(firebaseAuth.getCurrentUser().getUid()).child("balance").setValue(balance+"");
+                                databaseReference.child("users").child(firebaseAuth.getCurrentUser().getUid()).child("order").removeValue();
 
-                        Order order = new Order(idLocker, firebaseAuth.getCurrentUser().getEmail(), currentdate.toString(), totalPrice);
+                                Order order = new Order(idLocker, firebaseAuth.getCurrentUser().getEmail(), currentdate.toString(), totalPrice);
+                                databaseReference.child("Orders").push().setValue(order);
 
-                        databaseReference.child("orders").push().setValue(order);
+                                databaseReference.child("lockers").child(idLocker).child("isOccupied").setValue(0);
+                                databaseReference.child("lockers").child(idLocker).child("occupiedBy").setValue("");
 
-                        Toast.makeText(Pesanan.this, "Selesai", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(Pesanan.this, "Finish", Toast.LENGTH_SHORT).show();
 
-                        Intent intent = new Intent(Pesanan.this, LamanUtama.class);
-                        startActivity(intent);
+                                Intent intent = new Intent(Pesanan.this, Promo.class);
+                                startActivity(intent);
+                            }
+                        });
+                        builder.setNeutralButton("Dismiss", null);
+
+                        builder.create().show();
                     }
                 });
+
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
@@ -174,7 +205,7 @@ public class Pesanan extends AppCompatActivity {
         if (orderDate != "") {
             Calendar thatDay = Calendar.getInstance();
             thatDay.setTime(new Date(orderDate));
-            currentdate = DateFormat.getDateInstance().format(thatDay.getTimeInMillis());
+            currentdate = DateFormat.getDateTimeInstance().format(thatDay.getTimeInMillis());
             Date.setText(currentdate);
 
             Calendar today = Calendar.getInstance();

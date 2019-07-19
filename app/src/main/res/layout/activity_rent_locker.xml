@@ -10,7 +10,7 @@
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="53dp"
         android:background="@color/bluedark"
         android:minHeight="?attr/actionBarSize"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
@@ -49,9 +49,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Step 1 of 3"
-        android:layout_marginTop="65dp"
-        android:textSize="15dp"
-
+        android:layout_marginTop="68dp"
+        android:textSize="13dp"
         android:layout_marginLeft="20dp"
         android:textStyle="bold"
         />
@@ -62,8 +61,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Select Locker Size"
-        android:layout_marginTop="85dp"
-        android:textSize="19dp"
+        android:layout_marginTop="88dp"
+        android:textSize="17dp"
         android:textColor="@color/bluedark"
         android:layout_marginLeft="20dp"
         android:textStyle="bold"
@@ -79,7 +78,7 @@
 
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="140dp"
+            android:layout_height="150dp"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="20dp"
             android:background="@color/white"
@@ -93,11 +92,12 @@
 
                     <ImageView
                         android:id="@+id/img1"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:scaleX="1.4"
                         android:layout_marginTop="25dp"
-                        android:layout_marginLeft="15dp"
-                        android:src="@drawable/ic_box" />
+                        android:layout_marginLeft="20dp"
+                        android:src="@drawable/small" />
 
                     <TextView
                         android:id="@+id/small"
@@ -106,8 +106,9 @@
                         android:layout_below="@id/img1"
                         android:layout_marginLeft="15dp"
                         android:text="Small"
+                        android:layout_marginTop="10dp"
                         android:textColor="@color/white"
-                        android:textSize="20dp"
+                        android:textSize="18dp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -116,9 +117,9 @@
                         android:layout_below="@id/small"
                         android:layout_marginLeft="15dp"
                         android:layout_marginTop="10dp"
-                        android:text="T 30cm x P 30cm x L 40 cm"
+                        android:text="W 30cm x H 15 cm x D 30 cm"
                         android:textColor="@color/lll"
-                        android:textSize="15dp"
+                        android:textSize="13dp"
                         android:textStyle="bold" />
 
 
@@ -133,7 +134,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="220dp"
                 android:layout_marginTop="40dp"
-                android:textSize="23dp"
+                android:textSize="20dp"
                 android:textStyle="bold"
                 android:textColor="@color/white"
                 android:text="Rp.5000"/>
@@ -144,7 +145,7 @@
                 android:layout_marginLeft="250dp"
                 android:layout_marginTop="70dp"
                 android:textColor="@color/lll"
-                android:textSize="17dp"
+                android:textSize="15dp"
                 android:textStyle="bold"
                 android:text="/hour"/>
 
@@ -155,7 +156,7 @@
     <GridLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="300dp"
+        android:layout_marginTop="295dp"
         android:layout_centerHorizontal="true"
         android:alignmentMode="alignMargins"
         android:columnOrderPreserved="false"
@@ -163,7 +164,7 @@
 
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="140dp"
+            android:layout_height="150dp"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="20dp"
             android:background="@color/white"
@@ -180,21 +181,23 @@
 
                 <ImageView
                     android:id="@+id/img2"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginLeft="15dp"
-                    android:src="@drawable/ic_boxx" />
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:scaleX="1.4"
+                    android:layout_marginTop="18dp"
+                    android:layout_marginLeft="20dp"
+                    android:src="@drawable/mediumabu" />
 
                 <TextView
                     android:id="@+id/medium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/img2"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="15dp"
                     android:text="Medium"
+                    android:layout_marginTop="10dp"
                     android:textColor="@color/bluedark"
-                    android:textSize="20dp"
+                    android:textSize="18dp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -203,9 +206,9 @@
                     android:layout_below="@id/medium"
                     android:layout_marginLeft="15dp"
                     android:layout_marginTop="10dp"
-                    android:text="T 30cm x P 30cm x L 40 cm"
+                    android:text="W 30cm x H 35cm x D 30 cm"
                     android:textColor="@color/colorAccent"
-                    android:textSize="15dp"
+                    android:textSize="13dp"
                     android:textStyle="bold" />
 
 
@@ -219,8 +222,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="220dp"
-                    android:layout_marginTop="40dp"
-                    android:textSize="23dp"
+                    android:layout_marginTop="50dp"
+                    android:textSize="20dp"
                     android:textStyle="bold"
                     android:textColor="@color/bluedark"
                     android:text="Rp.7000"/>
@@ -229,8 +232,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="250dp"
-                    android:layout_marginTop="70dp"
-                    android:textSize="17dp"
+                    android:layout_marginTop="75dp"
+                    android:textSize="15dp"
                     android:textStyle="bold"
                     android:text="/hour"/>
 
@@ -252,7 +255,7 @@
 
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="145dp"
+            android:layout_height="150dp"
             android:layout_marginLeft="15dp"
             android:background="@color/white"
             android:layout_marginRight="20dp"
@@ -269,11 +272,12 @@
 
                 <ImageView
                     android:id="@+id/img3"
-                    android:layout_width="75dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_height="75dp"
-                    android:layout_marginLeft="10dp"
-                    android:src="@drawable/ic_box" />
+                    android:layout_width="65dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_height="65dp"
+                    android:layout_marginLeft="15dp"
+                    android:scaleX="1.4"
+                    android:src="@drawable/llarge" />
 
                 <TextView
                     android:id="@+id/large"
@@ -282,8 +286,9 @@
                     android:layout_below="@id/img3"
                     android:layout_marginLeft="15dp"
                     android:text="Large"
+                    android:layout_marginTop="5dp"
                     android:textColor="@color/white"
-                    android:textSize="20dp"
+                    android:textSize="18dp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -291,10 +296,10 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/large"
                     android:layout_marginLeft="15dp"
-                    android:layout_marginTop="10dp"
-                    android:text="T 30cm x P 30cm x L 40 cm"
+                    android:layout_marginTop="5dp"
+                    android:text="W 30cm x H 50cm x D 30 cm"
                     android:textColor="@color/lll"
-                    android:textSize="15dp"
+                    android:textSize="13dp"
                     android:textStyle="bold" />
 
 
@@ -309,7 +314,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="220dp"
                     android:layout_marginTop="45dp"
-                    android:textSize="23dp"
+                    android:textSize="20dp"
                     android:textStyle="bold"
                     android:textColor="@color/white"
                     android:text="Rp.9000"/>
@@ -319,7 +324,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="250dp"
                     android:layout_marginTop="75dp"
-                    android:textSize="17dp"
+                    android:textSize="15dp"
                     android:textColor="@color/lll"
                     android:textStyle="bold"
                     android:text="/hour"/>

@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/lll"
+    android:layout_height="match_parent"
+    tools:context=".Plima">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/white"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Help Center"
+            android:layout_marginRight="20dp"
+            android:gravity="center"
+            android:textColor="@color/bluedark"
+            android:textSize="18dp"
+            android:textStyle="bold" />
+
+    </android.support.v7.widget.Toolbar>
+
+    <ImageView
+
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="15dp"
+        android:src="@drawable/circlee"
+        android:rotation="45    "
+        android:layout_marginLeft="320dp"/>
+
+    <Button android:id="@+id/close"
+
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="15dp"
+        android:background="@android:color/transparent"
+        android:layout_marginLeft="318dp"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="60dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout android:id="@+id/l1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:orientation="vertical"
+                android:background="@color/white">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:textSize="15dp"
+                    android:layout_marginTop="15dp"
+                    android:textColor="@color/bluedark"
+                    android:text="Can i borrow more than one locker?"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="15dp"
+                    android:textSize="13dp"
+                    android:textColor="@color/bluedark"
+                    android:layout_marginTop="20dp"
+                    android:text="You cannot borrow more than one."/>
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="20dp"
+                    android:src="@drawable/steptiga"/>
+
+            </LinearLayout>
+
+            <LinearLayout android:id="@+id/l2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:layout_below="@id/l1"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="6dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@color/white"
+                    android:text="Are there any other question?"
+                    android:padding="10dp"
+                    android:textColorHint="@color/bluedark"
+                    android:textSize="15dp" />
+
+            </LinearLayout>
+
+            <LinearLayout android:id="@+id/l3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:layout_marginTop="10dp"
+                android:layout_below="@id/l2"
+                android:drawableEnd="@drawable/ic_next"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@color/white"
+                    android:text="Email"
+                    android:layout_marginTop="6dp"
+                    android:padding="5dp"
+                    android:textStyle="bold"
+                    android:textColorHint="@color/bluedark"
+                    android:textSize="12dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+
+                    android:layout_height="30dp"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@color/white"
+                    android:text="Mylocker@gmail.com"
+                    android:padding="5dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/bluedark"
+                    android:textColorHint="@color/bluedark"
+                    android:textSize="12dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:layout_below="@+id/l3"
+                android:drawableEnd="@drawable/ic_next"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@color/white"
+                    android:text="Telephone"
+                    android:layout_marginTop="6dp"
+                    android:padding="5dp"
+                    android:textStyle="bold"
+                    android:textColorHint="@color/bluedark"
+                    android:textSize="12dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+
+                    android:layout_height="30dp"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@color/white"
+                    android:text="12345667"
+                    android:padding="5dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/bluedark"
+                    android:textColorHint="@color/bluedark"
+                    android:textSize="12dp" />
+
+            </LinearLayout>
+
+            <ImageView
+                android:layout_below="@+id/l2"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="30dp"
+                android:src="@drawable/email" />
+
+            <ImageView
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_below="@+id/l3"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="15dp"
+                android:src="@drawable/call" />
+
+        </RelativeLayout>
+    </ScrollView>
+
+
+</RelativeLayout>

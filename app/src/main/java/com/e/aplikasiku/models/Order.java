@@ -7,6 +7,9 @@ public class Order {
 
     int bill;
 
+    public Order() {
+    }
+
     public Order(String idLocker, String email, String oorderDate, int bill) {
         this.idLocker = idLocker;
         this.email = email;

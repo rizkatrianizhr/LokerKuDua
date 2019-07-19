@@ -1,13 +1,19 @@
 package com.e.aplikasiku;
 
 import android.app.AlertDialog;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.service.autofill.SaveCallback;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.TaskStackBuilder;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -156,7 +162,27 @@ public class scanPesanan extends AppCompatActivity implements ZXingScannerView.R
 
                 if (id.equals(idlocker) && saldo >= bill) {
                     databaseReference.child("lockers").child(idlocker).child("isOpen").setValue(1);
+                    databaseReference.child("lockers").child(idlocker).child("notif").setValue("Terbuka");
                     startActivity(new Intent(getApplicationContext(), Pesanan.class));
+
+                    NotificationCompat.Builder builder = (NotificationCompat.Builder) new NotificationCompat.Builder(scanPesanan.this)
+                            .setDefaults(NotificationCompat.DEFAULT_ALL)
+                            .setSmallIcon(R.drawable.ic_account)
+                            .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.ic_waktu))
+                            .setContentTitle("Locker Status")
+                            .setContentText("The door successfully opened");
+
+                    Intent resultIntent = new Intent(scanPesanan.this, Pesanan.class);
+                    TaskStackBuilder stackBuilder = TaskStackBuilder.create(scanPesanan.this);
+                    stackBuilder.addParentStack(Pesanan.class);
+
+    // Adds the Intent that starts the Activity to the top of the stack
+                    stackBuilder.addNextIntent(resultIntent);
+                    PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(0,PendingIntent.FLAG_UPDATE_CURRENT);
+                    builder.setContentIntent(resultPendingIntent);
+
+                    NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+                    notificationManager.notify(1, builder.build());
 
                 } else if (saldo <= bill) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(scanPesanan.this);
@@ -164,7 +190,7 @@ public class scanPesanan extends AppCompatActivity implements ZXingScannerView.R
                     builder.setPositiveButton("Top Up", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            startActivity(new Intent(getApplicationContext(), Ecash.class));
+                            startActivity(new Intent(getApplicationContext(), TopUp.class));
                         }
                     });
                 } else {

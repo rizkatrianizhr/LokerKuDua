@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/bluedark"
     tools:context=".SplashScreen">
     
     <LinearLayout
@@ -16,17 +17,8 @@
 
             android:layout_width="200dp"
             android:layout_height="200dp"
-            android:src="@drawable/ic_phone"/>
+            android:src="@drawable/go"/>
 
-        <TextView android:id="@+id/textt"
-
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="LOKERKU"
-            android:textSize="30dp"
-            android:textStyle="bold"
-            android:fontFamily="sans-serif-condensed"
-            android:textColor="@color/bluedark"/>
     </LinearLayout>
 
 </RelativeLayout>

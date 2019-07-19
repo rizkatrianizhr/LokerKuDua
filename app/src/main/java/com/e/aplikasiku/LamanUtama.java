@@ -23,6 +23,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.e.aplikasiku.models.Order;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -37,16 +38,16 @@ import java.util.Set;
 public class LamanUtama extends AppCompatActivity {
 
     private ImageView Notif;
-    private TextView WelcomeLogin, Welcome, Names, Balance, Text, WelcomeBack;
+    private TextView WelcomeLogin, Welcome, Names, Balance, Text, WelcomeBack, Text1, Text3, Text4;
     private CardView NotLogin, cvSaldo;
     private Button Login, Regis, Order, Rent, Profile, Help, Settings, TopUp;
 
+    private boolean isOrdering;
 
     private FirebaseAuth auth;
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
     private String idusernya;
-    String occupiedBy;
 
 
     @Override
@@ -69,8 +70,10 @@ public class LamanUtama extends AppCompatActivity {
         Rent = (Button) findViewById(R.id.btnRent);
         Help = (Button) findViewById(R.id.btnHelp);
         Regis = (Button) findViewById(R.id.btnRegis);
-        WelcomeLogin = (TextView) findViewById(R.id.welcomeLogin);
         Text = (TextView) findViewById(R.id.text1);
+        Text1 = (TextView) findViewById(R.id.text2);
+        Text3 = (TextView) findViewById(R.id.text3);
+        Text4 = (TextView) findViewById(R.id.text4);
         Welcome = (TextView) findViewById(R.id.welcome);
         WelcomeBack = (TextView) findViewById(R.id.welcomeback);
         Names = (TextView) findViewById(R.id.names);
@@ -80,36 +83,61 @@ public class LamanUtama extends AppCompatActivity {
 
 
         if (auth.getCurrentUser() == null) {
-            WelcomeLogin.setVisibility(View.GONE);
             Names.setVisibility(View.GONE);
             cvSaldo.setVisibility(View.GONE);
             WelcomeBack.setVisibility(View.GONE);
             Welcome.setVisibility(View.VISIBLE);
             NotLogin.setVisibility(View.VISIBLE);
-            Text.setVisibility(View.VISIBLE);
-
-
+            Text.setVisibility(View.GONE);
+            Text1.setVisibility(View.GONE);
+            Text3.setVisibility(View.VISIBLE);
+            Text4.setVisibility(View.VISIBLE);
         }
-        if (auth.getCurrentUser() != null) {
+
+        if (auth.getCurrentUser() != null && !auth.getCurrentUser().isEmailVerified()) {
+            auth.signOut();
+            Names.setVisibility(View.GONE);
+            cvSaldo.setVisibility(View.GONE);
+            WelcomeBack.setVisibility(View.GONE);
+            Welcome.setVisibility(View.VISIBLE);
+            NotLogin.setVisibility(View.VISIBLE);
+            Text.setVisibility(View.GONE);
+            Text1.setVisibility(View.GONE);
+            Text3.setVisibility(View.VISIBLE);
+            Text4.setVisibility(View.VISIBLE);
+            Toast.makeText(LamanUtama.this, "Email belum terverifikasi", Toast.LENGTH_LONG).show();
+        }
+
+
+        if (auth.getCurrentUser() != null ) {
             final FirebaseUser user = auth.getCurrentUser();
             idusernya = user.getUid();
 
             Welcome.setVisibility(View.GONE);
-            Text.setVisibility(View.GONE);
+            Text.setVisibility(View.VISIBLE);
+            Text1.setVisibility(View.VISIBLE);
             NotLogin.setVisibility(View.GONE);
             Names.setVisibility(View.VISIBLE);
             WelcomeBack.setVisibility(View.VISIBLE);
-            WelcomeLogin.setVisibility(View.VISIBLE);
             cvSaldo.setVisibility(View.VISIBLE);
+            Text3.setVisibility(View.GONE);
+            Text4.setVisibility(View.GONE);
 
             databaseReference.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     String name = dataSnapshot.child("users").child(idusernya).child("name").getValue(String.class);
                     String dompet = dataSnapshot.child("users").child(idusernya).child("balance").getValue(String.class);
-//                    occupiedBy = dataSnapshot.child("users").child(auth.getCurrentUser().getUid()).child("order").getValue(String.class);
+
                     Names.setText(name);
                     Balance.setText(dompet);
+
+                    Order pesanan = dataSnapshot.child("users").child(idusernya).child("order").getValue(Order.class);
+                    if (pesanan == null){
+                        isOrdering = false;
+                    }else {
+                        isOrdering = true;
+                    }
                 }
 
                 @Override
@@ -123,36 +151,36 @@ public class LamanUtama extends AppCompatActivity {
         Rent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(LamanUtama.this, rentLocker.class));
+                if (isOrdering){
+                    AlertDialog.Builder builder = new AlertDialog.Builder(LamanUtama.this);
+                    builder.setTitle("Ups Sorry!");
+                    builder.setMessage("You already ordered a locker");
+                    builder.setPositiveButton("Ok!", null);
+                    builder.create().show();
+                }else {
+                    startActivity(new Intent(LamanUtama.this, rentLocker.class));
+                }
             }
         });
 
         Order.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
                 if (auth.getCurrentUser() == null) {
-//                    AlertDialog.Builder builder = new AlertDialog.Builder(LamanUtama.this);
-//                    builder.setMessage("Silahkan Login terlebih dahulu!");
-//                    builder.setNeutralButton("tidak", null);
-//                    builder.setPositiveButton("iya", new DialogInterface.OnClickListener() {
-//                        @Override
-//                        public void onClick(DialogInterface dialog, int which) {
                     startActivity(new Intent(LamanUtama.this, Login.class));
-//                        }
-//                   });
-//                    builder.create().show();
+
                 }
-                if (auth.getCurrentUser() != null) {
+                if (auth.getCurrentUser() != null  ) {
                     //apakah sudah pesan
-                    startActivity(new Intent(LamanUtama.this, Pesanan.class));
-//                } else {
-//                    AlertDialog.Builder builder = new AlertDialog.Builder(LamanUtama.this);
-//                    builder.setMessage("You don't have any orderd yet");
-//                    builder.setPositiveButton("Ok!", null);
-//                    builder.create().show();
-//
+                    if(isOrdering){
+                        startActivity(new Intent(LamanUtama.this, Pesanan.class));
+                    }else {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(LamanUtama.this);
+                        builder.setMessage("You don't have any ordered yet");
+                        builder.setPositiveButton("Ok!", null);
+                        builder.create().show();
+                    }
+
                 }
             }
 
@@ -165,10 +193,6 @@ public class LamanUtama extends AppCompatActivity {
 //                        public void onClick(DialogInterface dialog, int which) {
 //                        }
         });
-//                    builder.create().show();
-//                    }
-//                }
-
 
         Profile.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -185,41 +209,13 @@ public class LamanUtama extends AppCompatActivity {
         Help.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //startActivity(new Intent(LamanUtama.this, com.e.aplikasiku.Help.class));
 
-                //Get an instance of NotificationManager//
-                NotificationCompat.Builder mBuilder =
-                        new NotificationCompat.Builder(LamanUtama.this)
-                                .setSmallIcon(R.drawable.bcalogo)
-                                .setContentTitle("My notification")
-                                .setContentText("Hello World!");
-
-                Intent resultIntent = new Intent(LamanUtama.this, Pesanan.class);
-                TaskStackBuilder stackBuilder = TaskStackBuilder.create(LamanUtama.this);
-                stackBuilder.addParentStack(Pesanan.class);
-
-// Adds the Intent that starts the Activity to the top of the stack
-                stackBuilder.addNextIntent(resultIntent);
-                PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(0,PendingIntent.FLAG_UPDATE_CURRENT);
-                mBuilder.setContentIntent(resultPendingIntent);
-
-                // Gets an instance of the NotificationManager service//
-
-                NotificationManager mNotificationManager =
-
-                        (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-
-                // When you issue multiple notifications about the same type of event,
-                // it’s best practice for your app to try to update an existing notification
-                // with this new information, rather than immediately creating a new notification.
-                // If you want to update this notification at a later date, you need to assign it an ID.
-                // You can then use this ID whenever you issue a subsequent notification.
-                // If the previous notification is still visible, the system will update this existing notification,
-                // rather than create a new one. In this example, the notification’s ID is 001//
-
-                //NotificationManager.notify().
-
-                mNotificationManager.notify(001, mBuilder.build());
+                if (auth.getCurrentUser() == null) {
+                    startActivity(new Intent(LamanUtama.this, com.e.aplikasiku.Login.class));
+                }
+                if (auth.getCurrentUser() != null) {
+                    startActivity(new Intent(LamanUtama.this, helpCenter.class));
+                }
             }
         });
 
@@ -240,7 +236,12 @@ public class LamanUtama extends AppCompatActivity {
         Settings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                if (auth.getCurrentUser() == null) {
+                    startActivity(new Intent(LamanUtama.this, Login.class));
+                }
+                if (auth.getCurrentUser() != null) {
+                    startActivity(new Intent(LamanUtama.this, com.e.aplikasiku.Settings.class));
+                }
             }
         });
 

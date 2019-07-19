@@ -17,7 +17,7 @@
 
             <LinearLayout
                 android:id="@+id/linearLay"
-                android:layout_marginTop="150dp"
+                android:layout_marginTop="100dp"
                 android:layout_width="match_parent"
                 android:layout_height="163dp"
                 android:background="@color/bluedark"
@@ -35,7 +35,7 @@
                     android:background="@color/bluedark"
                     android:fontFamily="@string/common_google_play_services_enable_button"
                     android:gravity="center"
-                    android:text="Lupa Password?"
+                    android:text="Forgot Password?"
                     android:textColor="@color/white"
                     android:textSize="25dp"
                     android:textStyle="bold" />
@@ -53,69 +53,70 @@
                 android:background="@color/bluedark"
                 android:fontFamily="@string/common_google_play_services_enable_button"
                 android:gravity="center"
-                android:text="Masukan email ID yang telah terdaftar untuk mengubah kata sandi anda"
+                android:text="Enter the registered email address to change your password"
                 android:textColor="@color/white"
-                android:textSize="18dp"
+                android:textSize="17dp"
                 android:textStyle="bold" />
             </LinearLayout>
 
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="400dp"
+                android:layout_height="300dp"
+                android:layout_marginTop="290dp"
                 android:background="@color/bluedark"
-                android:layout_marginTop="320dp"
                 android:orientation="vertical">
 
                 <EditText
                     android:id="@+id/emailmu"
 
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="40dp"
                     android:layout_marginLeft="30dp"
                     android:layout_marginRight="30dp"
                     android:background="@color/white"
                     android:drawableLeft="@drawable/ic_maill"
                     android:drawablePadding="20dp"
-                    android:hint="Email"
+                    android:hint="Email Address"
                     android:inputType="textPersonName"
                     android:padding="10dp"
                     android:textColor="@color/bluedark"
                     android:textColorHint="@color/bluedark"
                     android:textSize="15dp" />
 
-                <ProgressBar android:id="@+id/probar"
-
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="20dp" />
 
                 <Button
                     android:id="@+id/reset"
 
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="40dp"
                     android:layout_marginLeft="30dp"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="40dp"
                     android:layout_marginRight="30dp"
                     android:background="@color/white"
-                    android:text="Masuk"
+                    android:text="Send to Email"
                     android:textColor="@color/bluedark"
                     android:textSize="18dp"
                     android:textStyle="bold" />
 
-                <Button android:id="@+id/btn_back"
+                <ImageView
 
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="25dp"
-                    android:layout_gravity="center"
-                    android:background="@null"
-                    android:textStyle="bold"
-                    android:text="Back"
-                    android:textColor="@color/white" />
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="45dp"
+                    android:src="@drawable/circlewhite"
+                    android:rotation="45    "
+                    android:layout_gravity="center" />
+
             </LinearLayout>
+
+            <Button android:id="@+id/close"
+
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="455dp"
+                android:layout_centerHorizontal="true"
+                android:background="@android:color/transparent" />
 
         </RelativeLayout>
 

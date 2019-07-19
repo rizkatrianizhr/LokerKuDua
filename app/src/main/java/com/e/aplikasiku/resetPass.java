@@ -1,5 +1,6 @@
 package com.e.aplikasiku;
 
+import android.app.ProgressDialog;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -18,10 +19,10 @@ import com.google.firebase.auth.FirebaseAuth;
 public class resetPass extends AppCompatActivity {
 
     private EditText Email;
-    private ProgressBar Bar;
     private Button btnReset;
     private TextView btnBack;
     private FirebaseAuth auth;
+    private ProgressDialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,12 +31,12 @@ public class resetPass extends AppCompatActivity {
 
         Email = (EditText) findViewById(R.id.emailmu);
         btnReset = (Button) findViewById(R.id.reset);
-        btnBack = (TextView) findViewById(R.id.btn_back);
-        Bar = (ProgressBar) findViewById(R.id.probar);
+        btnBack = (TextView) findViewById(R.id.close);
+        dialog = new ProgressDialog(this);
 
-        Bar.setVisibility(View.GONE);
 
         auth = FirebaseAuth.getInstance();
+
 
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,6 +44,7 @@ public class resetPass extends AppCompatActivity {
                 finish();
             }
         });
+
         btnReset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -50,23 +52,24 @@ public class resetPass extends AppCompatActivity {
                 String email = Email.getText().toString().trim();
 
                 if (TextUtils.isEmpty(email)) {
-                    Toast.makeText(getApplication(), "Masukan Email anda yang sudah terdaftar!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplication(), "Enter the registered email!", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
-                Bar.setVisibility(View.VISIBLE);
+                dialog.setMessage("Send to your email...");
+                dialog.show();
 
                 auth.sendPasswordResetEmail(email)
                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 if (task.isSuccessful()) {
-                                    Toast.makeText(resetPass.this, "Cek Email untuk merest password!", Toast.LENGTH_SHORT).show();
+                                    dialog.dismiss();
+                                    Toast.makeText(resetPass.this, "Check your email to reset the password", Toast.LENGTH_SHORT).show();
                                 } else {
-                                    Toast.makeText(resetPass.this, "Gagal mengirim ke email!", Toast.LENGTH_SHORT).show();
+                                    dialog.dismiss();
+                                    Toast.makeText(resetPass.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                                 }
-
-                                Bar.setVisibility(View.GONE);
                             }
                         });
             }

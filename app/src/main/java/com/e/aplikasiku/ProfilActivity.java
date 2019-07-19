@@ -36,7 +36,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class ProfilActivity extends AppCompatActivity {
     private TextView getName, getNoHp, getEmail;
-    private Button ubahPassword, Back;
+    private Button ubahPassword, Back, Setting;
     private FirebaseAuth firebaseAuth;
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
@@ -58,6 +58,7 @@ public class ProfilActivity extends AppCompatActivity {
         ubahPassword = (Button) findViewById(R.id.ubahpassword);
         Toolbar toolbar = findViewById(R.id.toolbar);
         Back = (Button) findViewById(R.id.btnBack);
+        Setting = (Button) findViewById(R.id.settings);
 
         setSupportActionBar(toolbar);
 
@@ -65,6 +66,13 @@ public class ProfilActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(ProfilActivity.this, GantiPassword.class));
+            }
+        });
+
+        Setting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ProfilActivity.this, Settings.class));
             }
         });
 

@@ -4,13 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/lll"
     tools:context=".LamanUtama">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="53dp"
         android:background="@color/bluedark"
         android:minHeight="?attr/actionBarSize"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
@@ -19,13 +18,21 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Mylocker"
+            android:text="MyLocker"
             android:textColor="@color/white"
             android:layout_marginLeft="15dp"
-            android:textSize="23dp"
+            android:textSize="18dp"
             android:textStyle="bold" />
 
     </android.support.v7.widget.Toolbar>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/white"
+        android:layout_marginTop="45dp">
+
+    </LinearLayout>
 
     <ImageView
 
@@ -33,20 +40,21 @@
         android:layout_height="20dp"
         android:layout_marginTop="12dp"
         android:src="@drawable/ic_settings"
-        android:layout_marginLeft="300dp"/>
+        android:layout_marginLeft="320dp"/>
 
-    <Button android:id="@+id/settings"
+    <Button
+        android:id="@+id/settings"
 
-        android:layout_width="20dp"
-        android:layout_height="20dp"
+        android:layout_width="21dp"
+        android:layout_height="24dp"
+        android:layout_marginLeft="318dp"
         android:layout_marginTop="10dp"
-        android:background="@android:color/transparent"
-        android:layout_marginLeft="298dp"/>
+        android:background="@android:color/transparent" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="130dp"
-        android:layout_marginTop="50dp"
+        android:layout_height="170dp"
+        android:layout_marginTop="46dp"
         android:background="@color/bluedark">
 
     </LinearLayout>
@@ -54,7 +62,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_marginTop="232dp"
+        android:layout_marginTop="260dp"
         android:background="@color/bluedark">
 
     </LinearLayout>
@@ -62,7 +70,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_marginTop="449dp"
+        android:layout_marginTop="460dp"
         android:background="@color/bluedark">
 
     </LinearLayout>
@@ -71,75 +79,102 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Categories"
-        android:textSize="15dp"
-        android:layout_marginTop="243dp"
+        android:textSize="13dp"
+        android:layout_marginTop="265dp"
         android:textStyle="bold"
-        android:textColor="@color/black"
+        android:textColor="@color/bluedark"
         android:layout_marginLeft="20dp"/>
 
-    <TextView android:id="@+id/welcomeLogin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="78dp"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        android:textColor="@color/white"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:text="Hai,"/>
 
     <TextView
         android:id="@+id/welcome"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="55dp"
         android:layout_marginRight="30dp"
         android:gravity="center"
-        android:text="Welcome to Mylocker"
+        android:text="Welcome to MyLocker"
         android:textColor="@color/white"
-        android:textSize="20dp"
+        android:textSize="16dp"
         android:textStyle="bold" />
+
+    <TextView android:id="@+id/text3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:textSize="12dp"
+        android:layout_marginLeft="30dp"
+        android:gravity="center"
+        android:textColor="@color/abu"
+        android:layout_marginRight="30dp"
+        android:text="Keep Your Things Safe!"/>
+
+    <TextView android:id="@+id/text4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="120dp"
+        android:textSize="12dp"
+        android:layout_marginLeft="30dp"
+        android:gravity="center"
+        android:textColor="@color/abu"
+        android:layout_marginRight="30dp"
+        android:text="Make sure you are logged in"/>
 
     <TextView
         android:id="@+id/welcomeback"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
-        android:layout_marginTop="53dp"
+        android:layout_marginTop="88dp"
         android:layout_marginRight="30dp"
-        android:text="Welcome back"
-        android:textColor="@color/lll"
+        android:text="Welcome to MyLocker"
+        android:textColor="@color/abu"
+        android:gravity="center"
         android:textSize="15dp"
         android:textStyle="bold" />
+
+    <TextView android:id="@+id/text2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="113dp"
+        android:textSize="12dp"
+        android:layout_marginLeft="30dp"
+        android:gravity="center"
+        android:textColor="@color/abu"
+        android:layout_marginRight="30dp"
+        android:text="The way doesn't want to be complicated?"/>
 
     <TextView android:id="@+id/text1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="85dp"
-        android:textSize="14dp"
+        android:layout_marginTop="132dp"
+        android:textSize="12dp"
         android:layout_marginLeft="30dp"
         android:gravity="center"
-        android:textColor="@color/white"
+        android:textColor="@color/abu"
         android:layout_marginRight="30dp"
-        android:text="Keep Your Things Safe!"/>
+        android:text="Save your things now!"/>
+
+
 
 
     <TextView android:id="@+id/names"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="20dp"
+        android:textSize="18dp"
         android:textColor="@color/white"
-        android:layout_marginLeft="70dp"
+        android:layout_marginTop="54dp"
+        android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
-        android:layout_marginTop="78dp"
+        android:gravity="center"
         android:textStyle="bold" />
 
     <android.support.v7.widget.CardView
         android:id="@+id/notLogin"
         android:layout_width="match_parent"
-        android:layout_height="90dp"
-        android:layout_marginTop="125dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="165dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         app:cardCornerRadius="12dp">
@@ -148,8 +183,8 @@
             android:layout_width="55dp"
             android:layout_height="55dp"
             android:src="@drawable/profil"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="18dp"/>
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="12dp"/>
 
 
         <Button android:id="@+id/btn_login"
@@ -157,10 +192,10 @@
             android:layout_width="75dp"
             android:layout_height="34dp"
             android:layout_marginLeft="130dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="20dp"
             android:background="@color/bluedark"
             android:textColor="@color/white"
-            android:text="LOGIN"
+            android:text="SIGN IN"
             android:textStyle="bold"
             android:textSize="14dp"/>
 
@@ -170,7 +205,7 @@
             android:layout_width="75dp"
             android:layout_height="34dp"
             android:layout_marginLeft="210dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="20dp"
             android:text="SIGN UP"
             android:background="@color/bluedark"
             android:textColor="@color/white"
@@ -193,9 +228,10 @@
     <android.support.v7.widget.CardView
         android:id="@+id/cv_saldo"
         android:layout_width="match_parent"
-        android:layout_height="90dp"
-        android:layout_marginTop="125dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="165dp"
         android:layout_marginLeft="20dp"
+        app:cardBackgroundColor="@color/white"
         android:layout_marginRight="20dp"
         app:cardCornerRadius="12dp">
 
@@ -203,23 +239,23 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Balance"
-                android:layout_marginTop="17dp"
-                android:layout_marginLeft="50dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="60dp"
                 android:textSize="15dp" />
 
         <ImageView
-            android:layout_width="15dp"
-            android:layout_height="15dp"
-            android:src="@drawable/circle"
-            android:layout_marginLeft="18dp"
-            android:layout_marginTop="40dp"/>
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/rupiah"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="25dp"/>
 
         <Button android:id="@+id/topup"
 
             android:layout_width="80dp"
             android:layout_height="34dp"
             android:layout_marginLeft="210dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="22dp"
             android:text="TOP-UP"
             android:background="@color/bluedark"
             android:textColor="@color/white"
@@ -229,8 +265,8 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="50dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginLeft="60dp"
+            android:layout_marginTop="30dp"
             android:orientation="horizontal">
 
             <TextView
@@ -259,10 +295,11 @@
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:layout_marginTop="270dp"
+        android:layout_height="67dp"
+        android:layout_marginTop="293dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
+        app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="12dp">
 
         <Button android:id="@+id/btnRent"
@@ -271,35 +308,36 @@
             android:layout_height="match_parent"
             android:background="@android:color/transparent"/>
 
-
         <LinearLayout
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginLeft="25dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="5dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginBottom="13dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginLeft="35dp"
             android:background="@drawable/circle"
-            android:gravity="center"
-            >
-            <RelativeLayout
-                android:gravity="center"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+            android:gravity="center">
+
+        <RelativeLayout
+                android:layout_width="33dp"
+                android:layout_height="33dp"
+                android:background="@drawable/circleabu">
 
                 <ImageView
+
+                    android:layout_marginTop="5dp"
+                    android:layout_width="30dp"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginTop="10dp"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_centerVertical="true"
+                    android:layout_height="30dp"
                     android:src="@drawable/ic_pesan" />
 
             </RelativeLayout>
         </LinearLayout>
 
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
+            android:layout_height="match_parent"
             android:layout_marginLeft="100dp"
             android:padding="10dp"
             android:orientation="vertical">
@@ -309,11 +347,11 @@
 
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="14dp"
+                    android:layout_marginTop="7dp"
                     android:textColor="@color/bluedark"
                     android:padding="5dp"
                     android:textSize="17dp"
-                    android:text="Rent Locker"
+                    android:text="Order Locker"
                     android:textStyle="bold"/>
 
             </LinearLayout>
@@ -325,38 +363,45 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="358dp"
+        android:layout_marginTop="368dp"
         android:alignmentMode="alignMargins"
-        android:background="@color/lll"
+        android:background="@android:color/transparent"
         android:columnCount="3"
-        android:columnOrderPreserved="false"
-        >
+        android:columnOrderPreserved="false">
 
         <android.support.v7.widget.CardView
             android:layout_width="1dp"
             android:layout_height="match_parent"
             android:layout_rowWeight="1"
-            android:layout_marginRight="10dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginRight="20dp"
             android:layout_columnWeight="1"
-            android:background="@color/lll"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="6dp">
+            app:cardCornerRadius="12dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white">
+
+            </LinearLayout>
 
 
             <Button
                 android:id="@+id/btnOrder"
-
                 android:layout_width="115dp"
                 android:layout_height="match_parent"
                 android:background="@android:color/transparent" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="My Locker"
-                android:layout_marginTop="63dp"
+                android:layout_marginTop="50dp"
                 android:gravity="center"
                 android:textColor="@color/bluedark"
-                android:textSize="10dp"
+                android:textSize="11dp"
                 android:textStyle="bold"/>
 
             <LinearLayout
@@ -364,27 +409,26 @@
                 android:layout_height="50dp"
                 android:layout_gravity="center"
                 android:layout_marginBottom="5dp"
-                android:gravity="center"
-                />
+                android:gravity="center" />
 
             <LinearLayout
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_gravity="center"
-                android:layout_marginBottom="10dp"
+                android:layout_marginBottom="13dp"
+                android:layout_marginTop="3dp"
                 android:background="@drawable/circle"
-                android:gravity="center"
-                >
+                android:gravity="center">
+
                 <RelativeLayout
                     android:gravity="center"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
                     <ImageView
-                        android:layout_centerHorizontal="true"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:src="@drawable/ic_box" />
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/mylocker" />
 
                 </RelativeLayout>
             </LinearLayout>
@@ -397,12 +441,19 @@
             android:layout_width="1dp"
             android:layout_height="match_parent"
             android:layout_rowWeight="1"
-            android:background="@color/lll"
+            android:background="@color/white"
             android:layout_marginRight="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
             android:layout_columnWeight="1"
-            app:cardElevation="6dp"
-            app:cardCornerRadius="12dp"
-            >
+            app:cardCornerRadius="12dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white">
+
+            </LinearLayout>
 
             <Button
                 android:id="@+id/btnProfile"
@@ -413,23 +464,24 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="My Profile"
-                android:layout_marginTop="63dp"
+                android:layout_marginTop="50dp"
                 android:gravity="center"
                 android:textColor="@color/bluedark"
-                android:textSize="10dp"
+                android:textSize="11dp"
                 android:textStyle="bold"/>
 
             <LinearLayout
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_gravity="center"
-                android:layout_marginBottom="10dp"
+                android:layout_marginBottom="13dp"
+                android:layout_marginTop="3dp"
                 android:background="@drawable/circle"
                 android:gravity="center">
 
                 <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:src="@drawable/ic_account" />
 
 
@@ -442,9 +494,18 @@
             android:layout_height="match_parent"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
-            android:background="@color/lll"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="6dp">
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="10dp"
+            app:cardCornerRadius="12dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white">
+
+            </LinearLayout>
 
             <Button
                 android:id="@+id/btnHelp"
@@ -455,24 +516,25 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="63dp"
+                android:layout_marginTop="50dp"
                 android:gravity="center"
                 android:text="Help"
                 android:textColor="@color/bluedark"
-                android:textSize="10dp"
+                android:textSize="11dp"
                 android:textStyle="bold" />
 
             <LinearLayout
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginBottom="10dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="13dp"
                 android:layout_gravity="center"
                 android:background="@drawable/circle"
                 android:gravity="center">
 
                 <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:src="@drawable/ic_help" />
 
 
@@ -484,23 +546,58 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="455dp">
+        android:layout_marginTop="465dp">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Promo"
-            android:textSize="15dp"
+            android:text="Promotion"
+            android:textSize="12dp"
             android:textStyle="bold"
-            android:textColor="@color/black"
+            android:textColor="@color/bluedark"
             android:layout_marginLeft="20dp"/>
 
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/white"
+        android:layout_marginLeft="80dp"
+        android:layout_marginRight="80dp"
+        android:layout_marginTop="83dp">
+
+
+    </LinearLayout>
+
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:orientation="horizontal"-->
+        <!--android:gravity="center"-->
+        <!--android:layout_marginTop="50dp"-->
+        <!--android:background="@color/white">-->
+
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="Locker Status :"-->
+            <!--android:textStyle="bold"-->
+            <!--android:textSize="15dp"-->
+            <!--android:padding="4dp" />-->
+
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:textColor="@color/bluedark"-->
+            <!--android:textStyle="bold"-->
+            <!--android:text="Opened"/>-->
+    <!--</LinearLayout>-->
+
     <HorizontalScrollView
         android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:layout_marginTop="468dp"
+        android:layout_height="130dp"
+        android:layout_marginTop="480dp"
         android:scrollbars="none">
 
         <LinearLayout
@@ -509,28 +606,28 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:layout_width="250dp"
+                android:layout_width="230dp"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="20dp"
                 android:scaleY="1.3"
                 android:src="@drawable/slide1" />
 
             <ImageView
-                android:layout_width="250dp"
+                android:layout_width="230dp"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="30dp"
                 android:scaleY="1.3"
                 android:src="@drawable/slide2" />
 
             <ImageView
-                android:layout_width="250dp"
+                android:layout_width="230dp"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="30dp"
                 android:scaleY="1.3"
                 android:src="@drawable/slide3" />
 
             <ImageView
-                android:layout_width="250dp"
+                android:layout_width="230dp"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="30dp"
                 android:scaleY="1.3"

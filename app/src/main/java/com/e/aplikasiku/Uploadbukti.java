@@ -13,8 +13,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.common.internal.Objects;
 import com.google.android.gms.flags.impl.DataUtils;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -24,19 +26,26 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.UUID;
 
 public class Uploadbukti extends AppCompatActivity {
 
     private ImageView Image;
-    private Button Upload, Back;
+    private Button Upload, Back, Choose;
+    private TextView Text;
+    private Uri filePath;
 
-    private static final int CAMERA_REQUEST_CODE = 1;
-    private Uri uri;
+//    private static final int CAMERA_REQUEST_CODE = 1;
+//    private static final int ImageBack= 1;
+
     private FirebaseAuth firebaseAuth;
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
@@ -60,126 +69,122 @@ public class Uploadbukti extends AppCompatActivity {
         storageRef = storage.getReferenceFromUrl("gs://locker-96b1e.appspot.com");
 
         Image = (ImageView) findViewById(R.id.image);
+        Text = (TextView) findViewById(R.id.textchoose);
 //        Choose = (Button) findViewById(R.id.choose);
         Upload = (Button) findViewById(R.id.upload);
+        Choose = (Button) findViewById(R.id.choose);
         Back = (Button) findViewById(R.id.btnBack);
         dialog = new ProgressDialog(this);
 
-//        Image.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-//                startActivityForResult(intent, CAMERA_REQUEST_CODE);
-//
-//            }
-//        });
+
+        Back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+        Choose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                ChooseImage();
+            }
+        });
+
+        Upload.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                uploadImage();
+            }
+        });
 
     }
-    //
-    public void handleChooseImage(View view) {
-        Intent pickerPhotoIntent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        startActivityForResult(pickerPhotoIntent, 1);
-    }
 
-
-    public void handleInsertData(View view) {
-//        dialog.setMessage("Uploading Image....");
-//        dialog.show();
-        if (this.Image.getDrawable() == null) {
-            //Image is blank
-            Toast.makeText(this, "You must select image !", Toast.LENGTH_SHORT);
-            return;
-        }
-        //Insert data to Firebase Storage
-
-
+    public void ChooseImage() {
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(intent.createChooser(intent, "ImageBack"), 1);
     }
 
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent imageReturnedIntent) {
-        super.onActivityResult(requestCode, resultCode, imageReturnedIntent);
-        switch (requestCode) {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == 1 && resultCode == RESULT_OK && data != null && data.getData() != null) {
+            filePath = data.getData();
+            try {
+                Text.setVisibility(View.GONE);
+                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
+                Image.setImageBitmap(bitmap);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+    }
+
+    private void uploadImage() {
+
+        if (filePath != null) {
+            dialog.setTitle("Uploading...");
+            dialog.show();
+            final StorageReference reference = storageRef.child(UUID.randomUUID().toString());
+
+            reference.putFile(filePath)
+                    .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            dialog.dismiss();
+                            Toast.makeText(Uploadbukti.this, "Images Uploaded", Toast.LENGTH_LONG).show();
+                        }
+                    })
+                    .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                            double progress = (100.0 * taskSnapshot.getBytesTransferred() / taskSnapshot.getTotalByteCount());
+                            dialog.setMessage("Uploaded..." + (int) progress + "%");
 
 
-            case 0:
-                if (requestCode == RESULT_OK) {
-                    Log.i("Uploadbukti", "case 0");
+
+                            reference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+
+//                                    String image = uri.toString();
+//                                    reference.child("users").child(idusernya).child("proof").child(image.cl)
+
+                                    DatabaseReference imageStore = firebaseDatabase.getInstance().getReference().child("users").child(idusernya);
+
+
+                                    HashMap<String,Object> hashMap = new HashMap<>();
+                                    hashMap.put("proofTopup", String.valueOf(uri));
+
+                                    imageStore.updateChildren(hashMap).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void aVoid) {
+                                            Toast.makeText(Uploadbukti.this, "Uploading Finished...", Toast.LENGTH_LONG);
+                                            startActivity(new Intent(Uploadbukti.this, LamanUtama.class));
+                                        }
+                                    });
+                                }
+                            });
+                        }
+                    }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    startActivity(new Intent(Uploadbukti.this, LamanUtama.class));
+                    Toast.makeText(Uploadbukti.this, "Uploading Finished" +
+                            "After payment is confirmed, your balance will enter automatically", Toast.LENGTH_LONG);
+                    finish();
                 }
-                break;
-            case 1:
-                if (resultCode == RESULT_OK) {
-                    Uri selectedImage = imageReturnedIntent.getData();
-                    Log.i("Uploadbukti", "selected Image = " + selectedImage);
-                    this.Image.setImageURI(selectedImage);
-                    dialog.setMessage("Uploading Image....");
-                    dialog.show();
-                    this.uploadImageToFirebase();
-//                    dialog.dismiss();
-                }
-                break;
+            });
+
         }
     }
 
-    private void uploadImageToFirebase() {
-        // Get the data from an ImageView as bytes
-        this.Image.setDrawingCacheEnabled(true);
-        this.Image.buildDrawingCache();
-        Bitmap bitmap = this.Image.getDrawingCache();
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-        byte[] data = baos.toByteArray();
-        StorageReference mountainsRef = storageRef.child("Payment");
-        UploadTask uploadTask = mountainsRef.putBytes(data);
 
-        uploadTask.addOnFailureListener(new OnFailureListener() {
-
-            @Override
-            public void onFailure(@NonNull Exception exception) {
-                Log.i("Uploadbukti", "Upload failed");
-            }
-        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                dialog.dismiss();
-                // taskSnapshot.getMetadata() contains file metadata such as size, content-type, and download URL.
-                Task<Uri> downloadUrl = taskSnapshot.getStorage().getDownloadUrl();
-                Toast.makeText(Uploadbukti.this, "Uploading Finished....", Toast.LENGTH_LONG);
-                Log.i("Uploadbukti", "Upload successful, downloadUrl = " + downloadUrl);
-            }
-        });
-    }
 }
-
-
-//
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//
-//        if (requestCode == CAMERA_REQUEST_CODE && resultCode == RESULT_OK ) {
-//
-//            dialog.setMessage("Uploading Image....");
-//            dialog.show();
-//
-//            uri = data.getData();
-//
-//            StorageReference filepath = storageRef.child("photos").child(uri.getLastPathSegment());
-//
-//            filepath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-//                @Override
-//                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-//
-//                    dialog.dismiss();
-//
-////                    Uri downloadUri = taskSnapshot.getDownloadUrl();
-//                    Task<Uri> uri = taskSnapshot.getStorage().getDownloadUrl();
-////                    Uri downloadUri = taskSnapshot.getUploadSessionUri();
-//                    Picasso.with(Uploadbukti.this).load(String.valueOf(uri)).fit().centerCrop().into(Image);
-//
-//                    Toast.makeText(Uploadbukti.this, "Uploading Finished....", Toast.LENGTH_LONG);
-//                }
-//            });
-//        }
-//    }
-//}

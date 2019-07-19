@@ -1,5 +1,6 @@
 package com.e.aplikasiku;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
@@ -27,21 +28,18 @@ public class addsaldo extends AppCompatActivity {
 
     private TextView Balance;
     private EditText Topup;
-    private Button Bayar;
-    private ProgressBar Proses;
+    private Button Bayar, Back;
     private FirebaseAuth auth;
     private DatabaseReference databaseReference;
     private FirebaseDatabase userDatabase;
     private FirebaseUser user;
     String iduser;
+    private ProgressDialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_addsaldo);
-
-        Proses = (ProgressBar) findViewById(R.id.proses);
-        Proses.setVisibility(View.GONE);
 
         auth = FirebaseAuth.getInstance();
         FirebaseUser user = auth.getCurrentUser();
@@ -51,7 +49,9 @@ public class addsaldo extends AppCompatActivity {
 
         Balance = (TextView) findViewById(R.id.balance);
         Bayar = (Button) findViewById(R.id.bayar);
+        Back = (Button) findViewById(R.id.btnBack);
         Topup = (EditText) findViewById(R.id.topup);
+        dialog = new ProgressDialog(this);
 
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -70,26 +70,37 @@ public class addsaldo extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Proses.setVisibility(View.VISIBLE);
+                dialog.setMessage("Loading...");
+                dialog.setCanceledOnTouchOutside(false);
+                dialog.show();
                 final String jumlah = Topup.getText().toString().trim();
 
+
                 if (TextUtils.isEmpty(jumlah)) {
+                    dialog.dismiss();
                     Bayar.setClickable(false);
-                    Proses.setVisibility(View.GONE);
+
                     return;
                 }
 
                 if (!TextUtils.isEmpty(jumlah)) {
+                    dialog.dismiss();
                     databaseReference.child("users")
                             .child(auth.getCurrentUser().getUid())
                             .child("balanceSuspend").setValue(jumlah);
+                    startActivity(new Intent(addsaldo.this, Bank.class));
                 }
-
-                startActivity(new Intent(addsaldo.this, Bank.class));
-                Proses.setVisibility(View.GONE);
-
             }
         });
+
+        Back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+
 
     }
 }

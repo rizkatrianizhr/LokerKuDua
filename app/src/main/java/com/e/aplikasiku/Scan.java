@@ -4,16 +4,24 @@ import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Camera;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.TaskStackBuilder;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -155,9 +163,31 @@ public class Scan extends AppCompatActivity implements ZXingScannerView.ResultHa
             builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
+
+                    NotificationCompat.Builder builder = (NotificationCompat.Builder) new NotificationCompat.Builder(Scan.this)
+                            .setDefaults(NotificationCompat.DEFAULT_ALL)
+                            .setSmallIcon(R.drawable.ic_account)
+                            .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.ic_waktu))
+                            .setContentTitle("Successful Order")
+                            .setContentText("The locker that you ordered successfully opens");
+
+                    Intent resultIntent = new Intent(Scan.this, Pesanan.class);
+                    TaskStackBuilder stackBuilder = TaskStackBuilder.create(Scan.this);
+                    stackBuilder.addParentStack(Pesanan.class);
+
+// Adds the Intent that starts the Activity to the top of the stack
+                    stackBuilder.addNextIntent(resultIntent);
+                    PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(0,PendingIntent.FLAG_UPDATE_CURRENT);
+                    builder.setContentIntent(resultPendingIntent);
+
+                    NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+                    notificationManager.notify(1, builder.build());
+
                     databaseReference.child("lockers").child(idlocker).child("occupiedBy").setValue(firebaseAuth.getCurrentUser().getEmail());
                     databaseReference.child("lockers").child(idlocker).child("isOpen").setValue(1);
                     databaseReference.child("lockers").child(idlocker).child("isOccupied").setValue(1);
+                    databaseReference.child("lockers").child(idlocker).child("notif").setValue("Terbuka");
+
 
                     Order order = new Order(idlocker, firebaseAuth.getCurrentUser().getEmail(), (Calendar.getInstance().getTime()).toString(), 0);
                     databaseReference.child("users")
@@ -183,5 +213,17 @@ public class Scan extends AppCompatActivity implements ZXingScannerView.ResultHa
             alert.show();
         }
     }
+
+//    public void Notification(View view) {
+////        NotificationCompat.Builder builder = (NotificationCompat.Builder) new NotificationCompat.Builder(this)
+////                .setDefaults(NotificationCompat.DEFAULT_ALL)
+////                .setSmallIcon(R.drawable.ic_account)
+////                .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.ic_waktu))
+////                .setContentTitle("Notification")
+////                .setContentText("blabjbjasbjajsabj");
+////
+////        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+////        notificationManager.notify(1, builder.build());
+//    }
 
 }

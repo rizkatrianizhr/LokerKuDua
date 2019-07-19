@@ -57,7 +57,14 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="80dp"/>
 
-    <TextView
+    <Button android:id="@+id/choose"
+        android:layout_width="350dp"
+        android:layout_height="350dp"
+        android:layout_centerHorizontal="true"
+        android:background="@android:color/transparent"
+        android:layout_marginTop="80dp"/>
+
+    <TextView android:id="@+id/textchoose"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="300dp"
@@ -73,13 +80,13 @@
         <!--android:background="@android:color/transparent"/>-->
 
     <Button android:id="@+id/upload"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Upload Image"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:textColor="@color/white"
-        android:onClick="handleInsertData"
         android:textSize="14dp"
         android:layout_marginTop="480dp"
         android:background="@color/bluedark" />

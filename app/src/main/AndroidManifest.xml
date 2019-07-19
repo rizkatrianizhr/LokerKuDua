@@ -14,13 +14,30 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/logo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".confirm"
-            android:parentActivityName=".noLocker"/>
+        <activity android:name=".finishTopup"></activity>
+        <activity
+            android:name=".Plima"
+            android:parentActivityName=".LamanUtama" />
+        <activity
+            android:name=".Pempat"
+            android:parentActivityName=".LamanUtama" />
+        <activity
+            android:name=".Ptiga"
+            android:parentActivityName=".LamanUtama" />
+        <activity
+            android:name=".Pdua"
+            android:parentActivityName=".LamanUtama" />
+        <activity
+            android:name=".Psatu"
+            android:parentActivityName=".LamanUtama" />
+        <activity
+            android:name=".helpCenter"
+            android:parentActivityName=".LamanUtama" />
         <activity
             android:name=".scanPesanan"
             android:parentActivityName=".Pesanan" />
@@ -34,25 +51,25 @@
             android:parentActivityName=".rentLocker" />
         <activity
             android:name=".confirmOrder"
-            android:parentActivityName=".noLocker"/>
-
+            android:parentActivityName=".noLocker" />
         <activity
             android:name=".rentLocker"
             android:parentActivityName=".LamanUtama" />
-        <activity android:name=".MainActivity" />
-        <activity android:name=".Ukuranlocker" />
         <activity android:name=".Uploadbukti" />
         <activity android:name=".Pilihanbank" />
-        <activity android:name=".Ecash" />
-        <activity android:name=".GantiPassword" />
+        <activity
+            android:name=".GantiPassword"
+            android:parentActivityName=".LamanUtama" />
         <activity
             android:name=".Scan"
             android:parentActivityName=".confirmOrder" />
-        <activity android:name=".Help" />
-        <activity android:name=".resetPass" />
-        <activity android:name=".Register" />
-        <activity android:name=".Login" />
-        <activity android:name=".LamanUtama" />
+        <activity
+            android:name=".resetPass"
+            android:parentActivityName=".LamanUtama" />
+        <activity android:name=".Register"/>
+            <activity android:name=".Login"
+            android:parentActivityName=".LamanUtama" />
+        <activity android:name=".LamanUtama"/>
         <activity android:name=".SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -66,11 +83,10 @@
         <activity
             android:name=".ProfilActivity"
             android:parentActivityName=".LamanUtama" />
-        <activity android:name=".PilihLocker" />
         <activity android:name=".TopUp" />
         <activity android:name=".Atm" />
-        <activity android:name=".Promo" />
-        <activity android:name=".KonfirmasiPesanan" />
+        <activity android:name=".Promo"
+            android:parentActivityName=".LamanUtama"/>
     </application>
 
 </manifest>

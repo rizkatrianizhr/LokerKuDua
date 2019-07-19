@@ -277,7 +277,7 @@ public class noLocker extends AppCompatActivity {
                         String balance = dataSnapshot.child("users").child(idusernya).child("balance").getValue(String.class);
                         Integer saldominimum = 10000;
                         int saldo = Integer.parseInt(balance);
-                        if (saldo <= saldominimum) {
+                        if (saldo < saldominimum) {
                             android.app.AlertDialog.Builder builder = new AlertDialog.Builder(noLocker.this);
                             builder.setMessage("Your balance is less than Rp. 10.000!");
                             builder.setNeutralButton("No", null);
@@ -447,7 +447,7 @@ public class noLocker extends AppCompatActivity {
                             Intent i = new Intent(noLocker.this, confirmOrder.class);
                             String idlocker = "medium-1";
                             String size= "Medium";
-                            String cost = "6000";
+                            String cost = "7000";
                             i.putExtra("id", idlocker);
                             i.putExtra("sizelocker", size);
                             i.putExtra("hourlycost", cost);
@@ -498,7 +498,7 @@ public class noLocker extends AppCompatActivity {
                             Intent i = new Intent(noLocker.this, confirmOrder.class);
                             String idlocker = "medium-2";
                             String size= "Medium";
-                            String cost = "6000";
+                            String cost = "7000";
                             i.putExtra("id", idlocker);
                             i.putExtra("sizelocker", size);
                             i.putExtra("hourlycost", cost);
@@ -549,7 +549,7 @@ public class noLocker extends AppCompatActivity {
                             Intent i = new Intent(noLocker.this, confirmOrder.class);
                             String idlocker = "medium-3";
                             String size= "Medium";
-                            String cost = "6000";
+                            String cost = "7000";
                             i.putExtra("id", idlocker);
                             i.putExtra("sizelocker", size);
                             i.putExtra("hourlycost", cost);
@@ -600,7 +600,7 @@ public class noLocker extends AppCompatActivity {
                             Intent i = new Intent(noLocker.this, confirmOrder.class);
                             String idlocker = "medium-4";
                             String size= "Medium";
-                            String cost = "6000";
+                            String cost = "7000";
                             i.putExtra("id", idlocker);
                             i.putExtra("sizelocker", size);
                             i.putExtra("hourlycost", cost);
@@ -651,7 +651,7 @@ public class noLocker extends AppCompatActivity {
                             Intent i = new Intent(noLocker.this, confirmOrder.class);
                             String idlocker = "medium-5";
                             String size= "Medium";
-                            String cost = "6000";
+                            String cost = "7000";
                             i.putExtra("id", idlocker);
                             i.putExtra("sizelocker", size);
                             i.putExtra("hourlycost", cost);
@@ -702,7 +702,7 @@ public class noLocker extends AppCompatActivity {
                             Intent i = new Intent(noLocker.this, confirmOrder.class);
                             String idlocker = "large-1";
                             String size= "Large";
-                            String cost = "7000";
+                            String cost = "9000";
                             i.putExtra("id", idlocker);
                             i.putExtra("sizelocker", size);
                             i.putExtra("hourlycost", cost);
@@ -753,7 +753,7 @@ public class noLocker extends AppCompatActivity {
                             Intent i = new Intent(noLocker.this, confirmOrder.class);
                             String idlocker = "large-2";
                             String size= "Large";
-                            String cost = "7000";
+                            String cost = "9000";
                             i.putExtra("id", idlocker);
                             i.putExtra("sizelocker", size);
                             i.putExtra("hourlycost", cost);
@@ -804,7 +804,7 @@ public class noLocker extends AppCompatActivity {
                             Intent i = new Intent(noLocker.this, confirmOrder.class);
                             String idlocker = "large-3";
                             String size= "Large";
-                            String cost = "7000";
+                            String cost = "9000";
                             i.putExtra("id", idlocker);
                             i.putExtra("sizelocker", size);
                             i.putExtra("hourlycost", cost);
@@ -854,7 +854,7 @@ public class noLocker extends AppCompatActivity {
                             Intent i = new Intent(noLocker.this, confirmOrder.class);
                             String idlocker = "large-4";
                             String size= "Large";
-                            String cost = "7000";
+                            String cost = "9000";
                             i.putExtra("id", idlocker);
                             i.putExtra("sizelocker", size);
                             i.putExtra("hourlycost", cost);
@@ -905,7 +905,7 @@ public class noLocker extends AppCompatActivity {
                             Intent i = new Intent(noLocker.this, confirmOrder.class);
                             String idlocker = "large-5";
                             String size= "Large";
-                            String cost = "7000";
+                            String cost = "9000";
                             i.putExtra("id", idlocker);
                             i.putExtra("sizelocker", size);
                             i.putExtra("hourlycost", cost);
