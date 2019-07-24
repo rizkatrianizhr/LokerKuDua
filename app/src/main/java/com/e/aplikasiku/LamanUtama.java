@@ -1,25 +1,17 @@
 package com.e.aplikasiku;
 
-import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.app.TaskStackBuilder;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.pdf.PdfDocument;
-import android.support.annotation.NonNull;
-import android.support.v4.app.NotificationCompat;
-import android.support.v4.view.PagerAdapter;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
+
+import androidx.annotation.NonNull;
+import androidx.core.app.NotificationCompat;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.CardView;
-import android.util.Log;
-import android.view.LayoutInflater;
+import androidx.cardview.widget.CardView;
+
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,8 +23,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
-import java.util.Set;
 
 
 public class LamanUtama extends AppCompatActivity {
@@ -48,6 +38,7 @@ public class LamanUtama extends AppCompatActivity {
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
     private String idusernya;
+    private ValueEventListener valueEventListener;
 
 
     @Override
@@ -123,7 +114,7 @@ public class LamanUtama extends AppCompatActivity {
             Text3.setVisibility(View.GONE);
             Text4.setVisibility(View.GONE);
 
-            databaseReference.addValueEventListener(new ValueEventListener() {
+            valueEventListener = new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     String name = dataSnapshot.child("users").child(idusernya).child("name").getValue(String.class);
@@ -131,6 +122,7 @@ public class LamanUtama extends AppCompatActivity {
 
                     Names.setText(name);
                     Balance.setText(dompet);
+
 
                     Order pesanan = dataSnapshot.child("users").child(idusernya).child("order").getValue(Order.class);
                     if (pesanan == null){
@@ -144,7 +136,9 @@ public class LamanUtama extends AppCompatActivity {
                 public void onCancelled(@NonNull DatabaseError databaseError) {
 
                 }
-            });
+            };
+
+            databaseReference.addValueEventListener(valueEventListener);
         }
 
 
@@ -259,6 +253,12 @@ public class LamanUtama extends AppCompatActivity {
         });
 
 //
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        databaseReference.removeEventListener(valueEventListener);
     }
 }
 

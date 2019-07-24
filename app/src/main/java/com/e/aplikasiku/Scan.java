@@ -1,47 +1,33 @@
 package com.e.aplikasiku;
 
-import android.Manifest;
-import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.Dialog;
-import android.app.Notification;
-import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Camera;
-import android.net.Uri;
 import android.os.Build;
-import android.provider.ContactsContract;
-import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.NotificationCompat;
-import android.support.v4.app.TaskStackBuilder;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
+
+import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.TaskStackBuilder;
+import androidx.core.content.ContextCompat;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
 
 import com.e.aplikasiku.models.Order;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.google.zxing.Result;
 
 import java.util.Calendar;
-import java.util.Date;
 
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
@@ -157,6 +143,7 @@ public class Scan extends AppCompatActivity implements ZXingScannerView.ResultHa
         final String size = getIntent().getExtras().getString("locker");
 
         if (id.equals(idlocker)) {
+            Log.d("Scan>>:", idlocker);
             AlertDialog.Builder builder = new AlertDialog.Builder(Scan.this);
             builder.setMessage("Are you sure you want to continue the order?");
             builder.setNeutralButton("No", null);
@@ -183,10 +170,10 @@ public class Scan extends AppCompatActivity implements ZXingScannerView.ResultHa
                     NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
                     notificationManager.notify(1, builder.build());
 
+
                     databaseReference.child("lockers").child(idlocker).child("occupiedBy").setValue(firebaseAuth.getCurrentUser().getEmail());
                     databaseReference.child("lockers").child(idlocker).child("isOpen").setValue(1);
                     databaseReference.child("lockers").child(idlocker).child("isOccupied").setValue(1);
-                    databaseReference.child("lockers").child(idlocker).child("notif").setValue("Terbuka");
 
 
                     Order order = new Order(idlocker, firebaseAuth.getCurrentUser().getEmail(), (Calendar.getInstance().getTime()).toString(), 0);
@@ -194,7 +181,8 @@ public class Scan extends AppCompatActivity implements ZXingScannerView.ResultHa
                             .child(firebaseAuth.getCurrentUser().getUid())
                             .child("order").setValue(order);
 
-                    startActivity(new Intent(getApplicationContext(), Pesanan.class));
+
+                    startActivity(new Intent(Scan.this, Pesanan.class));
                 }
             });
             AlertDialog alert = builder.create();

@@ -1,24 +1,26 @@
 package com.e.aplikasiku;
 
-import android.app.ProgressDialog;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.os.Handler;
-import android.sax.StartElementListener;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.CardView;
+
+import androidx.annotation.NonNull;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.TaskStackBuilder;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.e.aplikasiku.models.Locker;
 import com.e.aplikasiku.models.Order;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -28,17 +30,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import org.w3c.dom.Text;
-
 import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.TimerTask;
-import java.util.concurrent.Delayed;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.locks.Condition;
 
 public class Pesanan extends AppCompatActivity {
 
@@ -49,6 +43,7 @@ public class Pesanan extends AppCompatActivity {
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
     private String idusernya;
+    private ValueEventListener valueEventListener;
 
 
     String orderDate = "";
@@ -96,13 +91,14 @@ public class Pesanan extends AppCompatActivity {
 
         handler.post(timedTask);
 
-        databaseReference.addValueEventListener(new ValueEventListener() {
+        valueEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull final DataSnapshot dataSnapshot) {
                 DataSnapshot orderDs = dataSnapshot.child("users").child(idusernya).child("order");
 
                 final String idLocker = orderDs.child("idLocker").getValue(String.class);
                 orderDate = orderDs.child("oorderDate").getValue(String.class);
+                Log.d("orderDate>>:", orderDate);
 
                 hourlyCost = dataSnapshot.child("lockers").child(idLocker).child("cost").getValue(Integer.class);
 
@@ -115,10 +111,28 @@ public class Pesanan extends AppCompatActivity {
                 Id.setText(idLocker);
                 Cost.setText(hourlyCost + "");
 
-                if (dataSnapshot.child("lockers").child(idLocker).child("isOpen").getValue(Integer.class) == 1
-                || dataSnapshot.child("lockers").child(idLocker).child("notif").getValue(String.class) == "Terbuka") {
+                if (dataSnapshot.child("lockers").child(idLocker).child("notif").getValue(Integer.class) == 1) {
                     Status.setText("Opened");
                     Status.setTextColor(getResources().getColor(R.color.indigo));
+
+                    NotificationCompat.Builder builder = (NotificationCompat.Builder) new NotificationCompat.Builder(Pesanan.this)
+                            .setDefaults(NotificationCompat.DEFAULT_ALL)
+                            .setSmallIcon(R.drawable.ic_account)
+                            .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.ic_waktu))
+                            .setContentTitle("Locker Status")
+                            .setContentText("The door successfully opened");
+
+                    Intent resultIntent = new Intent(Pesanan.this, Pesanan.class);
+                    TaskStackBuilder stackBuilder = TaskStackBuilder.create(Pesanan.this);
+                    stackBuilder.addParentStack(Pesanan.class);
+
+                    // Adds the Intent that starts the Activity to the top of the stack
+                    stackBuilder.addNextIntent(resultIntent);
+                    PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(0,PendingIntent.FLAG_UPDATE_CURRENT);
+                    builder.setContentIntent(resultPendingIntent);
+
+                    NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+                    notificationManager.notify(1, builder.build());
                 } else {
                     Status.setText("Closed");
                     Status.setTextColor(getResources().getColor(R.color.bluedark));
@@ -134,7 +148,7 @@ public class Pesanan extends AppCompatActivity {
                 Scan.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
+                        Log.d("scanclick>>:", idLocker);
                         Intent intent = new Intent(Pesanan.this, scanPesanan.class);
                         intent.putExtra("id",idLocker);
                         databaseReference.child("users").child(firebaseAuth.getCurrentUser().getUid()).child("order").child("bill").setValue(totalPrice);
@@ -167,11 +181,14 @@ public class Pesanan extends AppCompatActivity {
                                 databaseReference.child("users").child(firebaseAuth.getCurrentUser().getUid()).child("balance").setValue(balance+"");
                                 databaseReference.child("users").child(firebaseAuth.getCurrentUser().getUid()).child("order").removeValue();
 
-                                Order order = new Order(idLocker, firebaseAuth.getCurrentUser().getEmail(), currentdate.toString(), totalPrice);
-                                databaseReference.child("Orders").push().setValue(order);
+//                                Order order = new Order(idLocker, firebaseAuth.getCurrentUser().getEmail(), currentdate.toString(), totalPrice);
+//                                databaseReference.child("Orders").push().setValue(order);
 
                                 databaseReference.child("lockers").child(idLocker).child("isOccupied").setValue(0);
                                 databaseReference.child("lockers").child(idLocker).child("occupiedBy").setValue("");
+
+                                Order order = new Order(idLocker, firebaseAuth.getCurrentUser().getEmail(), currentdate.toString(), totalPrice);
+                                databaseReference.child("Orders").push().setValue(order);
 
                                 Toast.makeText(Pesanan.this, "Finish", Toast.LENGTH_SHORT).show();
 
@@ -190,7 +207,9 @@ public class Pesanan extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
-        });
+        };
+
+        databaseReference.addValueEventListener(valueEventListener);
 
         Back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -222,5 +241,10 @@ public class Pesanan extends AppCompatActivity {
             Pay.setText(totalPrice + "");
 
         }
+    }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        databaseReference.removeEventListener(valueEventListener);
     }
 }

@@ -1,25 +1,20 @@
 package com.e.aplikasiku;
 
 import android.app.AlertDialog;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.BitmapFactory;
 import android.os.Build;
-import android.service.autofill.SaveCallback;
-import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.NotificationCompat;
-import android.support.v4.app.TaskStackBuilder;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
+
+import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.TaskStackBuilder;
+import androidx.core.content.ContextCompat;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Toast;
 
-import com.e.aplikasiku.models.Order;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -28,8 +23,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.zxing.Result;
-
-import java.util.Calendar;
 
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
@@ -153,7 +146,8 @@ public class scanPesanan extends AppCompatActivity implements ZXingScannerView.R
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 balance = dataSnapshot.child("users")
                         .child(firebaseAuth.getCurrentUser().getUid()).child("balance").getValue(String.class);
-                bill = dataSnapshot.child("users").child(firebaseAuth.getCurrentUser().getUid()).child("order").child("bill").getValue(Integer.class);
+                bill = dataSnapshot.child("users")
+                        .child(firebaseAuth.getCurrentUser().getUid()).child("order").child("bill").getValue(Integer.class);
 
                 Toast.makeText(scanPesanan.this, "balance: "+balance, Toast.LENGTH_SHORT).show();
                 Toast.makeText(scanPesanan.this, "bill: "+bill, Toast.LENGTH_SHORT).show();
@@ -162,27 +156,27 @@ public class scanPesanan extends AppCompatActivity implements ZXingScannerView.R
 
                 if (id.equals(idlocker) && saldo >= bill) {
                     databaseReference.child("lockers").child(idlocker).child("isOpen").setValue(1);
-                    databaseReference.child("lockers").child(idlocker).child("notif").setValue("Terbuka");
+//                    databaseReference.child("lockers").child(idlocker).child("notif").setValue(1);
                     startActivity(new Intent(getApplicationContext(), Pesanan.class));
 
-                    NotificationCompat.Builder builder = (NotificationCompat.Builder) new NotificationCompat.Builder(scanPesanan.this)
-                            .setDefaults(NotificationCompat.DEFAULT_ALL)
-                            .setSmallIcon(R.drawable.ic_account)
-                            .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.ic_waktu))
-                            .setContentTitle("Locker Status")
-                            .setContentText("The door successfully opened");
-
-                    Intent resultIntent = new Intent(scanPesanan.this, Pesanan.class);
-                    TaskStackBuilder stackBuilder = TaskStackBuilder.create(scanPesanan.this);
-                    stackBuilder.addParentStack(Pesanan.class);
-
-    // Adds the Intent that starts the Activity to the top of the stack
-                    stackBuilder.addNextIntent(resultIntent);
-                    PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(0,PendingIntent.FLAG_UPDATE_CURRENT);
-                    builder.setContentIntent(resultPendingIntent);
-
-                    NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-                    notificationManager.notify(1, builder.build());
+//                    NotificationCompat.Builder builder = (NotificationCompat.Builder) new NotificationCompat.Builder(scanPesanan.this)
+//                            .setDefaults(NotificationCompat.DEFAULT_ALL)
+//                            .setSmallIcon(R.drawable.ic_account)
+//                            .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.ic_waktu))
+//                            .setContentTitle("Locker Status")
+//                            .setContentText("The door successfully opened");
+//
+//                    Intent resultIntent = new Intent(scanPesanan.this, Pesanan.class);
+//                    TaskStackBuilder stackBuilder = TaskStackBuilder.create(scanPesanan.this);
+//                    stackBuilder.addParentStack(Pesanan.class);
+//
+//    // Adds the Intent that starts the Activity to the top of the stack
+//                    stackBuilder.addNextIntent(resultIntent);
+//                    PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(0,PendingIntent.FLAG_UPDATE_CURRENT);
+//                    builder.setContentIntent(resultPendingIntent);
+//
+//                    NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+//                    notificationManager.notify(1, builder.build());
 
                 } else if (saldo <= bill) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(scanPesanan.this);
@@ -216,7 +210,7 @@ public class scanPesanan extends AppCompatActivity implements ZXingScannerView.R
         });
         }
 
-//        databaseReference.addValueEventListener(new ValueEventListener() {
+//        databaseReference.addListenerForSingleValueEvent(new ValueEventListener()  {
 //            @Override
 //            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 //                balance = dataSnapshot.child("users")

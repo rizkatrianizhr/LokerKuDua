@@ -7,7 +7,7 @@
     android:background="@color/lll"
     tools:context=".Settings">
 
-    <android.support.v7.widget.Toolbar
+    <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -27,7 +27,7 @@
             android:textStyle="bold" />
 
 
-    </android.support.v7.widget.Toolbar>
+    </androidx.appcompat.widget.Toolbar>
 
     <ImageView
         android:layout_width="35dp"

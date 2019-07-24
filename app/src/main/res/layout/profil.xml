@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     >
 
-    <android.support.v7.widget.Toolbar
+    <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -26,7 +26,16 @@
             android:textStyle="bold" />
 
 
-    </android.support.v7.widget.Toolbar>
+    </androidx.appcompat.widget.Toolbar>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
 
     <ImageView
         android:layout_width="35dp"
@@ -207,7 +216,7 @@
         android:textSize="15dp"
         android:text="+62"
         android:textColor="@color/bluedark"
-        android:layout_marginTop="441dp"
+        android:layout_marginTop="444dp"
         android:layout_marginLeft="60dp"/>
 
     <LinearLayout
@@ -303,6 +312,9 @@
         android:layout_height="40dp"
         android:layout_marginTop="573dp"
         android:background="@android:color/transparent"/>
+
+        </RelativeLayout>
+    </ScrollView>
 
 
 

@@ -2,14 +2,8 @@ package com.e.aplikasiku;
 
 import android.content.Intent;
 import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.CardView;
-import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.widget.Button;
-import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -35,8 +29,6 @@ public class Promo extends AppCompatActivity {
         databaseReference = firebaseDatabase.getReference();
         final FirebaseUser user = firebaseAuth.getCurrentUser();
         idusernya = user.getUid();
-
-        Animation animation= AnimationUtils.loadAnimation(Promo.this, R.anim.animation);
 
         Handler handler= new Handler();
         handler.postDelayed(new Runnable() {

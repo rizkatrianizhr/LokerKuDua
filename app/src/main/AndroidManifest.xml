@@ -14,63 +14,89 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/logo"
+        android:icon="@mipmap/icons"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/logo"
+        android:roundIcon="@mipmap/icons"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".finishTopup"></activity>
+        <activity android:name=".finishTopup"
+            android:parentActivityName=".LamanUtama"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".Plima"
-            android:parentActivityName=".LamanUtama" />
+            android:parentActivityName=".LamanUtama"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".Pempat"
-            android:parentActivityName=".LamanUtama" />
+            android:parentActivityName=".LamanUtama"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".Ptiga"
-            android:parentActivityName=".LamanUtama" />
+            android:parentActivityName=".LamanUtama"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".Pdua"
-            android:parentActivityName=".LamanUtama" />
+            android:parentActivityName=".LamanUtama"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".Psatu"
-            android:parentActivityName=".LamanUtama" />
+            android:parentActivityName=".LamanUtama"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".helpCenter"
-            android:parentActivityName=".LamanUtama" />
+            android:parentActivityName=".LamanUtama"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".scanPesanan"
-            android:parentActivityName=".Pesanan" />
-        <activity android:name=".Bank" />
+            android:parentActivityName=".Pesanan"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Bank"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".addsaldo"
-            android:parentActivityName=".LamanUtama" />
-        <activity android:name=".Settings" />
+            android:parentActivityName=".LamanUtama"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Settings"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".noLocker"
-            android:parentActivityName=".rentLocker" />
+            android:parentActivityName=".rentLocker"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".confirmOrder"
-            android:parentActivityName=".noLocker" />
+            android:parentActivityName=".noLocker"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".rentLocker"
-            android:parentActivityName=".LamanUtama" />
-        <activity android:name=".Uploadbukti" />
-        <activity android:name=".Pilihanbank" />
+            android:parentActivityName=".LamanUtama"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Uploadbukti"
+            android:parentActivityName=".Pilihanbank"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Pilihanbank"
+            android:parentActivityName=".LamanUtama"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".GantiPassword"
-            android:parentActivityName=".LamanUtama" />
+            android:parentActivityName=".LamanUtama"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".Scan"
-            android:parentActivityName=".confirmOrder" />
+            android:parentActivityName=".confirmOrder"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".resetPass"
-            android:parentActivityName=".LamanUtama" />
-        <activity android:name=".Register"/>
+            android:parentActivityName=".LamanUtama"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Register"
+            android:screenOrientation="portrait"/>
             <activity android:name=".Login"
-            android:parentActivityName=".LamanUtama" />
-        <activity android:name=".LamanUtama"/>
-        <activity android:name=".SplashScreen">
+            android:parentActivityName=".LamanUtama"
+                android:screenOrientation="portrait"/>
+        <activity android:name=".LamanUtama"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".SplashScreen"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -79,14 +105,19 @@
         </activity>
         <activity
             android:name=".Pesanan"
-            android:parentActivityName=".LamanUtama" />
+            android:parentActivityName=".Promo"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".ProfilActivity"
-            android:parentActivityName=".LamanUtama" />
-        <activity android:name=".TopUp" />
-        <activity android:name=".Atm" />
+            android:parentActivityName=".LamanUtama"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".TopUp"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Atm"
+            android:screenOrientation="portrait"/>
         <activity android:name=".Promo"
-            android:parentActivityName=".LamanUtama"/>
+            android:parentActivityName=".LamanUtama"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>
