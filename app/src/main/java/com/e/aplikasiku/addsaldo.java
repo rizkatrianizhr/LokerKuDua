@@ -49,7 +49,7 @@ public class addsaldo extends AppCompatActivity {
         Topup = (EditText) findViewById(R.id.topup);
         dialog = new ProgressDialog(this);
 
-        databaseReference.addListenerForSingleValueEvent(new ValueEventListener()  {
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 String balance = dataSnapshot.child("users").child(iduser).child("balance").getValue(String.class);

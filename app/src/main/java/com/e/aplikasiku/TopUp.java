@@ -49,7 +49,7 @@ public class TopUp extends AppCompatActivity {
         Tambah = (Button) findViewById(R.id.tambah);
 
 
-        databaseReference.addListenerForSingleValueEvent(new ValueEventListener()  {
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 saldonya = dataSnapshot.child(iduser).child("saldo").getValue(Integer.class);

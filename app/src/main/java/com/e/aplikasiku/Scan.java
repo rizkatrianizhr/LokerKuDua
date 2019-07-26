@@ -143,7 +143,6 @@ public class Scan extends AppCompatActivity implements ZXingScannerView.ResultHa
         final String size = getIntent().getExtras().getString("locker");
 
         if (id.equals(idlocker)) {
-            Log.d("Scan>>:", idlocker);
             AlertDialog.Builder builder = new AlertDialog.Builder(Scan.this);
             builder.setMessage("Are you sure you want to continue the order?");
             builder.setNeutralButton("No", null);
@@ -151,38 +150,39 @@ public class Scan extends AppCompatActivity implements ZXingScannerView.ResultHa
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
 
-                    NotificationCompat.Builder builder = (NotificationCompat.Builder) new NotificationCompat.Builder(Scan.this)
-                            .setDefaults(NotificationCompat.DEFAULT_ALL)
-                            .setSmallIcon(R.drawable.ic_account)
-                            .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.ic_waktu))
-                            .setContentTitle("Successful Order")
-                            .setContentText("The locker that you ordered successfully opens");
+                NotificationCompat.Builder builder = (NotificationCompat.Builder) new NotificationCompat.Builder(Scan.this)
+                        .setDefaults(NotificationCompat.DEFAULT_ALL)
+                        .setSmallIcon(R.drawable.ic_account)
+                        .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.ic_waktu))
+                        .setContentTitle("Successful Order")
+                        .setContentText("The locker that you ordered successfully opens");
 
-                    Intent resultIntent = new Intent(Scan.this, Pesanan.class);
-                    TaskStackBuilder stackBuilder = TaskStackBuilder.create(Scan.this);
-                    stackBuilder.addParentStack(Pesanan.class);
+                Intent resultIntent = new Intent(Scan.this, Pesanan.class);
+                TaskStackBuilder stackBuilder = TaskStackBuilder.create(Scan.this);
+                stackBuilder.addParentStack(Pesanan.class);
 
 // Adds the Intent that starts the Activity to the top of the stack
-                    stackBuilder.addNextIntent(resultIntent);
-                    PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(0,PendingIntent.FLAG_UPDATE_CURRENT);
-                    builder.setContentIntent(resultPendingIntent);
+                stackBuilder.addNextIntent(resultIntent);
+                PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(0,PendingIntent.FLAG_UPDATE_CURRENT);
+                builder.setContentIntent(resultPendingIntent);
 
-                    NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-                    notificationManager.notify(1, builder.build());
+                NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+                notificationManager.notify(1, builder.build());
 
+                databaseReference.child("lockers").child(idlocker).child("occupiedBy").setValue(firebaseAuth.getCurrentUser().getEmail());
+                databaseReference.child("lockers").child(idlocker).child("isOpen").setValue(1);
+                databaseReference.child("lockers").child(idlocker).child("isOccupied").setValue(1);
 
-                    databaseReference.child("lockers").child(idlocker).child("occupiedBy").setValue(firebaseAuth.getCurrentUser().getEmail());
-                    databaseReference.child("lockers").child(idlocker).child("isOpen").setValue(1);
-                    databaseReference.child("lockers").child(idlocker).child("isOccupied").setValue(1);
+                Order order = new Order(idlocker, firebaseAuth.getCurrentUser().getEmail(), (Calendar.getInstance().getTime()).toString(), 0);
+                databaseReference.child("users")
+                        .child(firebaseAuth.getCurrentUser().getUid())
+                        .child("order").setValue(order);
 
-
-                    Order order = new Order(idlocker, firebaseAuth.getCurrentUser().getEmail(), (Calendar.getInstance().getTime()).toString(), 0);
-                    databaseReference.child("users")
-                            .child(firebaseAuth.getCurrentUser().getUid())
-                            .child("order").setValue(order);
-
-
-                    startActivity(new Intent(Scan.this, Pesanan.class));
+                Intent intent = new Intent(getApplicationContext(), Pesanan.class);
+                Log.d("idlocker>>:", idlocker);
+                intent.putExtra("idlocker", idlocker);
+                startActivity(intent);
+                finish();
                 }
             });
             AlertDialog alert = builder.create();

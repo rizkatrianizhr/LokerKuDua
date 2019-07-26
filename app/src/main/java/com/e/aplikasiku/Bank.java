@@ -19,7 +19,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class Bank extends AppCompatActivity {
 
-    private Button btnBank, Bca, Bri, Mandiri, Bni, Upload;
+    private Button Back, Bca, Bri, Mandiri, Bni, Upload;
     private CardView cvBCA, cvBRI, cvMandiri, cvBNI;
     private TextView Total;
 
@@ -41,7 +41,7 @@ public class Bank extends AppCompatActivity {
         databaseReference = userDatabase.getReference();
 
         Total = (TextView) findViewById(R.id.totall);
-        btnBank = (Button) findViewById(R.id.btnbank);
+        Back = (Button) findViewById(R.id.btnBack);
         Bca = (Button) findViewById(R.id.bca);
         Bri = (Button)  findViewById(R.id.bri);
         Upload = (Button) findViewById(R.id.upload);
@@ -62,7 +62,7 @@ public class Bank extends AppCompatActivity {
         Bni.setVisibility(View.VISIBLE);
 
 
-        databaseReference.addListenerForSingleValueEvent(new ValueEventListener()  {
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 databaseReference.child("users").child(auth.getCurrentUser().getUid()).child("isVerified").setValue(false);
@@ -121,11 +121,17 @@ public class Bank extends AppCompatActivity {
             }
         });
 
-        btnBank.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+       Back.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View view) {
+               startActivity(new Intent(Bank.this, LamanUtama.class));
+           }
+       });
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        startActivity(new Intent(Bank.this, LamanUtama.class));
     }
 }

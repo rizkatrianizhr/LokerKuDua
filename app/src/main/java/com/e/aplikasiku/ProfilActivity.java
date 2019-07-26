@@ -103,7 +103,7 @@ public class ProfilActivity extends AppCompatActivity {
 //        });
 
 
-        databaseReference.addListenerForSingleValueEvent(new ValueEventListener()  {
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                String nama = dataSnapshot.child("users").child(idusernya).child("name").getValue(String.class);
@@ -151,5 +151,11 @@ public class ProfilActivity extends AppCompatActivity {
         return true;
 
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        startActivity(new Intent(ProfilActivity.this, rentLocker.class));
     }
 }

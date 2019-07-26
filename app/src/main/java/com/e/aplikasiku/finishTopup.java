@@ -1,9 +1,10 @@
 package com.e.aplikasiku;
 
-import android.content.Intent;
-
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 
@@ -19,6 +20,7 @@ public class finishTopup extends AppCompatActivity {
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
     private String idusernya;
+    private static int timeout=4000;
 
 
     @Override
@@ -33,6 +35,16 @@ public class finishTopup extends AppCompatActivity {
         idusernya = user.getUid();
 
         OK = (Button) findViewById(R.id.ok);
+
+        Handler handler= new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Intent intent = new Intent(finishTopup.this, LamanUtama.class);
+                startActivity(intent);
+                finish();
+            }
+        },timeout);
 
         OK.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,4 +62,5 @@ public class finishTopup extends AppCompatActivity {
         super.onBackPressed();
         startActivity(new Intent(finishTopup.this, LamanUtama.class));
     }
+
 }

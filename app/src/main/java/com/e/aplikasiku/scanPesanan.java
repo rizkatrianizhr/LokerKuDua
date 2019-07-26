@@ -1,9 +1,13 @@
 package com.e.aplikasiku;
 
 import android.app.AlertDialog;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.BitmapFactory;
 import android.os.Build;
 
 import androidx.annotation.NonNull;
@@ -146,8 +150,7 @@ public class scanPesanan extends AppCompatActivity implements ZXingScannerView.R
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 balance = dataSnapshot.child("users")
                         .child(firebaseAuth.getCurrentUser().getUid()).child("balance").getValue(String.class);
-                bill = dataSnapshot.child("users")
-                        .child(firebaseAuth.getCurrentUser().getUid()).child("order").child("bill").getValue(Integer.class);
+                bill = dataSnapshot.child("users").child(firebaseAuth.getCurrentUser().getUid()).child("order").child("bill").getValue(Integer.class);
 
                 Toast.makeText(scanPesanan.this, "balance: "+balance, Toast.LENGTH_SHORT).show();
                 Toast.makeText(scanPesanan.this, "bill: "+bill, Toast.LENGTH_SHORT).show();
@@ -156,7 +159,6 @@ public class scanPesanan extends AppCompatActivity implements ZXingScannerView.R
 
                 if (id.equals(idlocker) && saldo >= bill) {
                     databaseReference.child("lockers").child(idlocker).child("isOpen").setValue(1);
-//                    databaseReference.child("lockers").child(idlocker).child("notif").setValue(1);
                     startActivity(new Intent(getApplicationContext(), Pesanan.class));
 
 //                    NotificationCompat.Builder builder = (NotificationCompat.Builder) new NotificationCompat.Builder(scanPesanan.this)
@@ -210,7 +212,13 @@ public class scanPesanan extends AppCompatActivity implements ZXingScannerView.R
         });
         }
 
-//        databaseReference.addListenerForSingleValueEvent(new ValueEventListener()  {
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        startActivity(new Intent(scanPesanan.this, Pesanan.class));
+    }
+
+    //        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
 //            @Override
 //            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 //                balance = dataSnapshot.child("users")

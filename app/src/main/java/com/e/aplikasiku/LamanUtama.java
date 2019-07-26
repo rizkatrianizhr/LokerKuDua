@@ -45,7 +45,7 @@ public class LamanUtama extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_laman_utama);
-
+        Logger.v("layout>>: activity_laman_utama");
 
         auth = FirebaseAuth.getInstance();
 
@@ -123,7 +123,6 @@ public class LamanUtama extends AppCompatActivity {
                     Names.setText(name);
                     Balance.setText(dompet);
 
-
                     Order pesanan = dataSnapshot.child("users").child(idusernya).child("order").getValue(Order.class);
                     if (pesanan == null){
                         isOrdering = false;
@@ -137,7 +136,6 @@ public class LamanUtama extends AppCompatActivity {
 
                 }
             };
-
             databaseReference.addValueEventListener(valueEventListener);
         }
 
@@ -259,6 +257,15 @@ public class LamanUtama extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         databaseReference.removeEventListener(valueEventListener);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent a = new Intent(Intent.ACTION_MAIN);
+        a.addCategory(Intent.CATEGORY_HOME);
+        a.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(a);
     }
 }
 

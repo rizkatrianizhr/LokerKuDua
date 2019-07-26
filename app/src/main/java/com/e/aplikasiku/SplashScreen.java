@@ -9,7 +9,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
 public class SplashScreen extends AppCompatActivity {
-    private static int timeout=5000;
+    private static int timeout=6000;
 
     private ImageView Img;
 

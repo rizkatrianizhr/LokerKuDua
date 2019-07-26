@@ -160,7 +160,7 @@ public class Uploadbukti extends AppCompatActivity {
                                         @Override
                                         public void onSuccess(Void aVoid) {
                                             Toast.makeText(Uploadbukti.this, "Uploading Finished...", Toast.LENGTH_LONG);
-//                                            startActivity(new Intent(Uploadbukti.this, finishTopup.class));
+                                            startActivity(new Intent(Uploadbukti.this, LamanUtama.class));
                                         }
                                     });
                                 }
@@ -179,5 +179,9 @@ public class Uploadbukti extends AppCompatActivity {
         }
     }
 
-
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        startActivity(new Intent(Uploadbukti.this, Bank.class));
+    }
 }

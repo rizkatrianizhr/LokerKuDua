@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Handler;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -17,7 +19,7 @@ public class Promo extends AppCompatActivity {
     private DatabaseReference databaseReference;
     private String idusernya;
 
-    private static int timeout=5000;
+    private static int timeout=3000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +32,7 @@ public class Promo extends AppCompatActivity {
         final FirebaseUser user = firebaseAuth.getCurrentUser();
         idusernya = user.getUid();
 
+
         Handler handler= new Handler();
         handler.postDelayed(new Runnable() {
             @Override
@@ -40,4 +43,5 @@ public class Promo extends AppCompatActivity {
             }
         },timeout);
     }
+
 }

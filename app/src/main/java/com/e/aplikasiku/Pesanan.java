@@ -10,11 +10,12 @@ import android.os.Bundle;
 import android.os.Handler;
 
 import androidx.annotation.NonNull;
-import androidx.core.app.NotificationCompat;
-import androidx.core.app.TaskStackBuilder;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.TaskStackBuilder;
+
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -36,7 +37,7 @@ import java.util.Date;
 
 public class Pesanan extends AppCompatActivity {
 
-    private TextView name, Size, Cost, emaill, Id, Status, Date, Hours, Pay;
+    private TextView name, Size, Cost, emaill, Id, Status, Date, Hours, Pay, Pintu;
     private Button Scan, Back;
     private CardView Finish;
     private FirebaseAuth firebaseAuth;
@@ -54,13 +55,14 @@ public class Pesanan extends AppCompatActivity {
 
 
     Handler handler = new Handler();
-    Runnable timedTask = new Runnable(){
+    Runnable timedTask = new Runnable() {
         @Override
         public void run() {
 
             calcDuration();
             handler.postDelayed(timedTask, 1000);
-        }};
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,19 +77,20 @@ public class Pesanan extends AppCompatActivity {
         final FirebaseUser user = firebaseAuth.getCurrentUser();
         idusernya = user.getUid();
 
-        Hours  = (TextView) findViewById(R.id.hour);
+
+        Hours = (TextView) findViewById(R.id.hour);
         Pay = (TextView) findViewById(R.id.pay);
         Date = (TextView) findViewById(R.id.date);
         Finish = (CardView) findViewById(R.id.finish);
         name = (TextView) findViewById(R.id.nameUser);
         emaill = (TextView) findViewById(R.id.emailUser);
         Size = (TextView) findViewById(R.id.size);
-        Status = (TextView)  findViewById(R.id.status);
+        Status = (TextView) findViewById(R.id.status);
         Id = (TextView) findViewById(R.id.idloker);
         Cost = (TextView) findViewById(R.id.cost);
         Scan = (Button) findViewById(R.id.scan);
         Back = (Button) findViewById(R.id.btnBack);
-
+        Pintu = (TextView) findViewById(R.id.pintu);
 
         handler.post(timedTask);
 
@@ -95,10 +98,8 @@ public class Pesanan extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull final DataSnapshot dataSnapshot) {
                 DataSnapshot orderDs = dataSnapshot.child("users").child(idusernya).child("order");
-
                 final String idLocker = orderDs.child("idLocker").getValue(String.class);
                 orderDate = orderDs.child("oorderDate").getValue(String.class);
-                Log.d("orderDate>>:", orderDate);
 
                 hourlyCost = dataSnapshot.child("lockers").child(idLocker).child("cost").getValue(Integer.class);
 
@@ -114,7 +115,8 @@ public class Pesanan extends AppCompatActivity {
                 if (dataSnapshot.child("lockers").child(idLocker).child("notif").getValue(Integer.class) == 1) {
                     Status.setText("Opened");
                     Status.setTextColor(getResources().getColor(R.color.indigo));
-
+                    Pintu.setVisibility(View.GONE);
+                    Status.setVisibility(View.VISIBLE);
                     NotificationCompat.Builder builder = (NotificationCompat.Builder) new NotificationCompat.Builder(Pesanan.this)
                             .setDefaults(NotificationCompat.DEFAULT_ALL)
                             .setSmallIcon(R.drawable.ic_account)
@@ -128,14 +130,27 @@ public class Pesanan extends AppCompatActivity {
 
                     // Adds the Intent that starts the Activity to the top of the stack
                     stackBuilder.addNextIntent(resultIntent);
-                    PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(0,PendingIntent.FLAG_UPDATE_CURRENT);
+                    PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
                     builder.setContentIntent(resultPendingIntent);
 
                     NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
                     notificationManager.notify(1, builder.build());
+
                 } else {
                     Status.setText("Closed");
                     Status.setTextColor(getResources().getColor(R.color.bluedark));
+                    Pintu.setVisibility(View.GONE);
+                    Status.setVisibility(View.VISIBLE);
+                }
+
+                if (dataSnapshot.child("lockers").child(idLocker).child("isOpen").getValue(Integer.class) == 1) {
+                    Pintu.setText("Opened");
+                    Pintu.setTextColor(getResources().getColor(R.color.indigo));
+                    Pintu.setVisibility(View.VISIBLE);
+                    Status.setVisibility(View.GONE);
+                } else {
+                    Pintu.setVisibility(View.GONE);
+                    Status.setVisibility(View.VISIBLE);
                 }
 
                 emaill.setText(firebaseAuth.getCurrentUser().getEmail());
@@ -148,9 +163,9 @@ public class Pesanan extends AppCompatActivity {
                 Scan.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Log.d("scanclick>>:", idLocker);
+
                         Intent intent = new Intent(Pesanan.this, scanPesanan.class);
-                        intent.putExtra("id",idLocker);
+                        intent.putExtra("id", idLocker);
                         databaseReference.child("users").child(firebaseAuth.getCurrentUser().getUid()).child("order").child("bill").setValue(totalPrice);
                         startActivity(intent);
 
@@ -170,7 +185,7 @@ public class Pesanan extends AppCompatActivity {
                                 calcDuration();
                                 int balance = Integer.parseInt(dataSnapshot.child("users").child(firebaseAuth.getCurrentUser().getUid()).child("balance").getValue(String.class));
 
-                                if(totalPrice > balance){
+                                if (totalPrice > balance) {
                                     Toast.makeText(Pesanan.this, "Your balance is not enough", Toast.LENGTH_SHORT).show();
                                     return;
                                 }
@@ -178,17 +193,14 @@ public class Pesanan extends AppCompatActivity {
                                 balance = balance - totalPrice;
 
 
-                                databaseReference.child("users").child(firebaseAuth.getCurrentUser().getUid()).child("balance").setValue(balance+"");
+                                databaseReference.child("users").child(firebaseAuth.getCurrentUser().getUid()).child("balance").setValue(balance + "");
                                 databaseReference.child("users").child(firebaseAuth.getCurrentUser().getUid()).child("order").removeValue();
-
-//                                Order order = new Order(idLocker, firebaseAuth.getCurrentUser().getEmail(), currentdate.toString(), totalPrice);
-//                                databaseReference.child("Orders").push().setValue(order);
-
-                                databaseReference.child("lockers").child(idLocker).child("isOccupied").setValue(0);
-                                databaseReference.child("lockers").child(idLocker).child("occupiedBy").setValue("");
 
                                 Order order = new Order(idLocker, firebaseAuth.getCurrentUser().getEmail(), currentdate.toString(), totalPrice);
                                 databaseReference.child("Orders").push().setValue(order);
+
+                                databaseReference.child("lockers").child(idLocker).child("isOccupied").setValue(0);
+                                databaseReference.child("lockers").child(idLocker).child("occupiedBy").setValue("");
 
                                 Toast.makeText(Pesanan.this, "Finish", Toast.LENGTH_SHORT).show();
 
@@ -203,6 +215,7 @@ public class Pesanan extends AppCompatActivity {
                 });
 
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
@@ -210,6 +223,8 @@ public class Pesanan extends AppCompatActivity {
         };
 
         databaseReference.addValueEventListener(valueEventListener);
+
+
 
         Back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -220,7 +235,7 @@ public class Pesanan extends AppCompatActivity {
     }
 
 
-    private void calcDuration(){
+    private void calcDuration() {
         if (orderDate != "") {
             Calendar thatDay = Calendar.getInstance();
             thatDay.setTime(new Date(orderDate));
@@ -242,9 +257,34 @@ public class Pesanan extends AppCompatActivity {
 
         }
     }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
         databaseReference.removeEventListener(valueEventListener);
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        startActivity(new Intent(Pesanan.this, LamanUtama.class));
+    }
+
+    //    private void updateLocker() {
+//        String idlocker = null;
+//        if (getIntent().getStringExtra("idlocker") != null)
+//        {
+//            idlocker = getIntent().getStringExtra("idlocker");
+//            Log.d("if pesanan>>:", "idlocker>>:" + idlocker);
+//        }
+//        Log.d("2 pesanan>>:", idlocker);
+//        databaseReference.child("lockers").child(idlocker).child("occupiedBy").setValue(firebaseAuth.getCurrentUser().getEmail());
+//        databaseReference.child("lockers").child(idlocker).child("isOpen").setValue(1);
+//        databaseReference.child("lockers").child(idlocker).child("isOccupied").setValue(1);
+//
+//        Order order = new Order(idlocker, firebaseAuth.getCurrentUser().getEmail(), (Calendar.getInstance().getTime()).toString(), 0);
+//        databaseReference.child("users")
+//                .child(firebaseAuth.getCurrentUser().getUid())
+//                .child("order").setValue(order);
 }
+

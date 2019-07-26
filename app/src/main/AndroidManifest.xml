@@ -13,15 +13,18 @@
     <uses-permission android:name="android.permission.CAMERA" />
 
     <application
+        android:hardwareAccelerated="false"
+        android:largeHeap="true"
         android:allowBackup="true"
-        android:icon="@mipmap/icons"
+        android:icon="@mipmap/logo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/icons"
+        android:roundIcon="@mipmap/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".finishTopup"
+        <activity
+            android:name=".finishTopup"
             android:parentActivityName=".LamanUtama"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".Plima"
             android:parentActivityName=".LamanUtama"
@@ -50,13 +53,16 @@
             android:name=".scanPesanan"
             android:parentActivityName=".Pesanan"
             android:screenOrientation="portrait"/>
-        <activity android:name=".Bank"
+        <activity
+            android:name=".Bank"
             android:screenOrientation="portrait"/>
         <activity
             android:name=".addsaldo"
             android:parentActivityName=".LamanUtama"
             android:screenOrientation="portrait"/>
-        <activity android:name=".Settings"
+        <activity
+            android:name=".Settings"
+            android:parentActivityName=".LamanUtama"
             android:screenOrientation="portrait"/>
         <activity
             android:name=".noLocker"
@@ -70,10 +76,11 @@
             android:name=".rentLocker"
             android:parentActivityName=".LamanUtama"
             android:screenOrientation="portrait"/>
-        <activity android:name=".Uploadbukti"
-            android:parentActivityName=".Pilihanbank"
+        <activity
+            android:name=".Uploadbukti"
             android:screenOrientation="portrait"/>
-        <activity android:name=".Pilihanbank"
+        <activity
+            android:name=".Pilihanbank"
             android:parentActivityName=".LamanUtama"
             android:screenOrientation="portrait"/>
         <activity
@@ -88,14 +95,20 @@
             android:name=".resetPass"
             android:parentActivityName=".LamanUtama"
             android:screenOrientation="portrait"/>
-        <activity android:name=".Register"
-            android:screenOrientation="portrait"/>
-            <activity android:name=".Login"
+        <activity
+            android:name=".Register"
             android:parentActivityName=".LamanUtama"
-                android:screenOrientation="portrait"/>
-        <activity android:name=".LamanUtama"
             android:screenOrientation="portrait"/>
-        <activity android:name=".SplashScreen"
+        <activity
+            android:name=".Login"
+            android:parentActivityName=".LamanUtama"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".LamanUtama"
+            android:screenOrientation="portrait"
+            android:noHistory="true"/>
+        <activity
+            android:name=".SplashScreen"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -105,7 +118,7 @@
         </activity>
         <activity
             android:name=".Pesanan"
-            android:parentActivityName=".Promo"
+            android:parentActivityName=".LamanUtama"
             android:screenOrientation="portrait"/>
         <activity
             android:name=".ProfilActivity"

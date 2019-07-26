@@ -7,8 +7,6 @@
     tools:context=".Promo">
 
 
-
-
     <ImageView
         android:layout_width="100dp"
         android:layout_height="100dp"
@@ -26,10 +24,5 @@
         android:textColor="@color/bluedark"
         android:textStyle="bold"
         android:text="Successful Payment "/>
-
-
-
-
-
 
 </RelativeLayout>

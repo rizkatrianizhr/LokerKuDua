@@ -27,6 +27,8 @@ public class confirmOrder extends AppCompatActivity {
     private DatabaseReference databaseReference;
     private String idusernya;
 
+    private ValueEventListener valueEventListener;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,6 +58,23 @@ public class confirmOrder extends AppCompatActivity {
         Cost.setText(cost);
         Number.setText(no);
 
+        valueEventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String nama = dataSnapshot.child("users").child(idusernya).child("name").getValue(String.class);
+                String email = dataSnapshot.child("users").child(idusernya).child("email").getValue(String.class);
+                name.setText(nama);
+                emaill.setText(email);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        };
+
+        // databaseReference.addValueEventListener(valueEventListener);
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -74,9 +93,11 @@ public class confirmOrder extends AppCompatActivity {
         Scan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Logger.d("click>>");
                 Intent intent = new Intent(confirmOrder.this, Scan.class);
                 intent.putExtra("id",id);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -86,6 +107,13 @@ public class confirmOrder extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (valueEventListener != null)
+            databaseReference.removeEventListener(valueEventListener);
     }
 
     @Override
